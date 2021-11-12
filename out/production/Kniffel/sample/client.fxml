@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
       <AnchorPane fx:id="menuPane" prefHeight="720.0" prefWidth="1280.0" visible="false">
          <children>
@@ -46,7 +46,7 @@
             </ImageView>
             <ImageView fitWidth="400.0" layoutX="440.0" layoutY="400.0" onMouseClicked="#settingsMuteSoundsPressed" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../resources/Buttons/Mute%20Sounds.png" />
+                  <Image url="@../resources/Buttons/Mute Sounds.png" />
                </image>
             </ImageView>
             <ImageView fitWidth="400.0" layoutX="440.0" layoutY="550.0" onMouseClicked="#settingsCreditsPressed" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" pickOnBounds="true" preserveRatio="true">
@@ -95,17 +95,17 @@
             </ImageView>
             <ImageView fitWidth="300.0" layoutX="490.0" layoutY="450.0" onMouseClicked="#rollAll" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../resources/Buttons/Roll%20all.png" />
+                  <Image url="@../resources/Buttons/Roll all.png" />
                </image>
             </ImageView>
             <ImageView fitWidth="300.0" layoutX="100.0" layoutY="450.0" onMouseClicked="#rollSelected" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../resources/Buttons/Roll%20selected.png" />
+                  <Image url="@../resources/Buttons/Roll selected.png" />
                </image>
             </ImageView>
             <ImageView fitWidth="300.0" layoutX="880.0" layoutY="450.0" onMouseClicked="#finishRolling" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../resources/Buttons/Finish%20rolling.png" />
+                  <Image url="@../resources/Buttons/Finish rolling.png" />
                </image>
             </ImageView>
             <ImageView fx:id="selectDice1" fitHeight="50.0" fitWidth="50.0" layoutX="115.0" layoutY="275.0" onMouseClicked="#selectDice1Clicked" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" pickOnBounds="true" preserveRatio="true">
@@ -140,7 +140,7 @@
             </Label>
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="390.0" layoutY="592.0" onMouseClicked="#showPoints" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../resources/Buttons/Show%20Points.png" />
+                  <Image url="@../resources/Buttons/Show Points.png" />
                </image>
             </ImageView>
             <Label fx:id="remainingTurnsLabel" alignment="CENTER" layoutX="529.0" layoutY="403.0" prefHeight="30.0" prefWidth="223.0" text="Remaining Turns: 13">
@@ -159,7 +159,7 @@
          <children>
             <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../resources/Backgrounds/Punkteblatt.png" />
+                  <Image url="@../resources/Backgrounds/Pointsheet.png" />
                </image>
             </ImageView>
             <ImageView fx:id="pointsButton" fitHeight="150.0" fitWidth="200.0" layoutX="540.0" layoutY="619.0" onMouseClicked="#pointsSkipButtonPressed" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" pickOnBounds="true" preserveRatio="true">

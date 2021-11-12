@@ -8,12 +8,9 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCombination;
 import javafx.stage.Stage;
-//import org.apache.logging.log4j.LogManager;
-//import org.apache.logging.log4j.Logger;
 
 public class Main extends Application {
 
-    //private static final Logger log = LogManager.getLogger(Main.class);
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -23,7 +20,6 @@ public class Main extends Application {
             Controller controller = loader.getController();
             controller.startClient();
 
-            //log.info("test");
             Scene scene = new Scene(root);
             stage.setTitle("Kniffel");
             stage.setScene(scene);

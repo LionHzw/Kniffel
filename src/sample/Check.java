@@ -1,7 +1,5 @@
 package sample;
 
-
-import java.util.Arrays;
 import java.util.logging.*;
 
 public class Check {
@@ -73,6 +71,13 @@ public class Check {
         numberp16 = 0;
     }
 
+    /**
+     * Checks for amount of aces.
+     * Multiplies the amount by 1.
+     * @param a int array with the current roll
+     * @return returns -1 when the current roll does not fulfill the preconditions for this case
+     *         returns the amount of points you get for this case when x > 0
+     */
     public int checkp0(int[] a) {
         if (specPoints || numberp0 != 0) return -1;
         int p0sum = 0;
@@ -88,6 +93,13 @@ public class Check {
         return numberp0;
     }
 
+    /**
+     * Checks for amount of threes.
+     * Multiplies the amount by 3.
+     * @param a int array with the current roll
+     * @return returns -1 when the current roll does not fulfill the preconditions for this case
+     *         returns the amount of points you get for this case when x > 0
+     */
     public int checkp1(int[] a) {
         if (specPoints || numberp1 != 0) return -1;
         int p1sum = 0;
@@ -110,9 +122,11 @@ public class Check {
     }
 
     /**
-     * Checks for 3s
-     * @param a array with rolls
-     * @return gained points
+     * Checks for amount of threes.
+     * Multiplies the amount by 3.
+     * @param a int array with the current roll
+     * @return returns -1 when the current roll does not fulfill the preconditions for this case
+     *         returns the amount of points you get for this case when x > 0
      */
     public int checkp2(int[] a) {
         if (specPoints || numberp2 != 0) return -1;
@@ -135,6 +149,13 @@ public class Check {
         return numberp2;
     }
 
+    /**
+     * Checks for amount of fours.
+     * Multiplies the amount by 4.
+     * @param a int array with the current roll
+     * @return returns -1 when the current roll does not fulfill the preconditions for this case
+     *         returns the amount of points you get for this case when x > 0
+     */
     public int checkp3(int[] a) {
         if (specPoints || numberp3 != 0) return -1;
         int p3sum = 0;
@@ -156,6 +177,13 @@ public class Check {
         return numberp3;
     }
 
+    /**
+     * Checks for amount of fives.
+     * Multiplies the amount by 5.
+     * @param a int array with the current roll
+     * @return returns -1 when the current roll does not fulfill the preconditions for this case
+     *         returns the amount of points you get for this case when x > 0
+     */
     public int checkp4(int[] a) {
         if (specPoints || numberp4 != 0) return -1;
         int p4sum = 0;
@@ -177,6 +205,13 @@ public class Check {
         return numberp4;
     }
 
+    /**
+     * Checks for amount of sixes.
+     * Multiplies the amount by 6.
+     * @param a int array with the current roll
+     * @return returns -1 when the current roll does not fulfill the preconditions for this case
+     *         returns the amount of points you get for this case when x > 0
+     */
     public int checkp5(int[] a) {
         if (specPoints || numberp5 != 0) return -1;
         int p5sum = 0;
@@ -198,6 +233,9 @@ public class Check {
         return numberp5;
     }
 
+    /**
+     * p6 is the total score of the first row
+     */
     public void checkp6() {
         int p6sum = numberp0
                 + numberp1
@@ -210,9 +248,11 @@ public class Check {
     }
 
     /**
-     * 3er Pasch
-     * @param a
-     * @return
+     * Checks if there are 3 of a kind
+     * Counts the sum of all eyes
+     * @param a int array with the current roll
+     * @return returns -1 when the current roll does not fulfill the preconditions for this case
+     *         returns the amount of points you get for this case when x > 0
      */
     public int checkp7(int[] a) {
         if (specPoints || numberp7 != 0) return -1;
@@ -227,9 +267,11 @@ public class Check {
     }
 
     /**
-     * 4er Pasch
-     * @param a
-     * @return
+     * Checks if there are 4 of a kind
+     * Counts the sum of all eyes
+     * @param a int array with the current roll
+     * @return returns -1 when the current roll does not fulfill the preconditions for this case
+     *         returns the amount of points you get for this case when x > 0
      */
     public int checkp8(int[] a) {
         if (specPoints || numberp8 != 0) return -1;
@@ -244,9 +286,11 @@ public class Check {
     }
 
     /**
-     * Full House
-     * @param a
-     * @return
+     * Checks if there are 2 of one kind, and 3 of another kind
+     * Would give 25 points
+     * @param a int array with the current roll
+     * @return returns -1 when the current roll does not fulfill the preconditions for this case
+     *         returns the amount of points you get for this case when x > 0
      */
     public int checkp9(int[] a) {
         if (specPoints || numberp9 != 0) return -1;
@@ -271,9 +315,11 @@ public class Check {
     }
 
     /**
-     * Kleine Straße
-     * @param a
-     * @return
+     * Checks if there is a small straight
+     * Would give 30 points
+     * @param a int array with the current roll
+     * @return returns -1 when the current roll does not fulfill the preconditions for this case
+     *         returns the amount of points you get for this case when x > 0
      */
     public int checkp10(int[] a) {
         if (specPoints || numberp10 != 0) return -1;
@@ -293,6 +339,12 @@ public class Check {
         return -1;
     }
 
+    /**
+     * Removes the duplicates of a given array
+     * This method gets used by checkp10 (small straight)
+     * @param a array to remove all duplicates from
+     * @return array with no duplicates
+     */
     public int[] removeDuplicates(int[] a) {
         int n = a.length;
         int[] temp = new int[n];
@@ -307,9 +359,11 @@ public class Check {
     }
 
     /**
-     * Große Straße
-     * @param a
-     * @return
+     * Checks if there is a large straight
+     * Would give 40 points
+     * @param a int array with the current roll
+     * @return returns -1 when the current roll does not fulfill the preconditions for this case
+     *         returns the amount of points you get for this case when x > 0
      */
     public int checkp11(int[] a) {
         if (specPoints || numberp11 != 0) return -1;
@@ -334,9 +388,11 @@ public class Check {
     }
 
     /**
-     * Kniffel
-     * @param a
-     * @return
+     * Checks if there are 5 of a kind
+     * Would give 50
+     * @param a int array with the current roll
+     * @return returns -1 when the current roll does not fulfill the preconditions for this case
+     *         returns the amount of points you get for this case when x > 0
      */
     public int checkp12(int[] a) {
         if (specPoints || numberp12 != 0) return -1;
@@ -349,6 +405,9 @@ public class Check {
         }
     }
 
+    /**
+     * p13 is the total score of the second row
+     */
     public void checkp13() {
         int p13sum = numberp7
                 + numberp8
@@ -360,6 +419,12 @@ public class Check {
         numberp13 = p13sum;
     }
 
+    /**
+     * Sums up all eyes.
+     * There are no pre-conditions for this case.
+     * @param a int array with the current roll
+     * @return returns the amount of points you get for this case when x > 0
+     */
     public int checkp14(int[] a) {
         if (specPoints || numberp14 != 0) return -1;
         numberp14 = a[0] + a[1] + a[2] + a[3] + a[4];
@@ -367,6 +432,11 @@ public class Check {
         return numberp14;
     }
 
+    /**
+     * Checks if the total score of the upper row (p6) is greater or equal than 63.
+     * If so, the player will get a bonus of 35 points.
+     * If not, no action will be done.
+     */
     public void checkp15() {
         if (numberp6 >= 63) {
             controller.update15(35);
@@ -376,6 +446,9 @@ public class Check {
         }
     }
 
+    /**
+     * Checks the total amount of points for each row
+     */
     public void checkTotal() {
         checkp6();
         checkp13();
@@ -383,13 +456,5 @@ public class Check {
         numberp16 = numberp6 + numberp13 + numberp14 + numberp15;
         controller.update16(numberp16);
         log.info("Total is: " + numberp16);
-    }
-
-    public void printCurrentDices(int[] a) {
-        System.out.println(a[0]);
-        System.out.println(a[1]);
-        System.out.println(a[2]);
-        System.out.println(a[3]);
-        System.out.println(a[4]);
     }
 }
