@@ -86,6 +86,9 @@ public class Controller {
     public int dice4num;
     public int dice5num;
 
+    /**
+     * Images for the dices and the Buttons
+     */
     Image dice0Image = new Image(MiscFilePath.DICE.getFilePath());
     Image dice1Image = new Image(MiscFilePath.DICE1.getFilePath());
     Image dice2Image = new Image(MiscFilePath.DICE2.getFilePath());
@@ -102,6 +105,9 @@ public class Controller {
 
     }
 
+    /**
+     * Sets up some important things for the game
+     */
     public void startClient() {
         checker = new Check(this);
         remainingTurns = 13;
@@ -110,10 +116,16 @@ public class Controller {
         rolls = new int[5];
     }
 
+    /**
+     * When the window gets closed
+     */
     public void windowClosed() {
         System.exit(1);
     }
 
+    /**
+     * Selects all dices
+     */
     public void setAllSelectsToTrue() {
         select1Bool = true;
         select2Bool = true;
@@ -122,6 +134,9 @@ public class Controller {
         select5Bool = true;
     }
 
+    /**
+     * Resets the select boxes for the dices and puts empty box pictures under the dices
+     */
     public void setAllToUnselected() {
         selectDice1.setImage(new Image(MiscFilePath.UNSELECTED.getFilePath()));
         selectDice2.setImage(new Image(MiscFilePath.UNSELECTED.getFilePath()));
@@ -130,6 +145,10 @@ public class Controller {
         selectDice5.setImage(new Image(MiscFilePath.UNSELECTED.getFilePath()));
     }
 
+    /**
+     * method to switch between anchorpane scenes
+     * @param scene scene to be switched to
+     */
     public void switchScene(Scene scene) {
         menuPane.setVisible(false);
         gamePane.setVisible(false);
@@ -143,6 +162,10 @@ public class Controller {
         }
     }
 
+    /**
+     * When the "Roll all" button gets hit the method gets called.
+     * It gives all 5 dices a random int from 1 to 6.
+     */
     @FXML
     public void rollAll() {
         if (remainingTurns == 0) return;
@@ -171,6 +194,9 @@ public class Controller {
         diceDecider(5, dice5);
     }
 
+    /**
+     * Looks which dice is selected and rolls the selected ones
+     */
     @FXML
     public void rollSelected() {
         if (remainingTurns == 0) return;
@@ -211,6 +237,11 @@ public class Controller {
         }
     }
 
+    /**
+     * Gets a dice and an eye number. Calls another method "numberDecider" based on the dice it gets
+     * @param dice 1...5
+     * @param number 1...6
+     */
     public void diceDecider(int dice, int number) {
         switch (dice) {
             case 1 -> numberDecider(number, dice1IV);
@@ -221,6 +252,11 @@ public class Controller {
         }
     }
 
+    /**
+     * Gets an eye number and an ImageView
+     * @param number eye number 1...6
+     * @param diceImage The ImageView so the controller knows where to display the eye number
+     */
     private void numberDecider(int number, ImageView diceImage) {
         switch (number) {
             case 0 -> diceImage.setImage(dice0Image);
@@ -233,6 +269,9 @@ public class Controller {
         }
     }
 
+    /**
+     * gives every dice the "kniffel" image.
+     */
     public void resetDices() {
         for (int i = 1; i < 7; i++) {
             diceDecider(i, 0);
@@ -241,6 +280,10 @@ public class Controller {
         remainingLabel.setText("Remaining: 3");
     }
 
+    /**
+     * Sets up the game / Resets it
+     * Gets called when the player clicks play in the main menu
+     */
     @FXML
     public void menuPlayClicked() {
         playButtonClickedSound();
@@ -263,16 +306,27 @@ public class Controller {
 
     }
 
+    /**
+     * Switches to the settingspane
+     */
     @FXML
     public void menuSettingsClicked() {
         switchScene(Scene.SETTINGS);
     }
 
+    /**
+     * Closes the game
+     */
     @FXML
     public void menuQuitClicked() {
         System.exit(0);
     }
 
+    /**
+     * Gets called when the fullscreen button in the settings gets pressed
+     * Checks if the game is already in fullscreen.
+     * Switches between fullscreen and windowed mode
+     */
     @FXML
     public void settingsFullscreenPressed() {
         Stage stage = (Stage) settingsPane.getScene().getWindow();
@@ -291,21 +345,33 @@ public class Controller {
         stage.setFullScreen(!stage.isFullScreen());
     }
 
+    /**
+     * Mutes the sound which are yet to come
+     */
     @FXML
     public void settingsMuteSoundsPressed() {
         isMuted = !isMuted;
     }
 
+    /**
+     * Switches to the credits pane
+     */
     @FXML
     public void settingsCreditsPressed() {
         //TODO
     }
 
+    /**
+     * Returns from the settings to the menu
+     */
     @FXML
     public void settingsBackPressed() {
         switchScene(Scene.MENU);
     }
 
+    /**
+     * When the box under dice 1 gets clicked it changes to selected or unselected based on the pre-status
+     */
     @FXML
     public void selectDice1Clicked() {
         select1Bool = !select1Bool;
@@ -316,6 +382,9 @@ public class Controller {
         }
     }
 
+    /**
+     * When the box under dice 2 gets clicked it changes to selected or unselected based on the pre-status
+     */
     @FXML
     public void selectDice2Clicked() {
         select2Bool = !select2Bool;
@@ -326,6 +395,9 @@ public class Controller {
         }
     }
 
+    /**
+     * When the box under dice 3 gets clicked it changes to selected or unselected based on the pre-status
+     */
     @FXML
     public void selectDice3Clicked() {
         select3Bool = !select3Bool;
@@ -336,6 +408,9 @@ public class Controller {
         }
     }
 
+    /**
+     * When the box under dice 4 gets clicked it changes to selected or unselected based on the pre-status
+     */
     @FXML
     public void selectDice4Clicked() {
         select4Bool = !select4Bool;
@@ -346,6 +421,9 @@ public class Controller {
         }
     }
 
+    /**
+     * When the box under dice 5 gets clicked it changes to selected or unselected based on the pre-status
+     */
     @FXML
     public void selectDice5Clicked() {
         select5Bool = !select5Bool;
@@ -356,6 +434,10 @@ public class Controller {
         }
     }
 
+    /**
+     * Gets called when the player finished his turn
+     * Sorts the eye numbers and switches to the pointsheet
+     */
     @FXML
     public void finishRolling() {
         if (remainingTurns == 0) return;
@@ -381,6 +463,10 @@ public class Controller {
         System.out.println(Arrays.toString(rolls));
     }
 
+    /**
+     * The player has the ability to show his points while he is still in a turn in order to see which fields are still open.
+     * The current rolls are getting displayed there too.
+     */
     @FXML
     public void showPoints() {
         switchScene(Scene.POINTS);
@@ -393,6 +479,9 @@ public class Controller {
         checker.specPointsTrue();
     }
 
+    /**
+     * When the player is not happy with his roll, he can skip it and no action will be done except he loses a turn.
+     */
     @FXML
     public void pointsSkipButtonPressed() {
         if (checker.getSpecPoints()) {
@@ -409,6 +498,11 @@ public class Controller {
         }
     }
 
+    /**
+     * Returns an Image with either the "Kniffel image" or the image with the according eye number
+     * @param num 0 -> Kniffel image | 1...6 image with the eye number
+     * @return
+     */
     public Image eyesReturner(int num) {
         return switch (num) {
             case 0 -> dice0Image;
@@ -422,6 +516,9 @@ public class Controller {
         };
     }
 
+    /**
+     * Effect when the player hovers over a button
+     */
     @FXML
     public void onMouseEntered(MouseEvent mouseEvent) {
         playButtonHoverSound();
@@ -429,36 +526,58 @@ public class Controller {
         src.setEffect(new DropShadow());
     }
 
+    /**
+     * Effect when the player hovers off a button
+     */
     @FXML
     public void onMouseExited(MouseEvent mouseEvent) {
         ImageView src = (ImageView) mouseEvent.getSource();
         src.setEffect(null);
     }
 
+    /**
+     * Effect when the player presses a button
+     */
     @FXML
     public void onMousePressed(MouseEvent mouseEvent) {
         ImageView src = (ImageView) mouseEvent.getSource();
         src.setEffect(new InnerShadow());
     }
 
+    /**
+     * Effect when the player releases a button
+     */
     @FXML
     public void onMouseReleased(MouseEvent mouseEvent) {
         ImageView src = (ImageView) mouseEvent.getSource();
         src.setEffect(new DropShadow());
     }
 
+    /**
+     * Effect when the player hovers over a label (points)
+     */
     @FXML
     public void onMouseEnteredLabel(MouseEvent mouseEvent) {
         Label src = (Label) mouseEvent.getSource();
         src.setEffect(new DropShadow());
     }
 
+    /**
+     * Effect when the player hovers off a label (points)
+     */
     @FXML
     public void onMouseExitedLabel(MouseEvent mouseEvent) {
         Label src = (Label) mouseEvent.getSource();
         src.setEffect(null);
     }
 
+    /**
+     * Aces label pressed
+     * If the player clicks the specific label of a field this method gets called.
+     * According to the label he pressed, the checker checks if the conditions for this case are fulfilled.
+     * If this is the case, the checker returns an int with the points he gained extra for the case.
+     * If the conditions are not getting fulfilled, the checker returns -1 and the player can decide again.
+     */
     @FXML
     public void p0Pressed() {
         if (hasDecided) return;
@@ -470,6 +589,13 @@ public class Controller {
 
     }
 
+    /**
+     * Twos label pressed
+     * If the player clicks the specific label of a field this method gets called.
+     * According to the label he pressed, the checker checks if the conditions for this case are fulfilled.
+     * If this is the case, the checker returns an int with the points he gained extra for the case.
+     * If the conditions are not getting fulfilled, the checker returns -1 and the player can decide again.
+     */
     @FXML
     public void p1Pressed() {
         if (hasDecided) return;
@@ -480,6 +606,13 @@ public class Controller {
         }
     }
 
+    /**
+     * Threes label pressed
+     * If the player clicks the specific label of a field this method gets called.
+     * According to the label he pressed, the checker checks if the conditions for this case are fulfilled.
+     * If this is the case, the checker returns an int with the points he gained extra for the case.
+     * If the conditions are not getting fulfilled, the checker returns -1 and the player can decide again.
+     */
     @FXML
     public void p2Pressed() {
         if (hasDecided) return;
@@ -490,6 +623,13 @@ public class Controller {
         }
     }
 
+    /**
+     * Fours label pressed
+     * If the player clicks the specific label of a field this method gets called.
+     * According to the label he pressed, the checker checks if the conditions for this case are fulfilled.
+     * If this is the case, the checker returns an int with the points he gained extra for the case.
+     * If the conditions are not getting fulfilled, the checker returns -1 and the player can decide again.
+     */
     @FXML
     public void p3Pressed() {
         if (hasDecided) return;
@@ -500,6 +640,13 @@ public class Controller {
         }
     }
 
+    /**
+     * Fives label pressed
+     * If the player clicks the specific label of a field this method gets called.
+     * According to the label he pressed, the checker checks if the conditions for this case are fulfilled.
+     * If this is the case, the checker returns an int with the points he gained extra for the case.
+     * If the conditions are not getting fulfilled, the checker returns -1 and the player can decide again.
+     */
     @FXML
     public void p4Pressed() {
         if (hasDecided) return;
@@ -510,6 +657,13 @@ public class Controller {
         }
     }
 
+    /**
+     * Sixes label pressed
+     * If the player clicks the specific label of a field this method gets called.
+     * According to the label he pressed, the checker checks if the conditions for this case are fulfilled.
+     * If this is the case, the checker returns an int with the points he gained extra for the case.
+     * If the conditions are not getting fulfilled, the checker returns -1 and the player can decide again.
+     */
     @FXML
     public void p5Pressed() {
         if (hasDecided) return;
@@ -520,10 +674,22 @@ public class Controller {
         }
     }
 
+    /**
+     * This method gets an int with the total score of the upper row.
+     * It displays the score on a label
+     * @param num upper total score
+     */
     public void update6(int num) {
         p6.setText(Integer.toString(num));
     }
 
+    /**
+     * Checks if the player has 3 of a kind
+     * If the player clicks the specific label of a field this method gets called.
+     * According to the label he pressed, the checker checks if the conditions for this case are fulfilled.
+     * If this is the case, the checker returns an int with the points he gained extra for the case.
+     * If the conditions are not getting fulfilled, the checker returns -1 and the player can decide again.
+     */
     @FXML
     public void p7Pressed() {
         if (hasDecided) return;
@@ -534,6 +700,13 @@ public class Controller {
         }
     }
 
+    /**
+     * Checks if the player has 4 of a kind
+     * If the player clicks the specific label of a field this method gets called.
+     * According to the label he pressed, the checker checks if the conditions for this case are fulfilled.
+     * If this is the case, the checker returns an int with the points he gained extra for the case.
+     * If the conditions are not getting fulfilled, the checker returns -1 and the player can decide again.
+     */
     @FXML
     public void p8Pressed() {
         if (hasDecided) return;
@@ -544,6 +717,13 @@ public class Controller {
         }
     }
 
+    /**
+     * Checks if the player has a full house
+     * If the player clicks the specific label of a field this method gets called.
+     * According to the label he pressed, the checker checks if the conditions for this case are fulfilled.
+     * If this is the case, the checker returns an int with the points he gained extra for the case.
+     * If the conditions are not getting fulfilled, the checker returns -1 and the player can decide again.
+     */
     @FXML
     public void p9Pressed() {
         if (hasDecided) return;
@@ -554,6 +734,13 @@ public class Controller {
         }
     }
 
+    /**
+     * Checks if the player has a small straight
+     * If the player clicks the specific label of a field this method gets called.
+     * According to the label he pressed, the checker checks if the conditions for this case are fulfilled.
+     * If this is the case, the checker returns an int with the points he gained extra for the case.
+     * If the conditions are not getting fulfilled, the checker returns -1 and the player can decide again.
+     */
     @FXML
     public void p10Pressed() {
         if (hasDecided) return;
@@ -564,6 +751,13 @@ public class Controller {
         }
     }
 
+    /**
+     * Checks if the player has a large straight
+     * If the player clicks the specific label of a field this method gets called.
+     * According to the label he pressed, the checker checks if the conditions for this case are fulfilled.
+     * If this is the case, the checker returns an int with the points he gained extra for the case.
+     * If the conditions are not getting fulfilled, the checker returns -1 and the player can decide again.
+     */
     @FXML
     public void p11Pressed() {
         if (hasDecided) return;
@@ -574,6 +768,13 @@ public class Controller {
         }
     }
 
+    /**
+     * Checks if the player has 5 of a kind, also known as Kniffel
+     * If the player clicks the specific label of a field this method gets called.
+     * According to the label he pressed, the checker checks if the conditions for this case are fulfilled.
+     * If this is the case, the checker returns an int with the points he gained extra for the case.
+     * If the conditions are not getting fulfilled, the checker returns -1 and the player can decide again.
+     */
     @FXML
     public void p12Pressed() {
         if (hasDecided) return;
@@ -584,10 +785,20 @@ public class Controller {
         }
     }
 
+    /**
+     * This method gets an int with the total score of the lower row.
+     * It displays the score on a label
+     * @param num lower total score
+     */
     public void update13(int num) {
         p13.setText(Integer.toString(num));
     }
 
+    /**
+     * The chance case.
+     * This field does not have any preconditions.
+     * It just sums up the eye numbers of the dices.
+     */
     @FXML
     public void p14Pressed() {
         if (hasDecided) return;
@@ -598,25 +809,49 @@ public class Controller {
         }
     }
 
+    /**
+     * This method displays if the player is worthy of the upper score bonus.
+     * If so, it displays the gained bonus on a label
+     * @param num extra points (35) or 0
+     */
     public void update15(int num) {
         p15.setText(Integer.toString(num));
     }
 
+    /**
+     * Total score.
+     * It displays the total score the player has
+     * @param num total score
+     */
     public void update16(int num) {
         p16.setText(Integer.toString(num));
     }
 
+    /**
+     * Decreases the players remaining turns and displays the remaining turns
+     */
     public void decreaseRemainingTurns() {
         remainingTurns--;
         remainingTurnsLabel.setText("Remaining Turns: " + remainingTurns);
     }
 
+    /**
+     * Enclosures the players turn.
+     * Gets called when a player has decided for a field which is possible
+     * @param num number of the field (aces, twos, ..., three of a kind, ..., Kniffel)
+     * @param score Points gained for that case so it can be displayed on the according label
+     */
     public void enclosureTurn(int num, int score) {
         pointsButton.setImage(continueImage);
         hasDecided = true;
         updateLabel(num, score);
     }
 
+    /**
+     * Method gets a number, so it knows which label to update and a score to know with which number it should display on the label
+     * @param num number of the label
+     * @param score score which gets displayed
+     */
     public void updateLabel(int num, int score) {
         switch (num) {
             case 0 -> p0.setText(Integer.toString(score));
@@ -639,6 +874,9 @@ public class Controller {
         }
     }
 
+    /**
+     * When the player presses the exit button during the game, he gets send back to the menu
+     */
     @FXML
     public void exitButtonPressed() {
         switchScene(Scene.MENU);
