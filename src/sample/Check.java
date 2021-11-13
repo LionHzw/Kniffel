@@ -27,30 +27,40 @@ public class Check {
 
     private boolean specPoints = false;
 
+    /**
+     * constructor of the Check class
+     * @param controller controller for the FXML
+     */
     public Check(Controller controller) {
         this.controller = controller;
     }
 
     /**
-     *
-     * p6 - Gesamt oben
-     * p13 - Gesamt unten
-     * p15 - Bonus
-     * p16 - Gesamt
+     * specPoints gets set to true if the player enters the spectator mode
      */
-
     public void specPointsTrue() {
         specPoints = true;
     }
 
+    /**
+     * specPoints gets set to false if the player leaves the spectator mode
+     */
     public void specPointsFalse() {
         specPoints = false;
     }
 
+    /**
+     * returns if the player is spectating the points right now
+     * @return boolean: true: player is spectating the pointssheet
+     *                  false: player isn't
+     */
     public boolean getSpecPoints() {
         return specPoints;
     }
 
+    /**
+     * sets all values to zero (when a game gets started or restarted)
+     */
     public void setAllValuesToZero() {
         numberp0 = 0;
         numberp1 = 0;

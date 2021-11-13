@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="268e5116-2c97-4b08-a1d7-6b8c381cedd1" name="Changes" comment="Add Javadoc to the check.java class">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controller.java" afterDir="false" />
-    </list>
+    <list default="true" id="268e5116-2c97-4b08-a1d7-6b8c381cedd1" name="Changes" comment="Add JavaDoc to the controller class" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -72,7 +69,7 @@
       <updated>1636717996753</updated>
       <workItem from="1636717997947" duration="2590000" />
       <workItem from="1636737924024" duration="5721000" />
-      <workItem from="1636801118354" duration="1775000" />
+      <workItem from="1636801118354" duration="2220000" />
     </task>
     <task id="LOCAL-00001" summary="re-imported .iml file and .idea in order to fix the &quot;not able to build bug&quot;">
       <created>1636718218054</created>
@@ -102,7 +99,14 @@
       <option name="project" value="LOCAL" />
       <updated>1636748088387</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Add JavaDoc to the controller class">
+      <created>1636803351503</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1636803351504</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -126,6 +130,7 @@
     <MESSAGE value="Add English version of the pointsheet" />
     <MESSAGE value="Small changes to the English pointsheet" />
     <MESSAGE value="Add Javadoc to the check.java class" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add Javadoc to the check.java class" />
+    <MESSAGE value="Add JavaDoc to the controller class" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add JavaDoc to the controller class" />
   </component>
 </project>
