@@ -31,6 +31,7 @@ public class Controller {
     @FXML public AnchorPane gamePane;
     @FXML public AnchorPane pointsPane;
     @FXML public AnchorPane settingsPane;
+    @FXML public AnchorPane guidePane;
     @FXML public ImageView dice1IV;
     @FXML public ImageView dice2IV;
     @FXML public ImageView dice3IV;
@@ -68,6 +69,7 @@ public class Controller {
     @FXML public ImageView pointsButton;
     @FXML public Label specLabel1;
     @FXML public Label specLabel2;
+    @FXML public ImageView guideIV;
 
     public int remaining;
     public int remainingTurns;
@@ -87,7 +89,7 @@ public class Controller {
     public int dice5num;
 
     /**
-     * Images for the dices and the Buttons
+     * Images for the dice and the buttons and the guides
      */
     Image dice0Image = new Image(MiscFilePath.DICE.getFilePath());
     Image dice1Image = new Image(MiscFilePath.DICE1.getFilePath());
@@ -99,6 +101,12 @@ public class Controller {
     Image skipImage = new Image(MiscFilePath.SKIP.getFilePath());
     Image backImage = new Image(MiscFilePath.BACK.getFilePath());
     Image continueImage = new Image(MiscFilePath.CONTINUE.getFilePath());
+    Image acesGuide = new Image(MiscFilePath.ACES.getFilePath());
+    Image twosGuide = new Image(MiscFilePath.TWOS.getFilePath());
+    Image threesGuide = new Image(MiscFilePath.THREES.getFilePath());
+    Image foursGuide = new Image(MiscFilePath.FOURS.getFilePath());
+    Image fivesGuide = new Image(MiscFilePath.FIVES.getFilePath());
+    Image sixesGuide = new Image(MiscFilePath.SIXES.getFilePath());
 
 
     public Controller() {
@@ -154,11 +162,13 @@ public class Controller {
         gamePane.setVisible(false);
         pointsPane.setVisible(false);
         settingsPane.setVisible(false);
+        guidePane.setVisible(false);
         switch (scene) {
             case MENU -> menuPane.setVisible(true);
             case GAME -> gamePane.setVisible(true);
             case POINTS -> pointsPane.setVisible(true);
             case SETTINGS -> settingsPane.setVisible(true);
+            case GUIDE -> guidePane.setVisible(true);
         }
     }
 
@@ -908,5 +918,53 @@ public class Controller {
             mediaPlayerButtonClicked.setVolume(1.0);
         }
         mediaPlayerButtonClicked.play();*/
+    }
+
+    @FXML
+    public void gotItClicked() {
+        switchScene(Scene.POINTS);
+    }
+
+    public void switchToGuide(Guide guide) {
+        switchScene(Scene.GUIDE);
+        guideIV.setImage(null);
+        switch (guide) {
+            case ACES -> guideIV.setImage(acesGuide);
+            case TWOS -> guideIV.setImage(twosGuide);
+            case THREES -> guideIV.setImage(threesGuide);
+            case FOURS -> guideIV.setImage(foursGuide);
+            case FIVES -> guideIV.setImage(fivesGuide);
+            case SIXES -> guideIV.setImage(sixesGuide);
+        }
+    }
+
+    @FXML
+    public void acesClicked() {
+        switchToGuide(Guide.ACES);
+    }
+
+    @FXML
+    public void twosClicked() {
+        switchToGuide(Guide.TWOS);
+    }
+
+    @FXML
+    public void threesClicked() {
+        switchToGuide(Guide.THREES);
+    }
+
+    @FXML
+    public void foursClicked() {
+        switchToGuide(Guide.FOURS);
+    }
+
+    @FXML
+    public void fivesClicked() {
+        switchToGuide(Guide.FIVES);
+    }
+
+    @FXML
+    public void sixesClicked() {
+        switchToGuide(Guide.SIXES);
     }
 }

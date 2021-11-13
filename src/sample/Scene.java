@@ -4,5 +4,6 @@ public enum Scene {
     MENU,
     GAME,
     POINTS,
-    SETTINGS
+    SETTINGS,
+    GUIDE
 }

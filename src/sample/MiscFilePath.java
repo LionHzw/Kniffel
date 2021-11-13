@@ -16,7 +16,13 @@ public enum MiscFilePath {
     BUTTON_HOVER("/resources/Sounds/buttonHover1.wav"),
     BUTTON_PRESSED("/resources/Sounds/buttonPressed.wav"),
     ERROR("/resources/Sounds/error.wav"),
-    ACCEPTED_TURN("/resources/Sounds/acceptedTurn.wav");
+    ACCEPTED_TURN("/resources/Sounds/acceptedTurn.wav"),
+    ACES("/resources/Guides/Aces.png"),
+    TWOS("/resources/Guides/Twos.png"),
+    THREES("/resources/Guides/Threes.png"),
+    FOURS("/resources/Guides/Fours.png"),
+    FIVES("/resources/Guides/Fives.png"),
+    SIXES("/resources/Guides/Sixes.png");
 
 
     String filePath;
