@@ -155,7 +155,7 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="pointsPane" prefHeight="720.0" prefWidth="1280.0" visible="false">
+      <AnchorPane fx:id="pointsPane" prefHeight="720.0" prefWidth="1280.0">
          <children>
             <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -167,32 +167,32 @@
                   <Image url="@../resources/Buttons/Skip.png" />
                </image>
             </ImageView>
-            <Label fx:id="p0" alignment="CENTER" layoutX="270.0" layoutY="110.0" onMouseClicked="#p0Pressed" onMouseEntered="#onMouseEnteredLabel" onMouseExited="#onMouseExitedLabel" prefHeight="66.6" prefWidth="100.0" text="0">
+            <Label fx:id="p0" alignment="CENTER" layoutX="270.0" layoutY="110.0" onMouseClicked="#p0Pressed" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" prefHeight="66.6" prefWidth="100.0" text="0">
                <font>
                   <Font name="Bauhaus 93" size="36.0" />
                </font>
             </Label>
-            <Label fx:id="p1" alignment="CENTER" layoutX="377.0" layoutY="110.0" onMouseClicked="#p1Pressed" onMouseEntered="#onMouseEnteredLabel" onMouseExited="#onMouseExitedLabel" prefHeight="66.6" prefWidth="100.0" text="0">
+            <Label fx:id="p1" alignment="CENTER" layoutX="377.0" layoutY="110.0" onMouseClicked="#p1Pressed" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" prefHeight="66.6" prefWidth="100.0" text="0">
                <font>
                   <Font name="Bauhaus 93" size="36.0" />
                </font>
             </Label>
-            <Label fx:id="p2" alignment="CENTER" layoutX="483.0" layoutY="110.0" onMouseClicked="#p2Pressed" onMouseEntered="#onMouseEnteredLabel" onMouseExited="#onMouseExitedLabel" prefHeight="66.6" prefWidth="100.0" text="0">
+            <Label fx:id="p2" alignment="CENTER" layoutX="483.0" layoutY="110.0" onMouseClicked="#p2Pressed" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" prefHeight="66.6" prefWidth="100.0" text="0">
                <font>
                   <Font name="Bauhaus 93" size="36.0" />
                </font>
             </Label>
-            <Label fx:id="p3" alignment="CENTER" layoutX="590.0" layoutY="110.0" onMouseClicked="#p3Pressed" onMouseEntered="#onMouseEnteredLabel" onMouseExited="#onMouseExitedLabel" prefHeight="66.6" prefWidth="100.0" text="0">
+            <Label fx:id="p3" alignment="CENTER" layoutX="590.0" layoutY="110.0" onMouseClicked="#p3Pressed" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" prefHeight="66.6" prefWidth="100.0" text="0">
                <font>
                   <Font name="Bauhaus 93" size="36.0" />
                </font>
             </Label>
-            <Label fx:id="p4" alignment="CENTER" layoutX="697.0" layoutY="110.0" onMouseClicked="#p4Pressed" onMouseEntered="#onMouseEnteredLabel" onMouseExited="#onMouseExitedLabel" prefHeight="66.6" prefWidth="100.0" text="0">
+            <Label fx:id="p4" alignment="CENTER" layoutX="697.0" layoutY="110.0" onMouseClicked="#p4Pressed" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" prefHeight="66.6" prefWidth="100.0" text="0">
                <font>
                   <Font name="Bauhaus 93" size="36.0" />
                </font>
             </Label>
-            <Label fx:id="p5" alignment="CENTER" layoutX="803.0" layoutY="110.0" onMouseClicked="#p5Pressed" onMouseEntered="#onMouseEnteredLabel" onMouseExited="#onMouseExitedLabel" prefHeight="66.6" prefWidth="100.0" text="0">
+            <Label fx:id="p5" alignment="CENTER" layoutX="803.0" layoutY="110.0" onMouseClicked="#p5Pressed" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" prefHeight="66.6" prefWidth="100.0" text="0">
                <font>
                   <Font name="Bauhaus 93" size="36.0" />
                </font>
@@ -202,32 +202,32 @@
                   <Font name="Bauhaus 93" size="36.0" />
                </font>
             </Label>
-            <Label fx:id="p7" alignment="CENTER" layoutX="270.0" layoutY="310.0" onMouseClicked="#p7Pressed" onMouseEntered="#onMouseEnteredLabel" onMouseExited="#onMouseExitedLabel" prefHeight="66.6" prefWidth="100.0" text="0">
+            <Label fx:id="p7" alignment="CENTER" layoutX="270.0" layoutY="310.0" onMouseClicked="#p7Pressed" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" prefHeight="66.6" prefWidth="100.0" text="0">
                <font>
                   <Font name="Bauhaus 93" size="36.0" />
                </font>
             </Label>
-            <Label fx:id="p8" alignment="CENTER" layoutX="377.0" layoutY="310.0" onMouseClicked="#p8Pressed" onMouseEntered="#onMouseEnteredLabel" onMouseExited="#onMouseExitedLabel" prefHeight="66.6" prefWidth="100.0" text="0">
+            <Label fx:id="p8" alignment="CENTER" layoutX="377.0" layoutY="310.0" onMouseClicked="#p8Pressed" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" prefHeight="66.6" prefWidth="100.0" text="0">
                <font>
                   <Font name="Bauhaus 93" size="36.0" />
                </font>
             </Label>
-            <Label fx:id="p9" alignment="CENTER" layoutX="483.0" layoutY="310.0" onMouseClicked="#p9Pressed" onMouseEntered="#onMouseEnteredLabel" onMouseExited="#onMouseExitedLabel" prefHeight="66.6" prefWidth="100.0" text="0">
+            <Label fx:id="p9" alignment="CENTER" layoutX="483.0" layoutY="310.0" onMouseClicked="#p9Pressed" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" prefHeight="66.6" prefWidth="100.0" text="0">
                <font>
                   <Font name="Bauhaus 93" size="36.0" />
                </font>
             </Label>
-            <Label fx:id="p10" alignment="CENTER" layoutX="590.0" layoutY="310.0" onMouseClicked="#p10Pressed" onMouseEntered="#onMouseEnteredLabel" onMouseExited="#onMouseExitedLabel" prefHeight="66.6" prefWidth="100.0" text="0">
+            <Label fx:id="p10" alignment="CENTER" layoutX="590.0" layoutY="310.0" onMouseClicked="#p10Pressed" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" prefHeight="66.6" prefWidth="100.0" text="0">
                <font>
                   <Font name="Bauhaus 93" size="36.0" />
                </font>
             </Label>
-            <Label fx:id="p11" alignment="CENTER" layoutX="697.0" layoutY="310.0" onMouseClicked="#p11Pressed" onMouseEntered="#onMouseEnteredLabel" onMouseExited="#onMouseExitedLabel" prefHeight="66.6" prefWidth="100.0" text="0">
+            <Label fx:id="p11" alignment="CENTER" layoutX="697.0" layoutY="310.0" onMouseClicked="#p11Pressed" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" prefHeight="66.6" prefWidth="100.0" text="0">
                <font>
                   <Font name="Bauhaus 93" size="36.0" />
                </font>
             </Label>
-            <Label fx:id="p12" alignment="CENTER" layoutX="803.0" layoutY="310.0" onMouseClicked="#p12Pressed" onMouseEntered="#onMouseEnteredLabel" onMouseExited="#onMouseExitedLabel" prefHeight="66.6" prefWidth="100.0" text="0">
+            <Label fx:id="p12" alignment="CENTER" layoutX="803.0" layoutY="310.0" onMouseClicked="#p12Pressed" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" prefHeight="66.6" prefWidth="100.0" text="0">
                <font>
                   <Font name="Bauhaus 93" size="36.0" />
                </font>
@@ -237,7 +237,7 @@
                   <Font name="Bauhaus 93" size="36.0" />
                </font>
             </Label>
-            <Label fx:id="p14" alignment="CENTER" layoutX="483.0" layoutY="509.0" onMouseClicked="#p14Pressed" onMouseEntered="#onMouseEnteredLabel" onMouseExited="#onMouseExitedLabel" prefHeight="66.6" prefWidth="100.0" text="0">
+            <Label fx:id="p14" alignment="CENTER" layoutX="483.0" layoutY="509.0" onMouseClicked="#p14Pressed" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" prefHeight="66.6" prefWidth="100.0" text="0">
                <font>
                   <Font name="Bauhaus 93" size="36.0" />
                </font>
@@ -317,9 +317,64 @@
                   <Image url="@../resources/Dice/Dice6.png" />
                </image>
             </ImageView>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="909.0" layoutY="37.0" prefHeight="67.0" prefWidth="100.0" text=" Total Upper" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Bauhaus 93" size="25.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="910.0" layoutY="237.0" prefHeight="67.0" prefWidth="100.0" text=" Total Lower" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Bauhaus 93" size="25.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="803.0" layoutY="237.0" onMouseClicked="#kniffelClicked" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" prefHeight="67.0" prefWidth="100.0" text="Kniffel" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Bauhaus 93" size="25.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="697.0" layoutY="237.0" onMouseClicked="#largeStraightClicked" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" prefHeight="67.0" prefWidth="100.0" text=" Large Straight" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Bauhaus 93" size="25.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="590.0" layoutY="237.0" onMouseClicked="#smallStraightClicked" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" prefHeight="67.0" prefWidth="100.0" text=" Small Straight" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Bauhaus 93" size="25.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="483.0" layoutY="237.0" onMouseClicked="#fullHouseClicked" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" prefHeight="67.0" prefWidth="100.0" text=" Full House" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Bauhaus 93" size="25.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="377.0" layoutY="237.0" onMouseClicked="#fourOfAKindClicked" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" prefHeight="67.0" prefWidth="100.0" text=" 4 of a kind" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Bauhaus 93" size="25.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="270.0" layoutY="237.0" onMouseClicked="#threeOfAKindClicked" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" prefHeight="67.0" prefWidth="100.0" text=" 3 of a kind" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Bauhaus 93" size="25.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="483.0" layoutY="437.0" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" prefHeight="67.0" prefWidth="100.0" text="Chance" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Bauhaus 93" size="25.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="590.0" layoutY="437.0" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" prefHeight="67.0" prefWidth="100.0" text=" Upper Bonus " textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Bauhaus 93" size="25.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="697.0" layoutY="437.0" prefHeight="67.0" prefWidth="100.0" text=" Total Score" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Bauhaus 93" size="25.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="guidePane" prefHeight="720.0" prefWidth="1280.0">
+      <AnchorPane fx:id="guidePane" prefHeight="720.0" prefWidth="1280.0" visible="false">
          <children>
             <ImageView fx:id="guideIV" fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -328,7 +383,7 @@
             </ImageView>
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="540.0" layoutY="644.0" onMouseClicked="#gotItClicked" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../resources/Buttons/Got%20it.png" />
+                  <Image url="@../resources/Buttons/Got it.png" />
                </image>
             </ImageView>
          </children>

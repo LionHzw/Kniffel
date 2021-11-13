@@ -22,7 +22,13 @@ public enum MiscFilePath {
     THREES("/resources/Guides/Threes.png"),
     FOURS("/resources/Guides/Fours.png"),
     FIVES("/resources/Guides/Fives.png"),
-    SIXES("/resources/Guides/Sixes.png");
+    SIXES("/resources/Guides/Sixes.png"),
+    THREE_OAK("/resources/Guides/3ofakind.png"),
+    FOUR_OAK("/resources/Guides/4ofakind.png"),
+    FULL_HOUSE("/resources/Guides/FullHouse.png"),
+    SMALL_STRAIGHT("/resources/Guides/SmallStraight.png"),
+    LARGE_STRAIGHT("/resources/Guides/LargeStraight.png"),
+    KNIFFEL("/resources/Guides/Kniffel.png");
 
 
     String filePath;

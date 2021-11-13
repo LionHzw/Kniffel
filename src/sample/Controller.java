@@ -107,6 +107,12 @@ public class Controller {
     Image foursGuide = new Image(MiscFilePath.FOURS.getFilePath());
     Image fivesGuide = new Image(MiscFilePath.FIVES.getFilePath());
     Image sixesGuide = new Image(MiscFilePath.SIXES.getFilePath());
+    Image threeofakindGuide = new Image(MiscFilePath.THREE_OAK.getFilePath());
+    Image fourofakindGuide = new Image(MiscFilePath.FOUR_OAK.getFilePath());
+    Image fullhouseGuide = new Image(MiscFilePath.FULL_HOUSE.getFilePath());
+    Image smallstraightGuide = new Image(MiscFilePath.SMALL_STRAIGHT.getFilePath());
+    Image largestraightGuide = new Image(MiscFilePath.LARGE_STRAIGHT.getFilePath());
+    Image kniffelGuide = new Image(MiscFilePath.KNIFFEL.getFilePath());
 
 
     public Controller() {
@@ -511,7 +517,7 @@ public class Controller {
     /**
      * Returns an Image with either the "Kniffel image" or the image with the according eye number
      * @param num 0 -> Kniffel image | 1...6 image with the eye number
-     * @return
+     * @return returns an image of the face value
      */
     public Image eyesReturner(int num) {
         return switch (num) {
@@ -531,9 +537,12 @@ public class Controller {
      */
     @FXML
     public void onMouseEntered(MouseEvent mouseEvent) {
-        playButtonHoverSound();
-        ImageView src = (ImageView) mouseEvent.getSource();
-        src.setEffect(new DropShadow());
+        if (mouseEvent.getSource() instanceof ImageView src) {
+            src.setEffect(new DropShadow());
+        }
+        if (mouseEvent.getSource() instanceof Label src) {
+            src.setEffect(new DropShadow());
+        }
     }
 
     /**
@@ -541,8 +550,12 @@ public class Controller {
      */
     @FXML
     public void onMouseExited(MouseEvent mouseEvent) {
-        ImageView src = (ImageView) mouseEvent.getSource();
-        src.setEffect(null);
+        if (mouseEvent.getSource() instanceof ImageView src) {
+            src.setEffect(null);
+        }
+        if (mouseEvent.getSource() instanceof Label src) {
+            src.setEffect(null);
+        }
     }
 
     /**
@@ -550,8 +563,12 @@ public class Controller {
      */
     @FXML
     public void onMousePressed(MouseEvent mouseEvent) {
-        ImageView src = (ImageView) mouseEvent.getSource();
-        src.setEffect(new InnerShadow());
+        if (mouseEvent.getSource() instanceof ImageView src) {
+            src.setEffect(new InnerShadow());
+        }
+        if (mouseEvent.getSource() instanceof Label src) {
+            src.setEffect(new InnerShadow());
+        }
     }
 
     /**
@@ -559,26 +576,12 @@ public class Controller {
      */
     @FXML
     public void onMouseReleased(MouseEvent mouseEvent) {
-        ImageView src = (ImageView) mouseEvent.getSource();
-        src.setEffect(new DropShadow());
-    }
-
-    /**
-     * Effect when the player hovers over a label (points)
-     */
-    @FXML
-    public void onMouseEnteredLabel(MouseEvent mouseEvent) {
-        Label src = (Label) mouseEvent.getSource();
-        src.setEffect(new DropShadow());
-    }
-
-    /**
-     * Effect when the player hovers off a label (points)
-     */
-    @FXML
-    public void onMouseExitedLabel(MouseEvent mouseEvent) {
-        Label src = (Label) mouseEvent.getSource();
-        src.setEffect(null);
+        if (mouseEvent.getSource() instanceof ImageView src) {
+            src.setEffect(null);
+        }
+        if (mouseEvent.getSource() instanceof Label src) {
+            src.setEffect(null);
+        }
     }
 
     /**
@@ -920,11 +923,19 @@ public class Controller {
         mediaPlayerButtonClicked.play();*/
     }
 
+    /**
+     * Gets called when the "Got it" Button in the guide gets clicked.
+     * Returns you back to the points sheet
+     */
     @FXML
     public void gotItClicked() {
         switchScene(Scene.POINTS);
     }
 
+    /**
+     * Switches to the guide scene and displays the guide according to the parameter
+     * @param guide guide to be shown
+     */
     public void switchToGuide(Guide guide) {
         switchScene(Scene.GUIDE);
         guideIV.setImage(null);
@@ -935,36 +946,97 @@ public class Controller {
             case FOURS -> guideIV.setImage(foursGuide);
             case FIVES -> guideIV.setImage(fivesGuide);
             case SIXES -> guideIV.setImage(sixesGuide);
+            case THREE_OAK -> guideIV.setImage(threeofakindGuide);
+            case FOUR_OAK -> guideIV.setImage(fourofakindGuide);
+            case FULL_HOUSE -> guideIV.setImage(fullhouseGuide);
+            case SMALL_STRAIGHT -> guideIV.setImage(smallstraightGuide);
+            case LARGE_STRAIGHT -> guideIV.setImage(largestraightGuide);
+            case KNIFFEL -> guideIV.setImage(kniffelGuide);
         }
     }
 
+    /**
+     * Gets called when the player selects the aces image on the pointssheet
+     * Calls the switchToGuide method with the specific case
+     */
     @FXML
     public void acesClicked() {
         switchToGuide(Guide.ACES);
     }
 
+    /**
+     * Gets called when the player selects the twos image on the pointssheet
+     * Calls the switchToGuide method with the specific case
+     */
     @FXML
     public void twosClicked() {
         switchToGuide(Guide.TWOS);
     }
 
+    /**
+     * Gets called when the player selects the threes image on the pointssheet
+     * Calls the switchToGuide method with the specific case
+     */
     @FXML
     public void threesClicked() {
         switchToGuide(Guide.THREES);
     }
 
+    /**
+     * Gets called when the player selects the fours image on the pointssheet
+     * Calls the switchToGuide method with the specific case
+     */
     @FXML
     public void foursClicked() {
         switchToGuide(Guide.FOURS);
     }
 
+    /**
+     * Gets called when the player selects the fives image on the pointssheet
+     * Calls the switchToGuide method with the specific case
+     */
     @FXML
     public void fivesClicked() {
         switchToGuide(Guide.FIVES);
     }
 
+    /**
+     * Gets called when the player selects the sixes image on the pointssheet
+     * Calls the switchToGuide method with the specific case
+     */
     @FXML
     public void sixesClicked() {
         switchToGuide(Guide.SIXES);
     }
+
+    @FXML
+    public void threeOfAKindClicked() {
+        switchToGuide(Guide.THREE_OAK);
+    }
+
+    @FXML
+    public void fourOfAKindClicked() {
+        switchToGuide(Guide.FOUR_OAK);
+    }
+
+    @FXML
+    public void fullHouseClicked() {
+        switchToGuide(Guide.FULL_HOUSE);
+    }
+
+    @FXML
+    public void smallStraightClicked() {
+        switchToGuide(Guide.SMALL_STRAIGHT);
+    }
+
+    @FXML
+    public void largeStraightClicked() {
+        switchToGuide(Guide.LARGE_STRAIGHT);
+    }
+
+    @FXML
+    public void kniffelClicked() {
+        switchToGuide(Guide.KNIFFEL);
+    }
+
 }
