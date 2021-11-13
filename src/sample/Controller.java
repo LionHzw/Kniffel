@@ -91,6 +91,7 @@ public class Controller {
     /**
      * Images for the dice and the buttons and the guides
      */
+    //SURFACE OF DICE
     Image dice0Image = new Image(MiscFilePath.DICE.getFilePath());
     Image dice1Image = new Image(MiscFilePath.DICE1.getFilePath());
     Image dice2Image = new Image(MiscFilePath.DICE2.getFilePath());
@@ -98,9 +99,13 @@ public class Controller {
     Image dice4Image = new Image(MiscFilePath.DICE4.getFilePath());
     Image dice5Image = new Image(MiscFilePath.DICE5.getFilePath());
     Image dice6Image = new Image(MiscFilePath.DICE6.getFilePath());
+
+    //BUTTONS
     Image skipImage = new Image(MiscFilePath.SKIP.getFilePath());
     Image backImage = new Image(MiscFilePath.BACK.getFilePath());
     Image continueImage = new Image(MiscFilePath.CONTINUE.getFilePath());
+
+    //GUIDES
     Image acesGuide = new Image(MiscFilePath.ACES.getFilePath());
     Image twosGuide = new Image(MiscFilePath.TWOS.getFilePath());
     Image threesGuide = new Image(MiscFilePath.THREES.getFilePath());
@@ -113,6 +118,8 @@ public class Controller {
     Image smallstraightGuide = new Image(MiscFilePath.SMALL_STRAIGHT.getFilePath());
     Image largestraightGuide = new Image(MiscFilePath.LARGE_STRAIGHT.getFilePath());
     Image kniffelGuide = new Image(MiscFilePath.KNIFFEL.getFilePath());
+    Image chanceGuide = new Image(MiscFilePath.CHANCE.getFilePath());
+    Image upperBonusGuide = new Image(MiscFilePath.UPPER_BONUS.getFilePath());
 
 
     public Controller() {
@@ -952,6 +959,8 @@ public class Controller {
             case SMALL_STRAIGHT -> guideIV.setImage(smallstraightGuide);
             case LARGE_STRAIGHT -> guideIV.setImage(largestraightGuide);
             case KNIFFEL -> guideIV.setImage(kniffelGuide);
+            case CHANCE -> guideIV.setImage(chanceGuide);
+            case UPPER_BONUS -> guideIV.setImage(upperBonusGuide);
         }
     }
 
@@ -1039,4 +1048,13 @@ public class Controller {
         switchToGuide(Guide.KNIFFEL);
     }
 
+    @FXML
+    public void chanceClicked() {
+        switchToGuide(Guide.CHANCE);
+    }
+
+    @FXML
+    public void upperBonusClicked() {
+        switchToGuide(Guide.UPPER_BONUS);
+    }
 }

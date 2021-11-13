@@ -28,7 +28,9 @@ public enum MiscFilePath {
     FULL_HOUSE("/resources/Guides/FullHouse.png"),
     SMALL_STRAIGHT("/resources/Guides/SmallStraight.png"),
     LARGE_STRAIGHT("/resources/Guides/LargeStraight.png"),
-    KNIFFEL("/resources/Guides/Kniffel.png");
+    KNIFFEL("/resources/Guides/Kniffel.png"),
+    CHANCE("/resources/Guides/Chance.png"),
+    UPPER_BONUS("/resources/Guides/UpperBonus.png");
 
 
     String filePath;

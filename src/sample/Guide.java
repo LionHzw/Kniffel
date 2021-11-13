@@ -13,5 +13,6 @@ public enum Guide {
     SMALL_STRAIGHT,
     LARGE_STRAIGHT,
     KNIFFEL,
-    CHANCE
+    CHANCE,
+    UPPER_BONUS
 }
