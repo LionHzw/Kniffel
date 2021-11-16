@@ -26,19 +26,20 @@ public class Possibilities {
      */
     public void checkForPossibilities(int[] a) {
         checker.changeIsCheckingForPossibilities(true);
-        if (checker.checkp0(a) > 0) controller.changeColor(0, Color.GREEN);
-        if (checker.checkp1(a) > 0) controller.changeColor(1, Color.GREEN);
-        if (checker.checkp2(a) > 0) controller.changeColor(2, Color.GREEN);
-        if (checker.checkp3(a) > 0) controller.changeColor(3, Color.GREEN);
-        if (checker.checkp4(a) > 0) controller.changeColor(4, Color.GREEN);
-        if (checker.checkp5(a) > 0) controller.changeColor(5, Color.GREEN);
-        if (checker.checkp7(a) > 0) controller.changeColor(7, Color.GREEN);
-        if (checker.checkp8(a) > 0) controller.changeColor(8, Color.GREEN);
-        if (checker.checkp9(a) > 0) controller.changeColor(9, Color.GREEN);
-        if (checker.checkp10(a) > 0) controller.changeColor(10, Color.GREEN);
-        if (checker.checkp11(a) > 0) controller.changeColor(11, Color.GREEN);
-        if (checker.checkp12(a) > 0) controller.changeColor(12, Color.GREEN);
-        if (checker.checkp14(a) > 0) controller.changeColor(14, Color.GREEN);
+        Color color = Color.GREEN;
+        if (checker.checkp0(a) > 0) controller.changeColor(0, color);
+        if (checker.checkp1(a) > 0) controller.changeColor(1, color);
+        if (checker.checkp2(a) > 0) controller.changeColor(2, color);
+        if (checker.checkp3(a) > 0) controller.changeColor(3, color);
+        if (checker.checkp4(a) > 0) controller.changeColor(4, color);
+        if (checker.checkp5(a) > 0) controller.changeColor(5, color);
+        if (checker.checkp7(a) > 0) controller.changeColor(7, color);
+        if (checker.checkp8(a) > 0) controller.changeColor(8, color);
+        if (checker.checkp9(a) > 0) controller.changeColor(9, color);
+        if (checker.checkp10(a) > 0) controller.changeColor(10, color);
+        if (checker.checkp11(a) > 0) controller.changeColor(11, color);
+        if (checker.checkp12(a) > 0) controller.changeColor(12, color);
+        if (checker.checkp14(a) > 0) controller.changeColor(14, color);
         checker.changeIsCheckingForPossibilities(false);
     }
 }
