@@ -11,6 +11,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.paint.Color;
 import javafx.scene.transform.Scale;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -25,6 +26,7 @@ import java.util.logging.Logger;
 public class Controller {
 
     Check checker;
+    Possibilities possibilities;
     Logger log = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     @FXML public AnchorPane menuPane;
@@ -131,6 +133,7 @@ public class Controller {
      */
     public void startClient() {
         checker = new Check(this);
+        possibilities = new Possibilities(this, this.checker);
         remainingTurns = 13;
         switchScene(Scene.MENU);
         setAllToUnselected();
@@ -483,6 +486,7 @@ public class Controller {
         rolledDice5.setImage(eyesReturner(rolls[4]));
         pointsButton.setImage(skipImage);
         hasDecided = false;
+        possibilities.checkForPossibilities(rolls);
         System.out.println(Arrays.toString(rolls));
     }
 
@@ -511,6 +515,7 @@ public class Controller {
             switchScene(Scene.GAME);
             checker.specPointsFalse();
         } else {
+            setAllToBlack();
             switchScene(Scene.GAME);
             setAllToUnselected();
             setAllSelectsToTrue();
@@ -862,6 +867,8 @@ public class Controller {
      * @param score Points gained for that case so it can be displayed on the according label
      */
     public void enclosureTurn(int num, int score) {
+        setAllToBlack();
+        changeColor(num, Color.BLUE);
         pointsButton.setImage(continueImage);
         hasDecided = true;
         updateLabel(num, score);
@@ -927,7 +934,7 @@ public class Controller {
         } else {
             mediaPlayerButtonClicked.setVolume(1.0);
         }
-        mediaPlayerButtonClicked.play();*/
+        mediaPlayerButtonClicked.play(); */
     }
 
     /**
@@ -1056,5 +1063,36 @@ public class Controller {
     @FXML
     public void upperBonusClicked() {
         switchToGuide(Guide.UPPER_BONUS);
+    }
+
+    public void changeColor(int label, Color color) {
+        switch(label) {
+            case 0 -> p0.setTextFill(color);
+            case 1 -> p1.setTextFill(color);
+            case 2 -> p2.setTextFill(color);
+            case 3 -> p3.setTextFill(color);
+            case 4 -> p4.setTextFill(color);
+            case 5 -> p5.setTextFill(color);
+            case 6 -> p6.setTextFill(color);
+            case 7 -> p7.setTextFill(color);
+            case 8 -> p8.setTextFill(color);
+            case 9 -> p9.setTextFill(color);
+            case 10 -> p10.setTextFill(color);
+            case 11 -> p11.setTextFill(color);
+            case 12 -> p12.setTextFill(color);
+            case 13 -> p13.setTextFill(color);
+            case 14 -> p14.setTextFill(color);
+            case 15 -> p15.setTextFill(color);
+            case 16 -> p16.setTextFill(color);
+        }
+    }
+
+    /**
+     * Sets all labels back to black
+     */
+    public void setAllToBlack() {
+        for (int i = 0; i < 17; i++) {
+            changeColor(i, Color.BLACK);
+        }
     }
 }

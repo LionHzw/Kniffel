@@ -26,6 +26,7 @@ public class Check {
     public int numberp16;
 
     private boolean specPoints = false;
+    private boolean isCheckingForPossibilities = false;
 
     /**
      * constructor of the Check class
@@ -56,6 +57,14 @@ public class Check {
      */
     public boolean getSpecPoints() {
         return specPoints;
+    }
+
+    public void changeIsCheckingForPossibilities(boolean state) {
+        isCheckingForPossibilities = state;
+    }
+
+    public boolean getIsCheckingForPossibilities() {
+        return isCheckingForPossibilities;
     }
 
     /**
@@ -98,14 +107,15 @@ public class Check {
             if (i == 4) break;
             i++;
         }
+        if (isCheckingForPossibilities) return p0sum;
         numberp0 = p0sum;
         checkTotal();
         return numberp0;
     }
 
     /**
-     * Checks for amount of threes.
-     * Multiplies the amount by 3.
+     * Checks for amount of twos.
+     * Multiplies the amount by 2.
      * @param a int array with the current roll
      * @return returns -1 when the current roll does not fulfill the preconditions for this case
      *         returns the amount of points you get for this case when x > 0
@@ -126,6 +136,7 @@ public class Check {
             if (firstAppear == 4) break;
             firstAppear++;
         }
+        if (isCheckingForPossibilities) return p1sum * 2;
         numberp1 = p1sum * 2;
         checkTotal();
         return numberp1;
@@ -154,6 +165,7 @@ public class Check {
             if (firstAppear == 4) break;
             firstAppear++;
         }
+        if (isCheckingForPossibilities) return p2sum * 3;
         numberp2 = p2sum * 3;
         checkTotal();
         return numberp2;
@@ -182,6 +194,7 @@ public class Check {
             if (firstAppear == 4) break;
             firstAppear++;
         }
+        if (isCheckingForPossibilities) return p3sum * 4;
         numberp3 = p3sum * 4;
         checkTotal();
         return numberp3;
@@ -210,6 +223,7 @@ public class Check {
             if (firstAppear == 4) break;
             firstAppear++;
         }
+        if (isCheckingForPossibilities) return p4sum * 5;
         numberp4 = p4sum * 5;
         checkTotal();
         return numberp4;
@@ -238,6 +252,7 @@ public class Check {
             if (firstAppear == 4) break;
             firstAppear++;
         }
+        if (isCheckingForPossibilities) return p5sum * 6;
         numberp5 = p5sum * 6;
         checkTotal();
         return numberp5;
@@ -268,7 +283,9 @@ public class Check {
         if (specPoints || numberp7 != 0) return -1;
         for (int i = 0; i < 3; i++) {
             if (a[i] == a[i+1] && a[i] == a[i+2]) {
-                numberp7 = a[0] + a[1] + a[2] + a[3] + a[4];
+                int p7sum = a[0] + a[1] + a[2] + a[3] + a[4];
+                if (isCheckingForPossibilities) return p7sum;
+                numberp7 = p7sum;
                 checkTotal();
                 return numberp7;
             }
@@ -287,7 +304,9 @@ public class Check {
         if (specPoints || numberp8 != 0) return -1;
         for (int i = 0; i < 2; i++) {
             if (a[i] == a[i+1] && a[i] == a[i+2] && a[i] == a[i+3]) {
-                numberp8 = a[0] + a[1] + a[2] + a[3] + a[4];
+                int p8sum = a[0] + a[1] + a[2] + a[3] + a[4];
+                if (isCheckingForPossibilities) return p8sum;
+                numberp8 = p8sum;
                 checkTotal();
                 return numberp8;
             }
@@ -308,6 +327,7 @@ public class Check {
         if (a[0] == a[1]) {
             if (a[0] == a[2]) {
                 if (a[3] == a[4]) {
+                    if (isCheckingForPossibilities) return 25;
                     numberp9 = 25;
                     checkTotal();
                     return numberp9;
@@ -316,6 +336,7 @@ public class Check {
                 }
             }
             if (a[2] == a[3] && a[2] == a[4]) {
+                if (isCheckingForPossibilities) return 25;
                 numberp9 = 25;
                 checkTotal();
                 return numberp9;
@@ -341,6 +362,7 @@ public class Check {
         for (int i = 0; i < 3; i++) {
             startNumber = newA[i];
             if (newA[i + 1] == startNumber + 1 && newA[i + 2] == startNumber + 2) {
+                if (isCheckingForPossibilities) return 30;
                 numberp10 = 30;
                 checkTotal();
                 return numberp10;
@@ -389,12 +411,15 @@ public class Check {
                 && a[3] == 5
                 && a[4] == 6)) {
             p11sum = 40;
+            if (isCheckingForPossibilities) return p11sum;
+            checkTotal();
             numberp11 = p11sum;
+            return p11sum;
         } else {
             return -1;
         }
-        checkTotal();
-        return p11sum;
+        //checkTotal();
+        //return p11sum;
     }
 
     /**
@@ -407,6 +432,7 @@ public class Check {
     public int checkp12(int[] a) {
         if (specPoints || numberp12 != 0) return -1;
         if (a[0] == a[4]) {
+            if (isCheckingForPossibilities) return 50;
             numberp12 = 50;
             checkTotal();
             return numberp12;
@@ -437,6 +463,7 @@ public class Check {
      */
     public int checkp14(int[] a) {
         if (specPoints || numberp14 != 0) return -1;
+        if (isCheckingForPossibilities) return a[0] + a[1] + a[2] + a[3] + a[4];
         numberp14 = a[0] + a[1] + a[2] + a[3] + a[4];
         checkTotal();
         return numberp14;
