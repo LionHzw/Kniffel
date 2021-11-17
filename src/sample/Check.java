@@ -348,17 +348,17 @@ public class Check {
     public int checkp10(int[] a) {
         if (specPoints || numberp10 != 0) return -1;
         int[] newA = removeDuplicates(a);
-        if (newA.length < 3) {
+        if (newA.length < 4) {
             return -1;
         }
         int startNumber;
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 2; i++) {
             startNumber = newA[i];
-            if (newA[i + 1] == startNumber + 1 && newA[i + 2] == startNumber + 2) {
+            if (newA[i + 1] == startNumber + 1 && newA[i + 2] == startNumber + 2 && newA[i + 3] == startNumber + 3) {
                 if (isCheckingForPossibilities) return 30;
-                numberp10 = 30;
-                checkTotal();
-                return numberp10;
+            numberp10 = 30;
+            checkTotal();
+            return numberp10;
             }
         }
         return -1;
