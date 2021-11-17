@@ -3,14 +3,13 @@ package sample;
 import javafx.fxml.FXML;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.InnerShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.transform.Scale;
 import javafx.stage.Screen;
@@ -19,6 +18,7 @@ import javafx.stage.Stage;
 //import org.apache.logging.log4j.core.Logger;
 
 import java.util.Arrays;
+import java.util.Queue;
 import java.util.Random;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
@@ -34,6 +34,7 @@ public class Controller {
     @FXML public AnchorPane pointsPane;
     @FXML public AnchorPane settingsPane;
     @FXML public AnchorPane guidePane;
+    @FXML public AnchorPane resultPane;
     @FXML public ImageView dice1IV;
     @FXML public ImageView dice2IV;
     @FXML public ImageView dice3IV;
@@ -72,6 +73,8 @@ public class Controller {
     @FXML public Label specLabel1;
     @FXML public Label specLabel2;
     @FXML public ImageView guideIV;
+    @FXML public Label resultLabel;
+    @FXML public TextField enterNameField;
 
     public int remaining;
     public int remainingTurns;
@@ -106,6 +109,7 @@ public class Controller {
     Image skipImage = new Image(MiscFilePath.SKIP.getFilePath());
     Image backImage = new Image(MiscFilePath.BACK.getFilePath());
     Image continueImage = new Image(MiscFilePath.CONTINUE.getFilePath());
+    Image finishImage = new Image(MiscFilePath.FINISH.getFilePath());
 
     //GUIDES
     Image acesGuide = new Image(MiscFilePath.ACES.getFilePath());
@@ -158,6 +162,14 @@ public class Controller {
         select5Bool = true;
     }
 
+    /*public void setAllSelectsToFalse() {
+        select1Bool = true;
+        select2Bool = true;
+        select3Bool = true;
+        select4Bool = true;
+        select5Bool = true;
+    }*/
+
     /**
      * Resets the select boxes for the dices and puts empty box pictures under the dices
      */
@@ -179,12 +191,14 @@ public class Controller {
         pointsPane.setVisible(false);
         settingsPane.setVisible(false);
         guidePane.setVisible(false);
+        resultPane.setVisible(false);
         switch (scene) {
             case MENU -> menuPane.setVisible(true);
             case GAME -> gamePane.setVisible(true);
             case POINTS -> pointsPane.setVisible(true);
             case SETTINGS -> settingsPane.setVisible(true);
             case GUIDE -> guidePane.setVisible(true);
+            case RESULT -> resultPane.setVisible(true);
         }
     }
 
@@ -316,13 +330,11 @@ public class Controller {
         switchScene(Scene.GAME);
         remaining = 3;
         remainingTurns = 13;
+        remainingLabel.setText("Remaining: 3");
         remainingTurnsLabel.setText("Remaining Turns: 13");
+        resetGameAndDices();
         setAllToUnselected();
-        rolledDice1.setImage(dice0Image);
-        rolledDice2.setImage(dice0Image);
-        rolledDice3.setImage(dice0Image);
-        rolledDice4.setImage(dice0Image);
-        rolledDice5.setImage(dice0Image);
+        setAllSelectsToTrue();
         for (int i = 0; i < 5; i++) {
             rolls[i] = 0;
         }
@@ -330,6 +342,24 @@ public class Controller {
             updateLabel(i, 0);
         }
 
+    }
+
+    public void resetGameAndDices() {
+        rolledDice1.setImage(dice0Image);
+        rolledDice2.setImage(dice0Image);
+        rolledDice3.setImage(dice0Image);
+        rolledDice4.setImage(dice0Image);
+        rolledDice5.setImage(dice0Image);
+        dice1IV.setImage(dice0Image);
+        dice2IV.setImage(dice0Image);
+        dice3IV.setImage(dice0Image);
+        dice4IV.setImage(dice0Image);
+        dice5IV.setImage(dice0Image);
+        dice1num = 0;
+        dice2num = 0;
+        dice3num = 0;
+        dice4num = 0;
+        dice5num = 0;
     }
 
     /**
@@ -503,7 +533,7 @@ public class Controller {
         rolledDice4.setImage(eyesReturner(dice4num));
         rolledDice5.setImage(eyesReturner(dice5num));
         pointsButton.setImage(backImage);
-        checker.specPointsTrue();
+        checker.setSpecPoints(true);
     }
 
     /**
@@ -511,9 +541,13 @@ public class Controller {
      */
     @FXML
     public void pointsSkipButtonPressed() {
+        if (remainingTurns == 1) {
+            finishGame(checker.numberp16);
+            return;
+        }
         if (checker.getSpecPoints()) {
             switchScene(Scene.GAME);
-            checker.specPointsFalse();
+            checker.setSpecPoints(false);
         } else {
             setAllToBlack();
             switchScene(Scene.GAME);
@@ -1094,5 +1128,48 @@ public class Controller {
         for (int i = 0; i < 17; i++) {
             changeColor(i, Color.BLACK);
         }
+    }
+
+    public void finishGame(int score) {
+        switchScene(Scene.RESULT);
+        resultLabel.setText(Integer.toString(score));
+        if (score < 100) resultLabel.setTextFill(Color.RED);
+        if (score >= 100 && score < 150) resultLabel.setTextFill(Color.ORANGE);
+        if (score >= 150 && score < 200) resultLabel.setTextFill(Color.YELLOW);
+        if (score >= 200 && score < 250) resultLabel.setTextFill(Color.YELLOWGREEN); //TODO Ändern
+        if (score >= 250 && score < 300) resultLabel.setTextFill(Color.GREEN);
+        if (score >= 300 && score < 350) resultLabel.setTextFill(Color.BLUE);
+        if (score >= 350 && score < 375) resultLabel.setTextFill(Color.PURPLE);
+        if (score == 375) resultLabel.setTextFill(Color.GOLD);
+    }
+
+    @FXML
+    public void resultFinishClicked() {
+        if (!enterNameField.getText().isEmpty()) {
+            if (enterNameField.getText().getBytes().length > 20) {
+                System.out.println("This name is too long!");
+            } else {
+                //TODO safe in Highscore file
+                switchScene(Scene.MENU);
+                checker.setAllValuesToZero();
+            }
+        } else {
+            System.out.println("Please enter your name");
+        }
+    }
+
+    @FXML
+    public void resultShowDetails() {
+        pointsButton.setImage(backImage);
+        checker.setSpecPoints(true);
+        setAllToBlack();
+        switchScene(Scene.POINTS);
+        checker.setSpecPoints(false);
+        rolledDice1.setImage(dice0Image);
+        rolledDice2.setImage(dice0Image);
+        rolledDice3.setImage(dice0Image);
+        rolledDice4.setImage(dice0Image);
+        rolledDice5.setImage(dice0Image);
+
     }
 }

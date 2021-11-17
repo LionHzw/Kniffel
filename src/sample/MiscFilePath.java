@@ -13,6 +13,7 @@ public enum MiscFilePath {
     SKIP("/resources/Buttons/Skip.png"),
     CONTINUE("/resources/Buttons/Continue.png"),
     BACK("/resources/Buttons/Back.png"),
+    FINISH("/resources/Buttons/Finish.png"),
     BUTTON_HOVER("/resources/Sounds/buttonHover1.wav"),
     BUTTON_PRESSED("/resources/Sounds/buttonPressed.wav"),
     ERROR("/resources/Sounds/error.wav"),

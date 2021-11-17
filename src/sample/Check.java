@@ -37,17 +37,10 @@ public class Check {
     }
 
     /**
-     * specPoints gets set to true if the player enters the spectator mode
+     * specPoints gets set to the specific state
      */
-    public void specPointsTrue() {
-        specPoints = true;
-    }
-
-    /**
-     * specPoints gets set to false if the player leaves the spectator mode
-     */
-    public void specPointsFalse() {
-        specPoints = false;
+    public void setSpecPoints(boolean state) {
+        specPoints = state;
     }
 
     /**
