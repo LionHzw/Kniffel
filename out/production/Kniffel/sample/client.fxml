@@ -403,7 +403,7 @@
             </Label>
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="420.0" layoutY="640.0" onMouseClicked="#resultShowDetails" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../resources/Buttons/Show%20Details.png" />
+                  <Image url="@../resources/Buttons/Show Details.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="660.0" layoutY="640.0" onMouseClicked="#resultFinishClicked" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" pickOnBounds="true" preserveRatio="true">

@@ -18,15 +18,14 @@ import javafx.stage.Stage;
 //import org.apache.logging.log4j.core.Logger;
 
 import java.util.Arrays;
-import java.util.Queue;
 import java.util.Random;
-import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 public class Controller {
 
     Check checker;
     Possibilities possibilities;
+    Highscore highscore;
     Logger log = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     @FXML public AnchorPane menuPane;
@@ -138,6 +137,7 @@ public class Controller {
     public void startClient() {
         checker = new Check(this);
         possibilities = new Possibilities(this, this.checker);
+        highscore = new Highscore();
         remainingTurns = 13;
         switchScene(Scene.MENU);
         setAllToUnselected();
@@ -541,7 +541,7 @@ public class Controller {
      */
     @FXML
     public void pointsSkipButtonPressed() {
-        if (remainingTurns == 1) {
+        if (!checker.getSpecPoints() && remainingTurns == 1) {
             finishGame(checker.numberp16);
             return;
         }
