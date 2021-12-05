@@ -559,6 +559,7 @@ public class Controller {
         rolledDice5.setImage(eyesReturner(dice5num));
         pointsButton.setImage(backImage);
         checker.setSpecPoints(true);
+        possibilities.highlightAllRemaining();
     }
 
     /**
@@ -571,6 +572,7 @@ public class Controller {
             return;
         }
         if (checker.getSpecPoints()) {
+            setAllToBlack();
             switchScene(Scene.GAME);
             checker.setSpecPoints(false);
         } else {
