@@ -79,6 +79,7 @@ public class Controller {
     public int remainingTurns;
     public int[] rolls;
     public boolean isMuted = false;
+    public boolean inGame = false;
 
     public boolean hasDecided = false;
     public boolean select1Bool = true;
@@ -351,6 +352,7 @@ public class Controller {
      */
     @FXML
     public void menuPlayClicked() {
+        inGame = true;
         playButtonClickedSound();
         switchScene(Scene.GAME);
         remaining = 3;
@@ -447,8 +449,13 @@ public class Controller {
      */
     @FXML
     public void settingsBackPressed() {
-        switchScene(Scene.MENU);
+        if (inGame) {
+            switchScene(Scene.GAME);
+        } else {
+            switchScene(Scene.MENU);
+        }
     }
+
 
     /**
      * When the box under dice 1 gets clicked it changes to selected or unselected based on the pre-status
@@ -560,6 +567,11 @@ public class Controller {
         pointsButton.setImage(backImage);
         checker.setSpecPoints(true);
         possibilities.highlightAllRemaining();
+    }
+
+    @FXML
+    public void gameSettingsButtonPressed() {
+        switchScene(Scene.SETTINGS);
     }
 
     /**
@@ -970,6 +982,7 @@ public class Controller {
      */
     @FXML
     public void exitButtonPressed() {
+        inGame = false;
         switchScene(Scene.MENU);
         checker.setAllValuesToZero();
     }
