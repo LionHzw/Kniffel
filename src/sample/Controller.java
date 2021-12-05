@@ -614,10 +614,15 @@ public class Controller {
             src.setEffect(new DropShadow());
         }
         if (mouseEvent.getSource() instanceof Label src) {
-            if (!hasDecided) {
-                src.setEffect(new DropShadow());
-                showScorePreview(src, 1);
+            if (hasDecided) {
+                for (int i = 0; i < 17; i++) {
+                    if (src.equals(returnLabel(i))) {
+                        return;
+                    }
+                }
             }
+            src.setEffect(new DropShadow());
+            showScorePreview(src, 1);
         }
     }
 
@@ -644,6 +649,13 @@ public class Controller {
             src.setEffect(new InnerShadow());
         }
         if (mouseEvent.getSource() instanceof Label src) {
+            if (hasDecided) {
+                for (int i = 0; i < 17; i++) {
+                    if (src.equals(returnLabel(i))) {
+                        return;
+                    }
+                }
+            }
             src.setEffect(new InnerShadow());
         }
     }
