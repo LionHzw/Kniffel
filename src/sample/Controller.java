@@ -151,6 +151,31 @@ public class Controller {
         System.exit(1);
     }
 
+    public Label returnLabel(int label) {
+        Label temp;
+        switch(label) {
+            case 0 -> temp = p0;
+            case 1 -> temp = p1;
+            case 2 -> temp = p2;
+            case 3 -> temp = p3;
+            case 4 -> temp = p4;
+            case 5 -> temp = p5;
+            case 6 -> temp = p6;
+            case 7 -> temp = p7;
+            case 8 -> temp = p8;
+            case 9 -> temp = p9;
+            case 10 -> temp = p10;
+            case 11 -> temp = p11;
+            case 12 -> temp = p12;
+            case 13 -> temp = p13;
+            case 14 -> temp = p14;
+            case 15 -> temp = p15;
+            case 16 -> temp = p16;
+            default -> throw new IllegalStateException("Unexpected value: " + label);
+        }
+        return temp;
+    }
+
     /**
      * Selects all dices
      */
@@ -587,7 +612,10 @@ public class Controller {
             src.setEffect(new DropShadow());
         }
         if (mouseEvent.getSource() instanceof Label src) {
-            src.setEffect(new DropShadow());
+            if (!hasDecided) {
+                src.setEffect(new DropShadow());
+                showScorePreview(src, 1);
+            }
         }
     }
 
@@ -601,6 +629,7 @@ public class Controller {
         }
         if (mouseEvent.getSource() instanceof Label src) {
             src.setEffect(null);
+            showScorePreview(src, 0);
         }
     }
 
@@ -906,6 +935,7 @@ public class Controller {
         pointsButton.setImage(continueImage);
         hasDecided = true;
         updateLabel(num, score);
+        possibilities.setAllValuesToTheirOriginal();
     }
 
     /**
@@ -914,24 +944,10 @@ public class Controller {
      * @param score score which gets displayed
      */
     public void updateLabel(int num, int score) {
-        switch (num) {
-            case 0 -> p0.setText(Integer.toString(score));
-            case 1 -> p1.setText(Integer.toString(score));
-            case 2 -> p2.setText(Integer.toString(score));
-            case 3 -> p3.setText(Integer.toString(score));
-            case 4 -> p4.setText(Integer.toString(score));
-            case 5 -> p5.setText(Integer.toString(score));
-            case 6 -> p6.setText(Integer.toString(score));
-            case 7 -> p7.setText(Integer.toString(score));
-            case 8 -> p8.setText(Integer.toString(score));
-            case 9 -> p9.setText(Integer.toString(score));
-            case 10 -> p10.setText(Integer.toString(score));
-            case 11 -> p11.setText(Integer.toString(score));
-            case 12 -> p12.setText(Integer.toString(score));
-            case 13 -> p13.setText(Integer.toString(score));
-            case 14 -> p14.setText(Integer.toString(score));
-            case 15 -> p15.setText(Integer.toString(score));
-            case 16 -> p16.setText(Integer.toString(score));
+        for (int i = 0; i < 17; i++) {
+            if (i == num) {
+                returnLabel(i).setText(Integer.toString(score));
+            }
         }
     }
 
@@ -1100,24 +1116,8 @@ public class Controller {
     }
 
     public void changeColor(int label, Color color) {
-        switch(label) {
-            case 0 -> p0.setTextFill(color);
-            case 1 -> p1.setTextFill(color);
-            case 2 -> p2.setTextFill(color);
-            case 3 -> p3.setTextFill(color);
-            case 4 -> p4.setTextFill(color);
-            case 5 -> p5.setTextFill(color);
-            case 6 -> p6.setTextFill(color);
-            case 7 -> p7.setTextFill(color);
-            case 8 -> p8.setTextFill(color);
-            case 9 -> p9.setTextFill(color);
-            case 10 -> p10.setTextFill(color);
-            case 11 -> p11.setTextFill(color);
-            case 12 -> p12.setTextFill(color);
-            case 13 -> p13.setTextFill(color);
-            case 14 -> p14.setTextFill(color);
-            case 15 -> p15.setTextFill(color);
-            case 16 -> p16.setTextFill(color);
+        for (int i = 0; i < 17; i++) {
+            if (i == label) returnLabel(i).setTextFill(color);
         }
     }
 
@@ -1170,6 +1170,34 @@ public class Controller {
         rolledDice3.setImage(dice0Image);
         rolledDice4.setImage(dice0Image);
         rolledDice5.setImage(dice0Image);
+    }
 
+    /**
+     * mode 0 = show original score
+     * mode 1 = show possible score
+     * @param src
+     * @param mode
+     */
+    public void showScorePreview(Label src, int mode) {
+        checker.changeIsCheckingForPossibilities(true);
+        for (int i = 0; i < 17; i++) {
+            if (src.equals(returnLabel(i))) {
+                if (mode == 0) {
+                    updateLabel(i, checker.returnValueOfLabel(i));
+                }
+                if (mode == 1) {
+                    if (checker.checkForIndividualI(i, rolls) == -1 && checker.returnValueOfLabel(i) == 0) {
+                        updateLabel(i, 0);
+                    } else if (checker.checkForIndividualI(i, rolls) == -1 && checker.returnValueOfLabel(i) != 0) {
+                        updateLabel(i, checker.returnValueOfLabel(i));
+                    } else if (checker.checkForIndividualI(i, rolls) == checker.returnValueOfLabel(i)) {
+                        updateLabel(i, checker.returnValueOfLabel(i));
+                    } else {
+                        updateLabel(i, checker.checkForIndividualI(i, rolls));
+                    }
+                }
+            }
+        }
+        checker.changeIsCheckingForPossibilities(false);
     }
 }

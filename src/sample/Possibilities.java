@@ -27,9 +27,14 @@ public class Possibilities {
     public void checkForPossibilities(int[] a) {
         checker.changeIsCheckingForPossibilities(true);
         Color color = Color.GREEN;
-        if (checker.checkp0(a) > 0) controller.changeColor(0, color);
-        if (checker.checkp1(a) > 0) controller.changeColor(1, color);
-        if (checker.checkp2(a) > 0) controller.changeColor(2, color);
+        if (checker.checkp0(a) > 0) {controller.changeColor(0, color);
+        }
+        if (checker.checkp1(a) > 0) {
+            controller.changeColor(1, color);
+        }
+        if (checker.checkp2(a) > 0) {
+            controller.changeColor(2, color);
+        }
         if (checker.checkp3(a) > 0) controller.changeColor(3, color);
         if (checker.checkp4(a) > 0) controller.changeColor(4, color);
         if (checker.checkp5(a) > 0) controller.changeColor(5, color);
@@ -41,5 +46,11 @@ public class Possibilities {
         if (checker.checkp12(a) > 0) controller.changeColor(12, color);
         if (checker.checkp14(a) > 0) controller.changeColor(14, color);
         checker.changeIsCheckingForPossibilities(false);
+    }
+
+    public void setAllValuesToTheirOriginal() {
+        for (int i = 0; i < 17; i++) {
+            controller.updateLabel(i, checker.returnValueOfLabel(i));
+        }
     }
 }

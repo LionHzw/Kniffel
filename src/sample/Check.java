@@ -254,7 +254,7 @@ public class Check {
     /**
      * p6 is the total score of the first row
      */
-    public void checkp6() {
+    public int checkp6() {
         int p6sum = numberp0
                 + numberp1
                 + numberp2
@@ -263,6 +263,7 @@ public class Check {
                 + numberp5;
         controller.update6(p6sum);
         numberp6 = p6sum;
+        return numberp6;
     }
 
     /**
@@ -437,7 +438,7 @@ public class Check {
     /**
      * p13 is the total score of the second row
      */
-    public void checkp13() {
+    public int checkp13() {
         int p13sum = numberp7
                 + numberp8
                 + numberp9
@@ -446,6 +447,7 @@ public class Check {
                 + numberp12;
         controller.update13(p13sum);
         numberp13 = p13sum;
+        return p13sum;
     }
 
     /**
@@ -467,24 +469,75 @@ public class Check {
      * If so, the player will get a bonus of 35 points.
      * If not, no action will be done.
      */
-    public void checkp15() {
+    public int checkp15() {
         if (numberp6 >= 63) {
             controller.update15(35);
             numberp15 = 35;
+            return numberp15;
         } else {
             numberp15 = 0;
+            return numberp15;
         }
     }
 
     /**
      * Checks the total amount of points for each row
      */
-    public void checkTotal() {
+    public int checkTotal() {
         checkp6();
         checkp13();
         checkp15();
         numberp16 = numberp6 + numberp13 + numberp14 + numberp15;
         controller.update16(numberp16);
         log.info("Total is: " + numberp16);
+        return numberp16;
+    }
+
+    public int checkForIndividualI(int number, int[] rolls) {
+        int temp = 0;
+        switch (number) {
+            case 0 -> temp = checkp0(rolls);
+            case 1 -> temp = checkp1(rolls);
+            case 2 -> temp = checkp2(rolls);
+            case 3 -> temp = checkp3(rolls);
+            case 4 -> temp = checkp4(rolls);
+            case 5 -> temp = checkp5(rolls);
+            case 6 -> temp = checkp6();
+            case 7 -> temp = checkp7(rolls);
+            case 8 -> temp = checkp8(rolls);
+            case 9 -> temp = checkp9(rolls);
+            case 10 -> temp = checkp10(rolls);
+            case 11 -> temp = checkp11(rolls);
+            case 12 -> temp = checkp12(rolls);
+            case 13 -> temp = checkp13();
+            case 14 -> temp = checkp14(rolls);
+            case 15 -> temp = checkp15();
+            case 16 -> temp = checkTotal();
+        }
+        return temp;
+    }
+
+    public int returnValueOfLabel(int label) {
+        int temp = 0;
+        switch (label) {
+            case 0 -> temp = numberp0;
+            case 1 -> temp = numberp1;
+            case 2 -> temp = numberp2;
+            case 3 -> temp = numberp3;
+            case 4 -> temp = numberp4;
+            case 5 -> temp = numberp5;
+            case 6 -> temp = numberp6;
+            case 7 -> temp = numberp7;
+            case 8 -> temp = numberp8;
+            case 9 -> temp = numberp9;
+            case 10 -> temp = numberp10;
+            case 11 -> temp = numberp11;
+            case 12 -> temp = numberp12;
+            case 13 -> temp = numberp13;
+            case 14 -> temp = numberp14;
+            case 15 -> temp = numberp15;
+            case 16 -> temp = numberp16;
+        }
+        return temp;
     }
 }
