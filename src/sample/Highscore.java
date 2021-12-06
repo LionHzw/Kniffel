@@ -14,13 +14,12 @@ import java.util.Scanner;
 
 public class Highscore {
 
-    private final String[] highscores = new String[10];
     private static ArrayList<SingleHighscore> arrayList;
 
     public Highscore() {
         arrayList = new ArrayList<SingleHighscore>();
         readFile();
-        arrayList.add(new SingleHighscore(200, "Lion", new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17}));
+        arrayList.add(new SingleHighscore(350, "Der Donnn", new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17}));
         arrayList.add(new SingleHighscore(250, "Hannah", new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17}));
         arrayList.add(new SingleHighscore(300, "Jan", new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17}));
         arrayList.add(new SingleHighscore(100, "Simon", new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17}));
@@ -28,6 +27,10 @@ public class Highscore {
         arrayList.add(new SingleHighscore(50, "Max", new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17}));
         arrayList.add(new SingleHighscore(200, "Ich", new int[] {500, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17}));
         writeToFile();
+    }
+
+    public void addHighscore(SingleHighscore newHighscore) {
+        arrayList.add(newHighscore);
     }
 
     public void createFile() {

@@ -1173,12 +1173,35 @@ public class Controller {
     @FXML
     public void resultFinishClicked() {
         if (!enterNameField.getText().isEmpty()) {
-            if (enterNameField.getText().getBytes().length > 20) {
+            String withoutSpacing = enterNameField.getText();
+            withoutSpacing.replaceAll("\\s+","");
+            if (withoutSpacing.length() > 20) {
                 System.out.println("This name is too long!");
             } else {
-                //TODO safe in Highscore file
+                int[] finalPoints = {
+                        checker.returnValueOfLabel(0),
+                        checker.returnValueOfLabel(1),
+                        checker.returnValueOfLabel(2),
+                        checker.returnValueOfLabel(3),
+                        checker.returnValueOfLabel(4),
+                        checker.returnValueOfLabel(5),
+                        checker.returnValueOfLabel(6),
+                        checker.returnValueOfLabel(7),
+                        checker.returnValueOfLabel(8),
+                        checker.returnValueOfLabel(9),
+                        checker.returnValueOfLabel(10),
+                        checker.returnValueOfLabel(11),
+                        checker.returnValueOfLabel(12),
+                        checker.returnValueOfLabel(13),
+                        checker.returnValueOfLabel(14),
+                        checker.returnValueOfLabel(15),
+                        checker.returnValueOfLabel(16),
+                };
+                SingleHighscore singleHighscore = new SingleHighscore(checker.numberp16, withoutSpacing, finalPoints);
+                highscore.addHighscore(singleHighscore);
                 switchScene(Scene.MENU);
                 checker.setAllValuesToZero();
+                highscore.writeToFile();
             }
         } else {
             System.out.println("Please enter your name");
