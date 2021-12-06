@@ -1163,8 +1163,8 @@ public class Controller {
         if (score < 100) resultLabel.setTextFill(Color.RED);
         if (score >= 100 && score < 150) resultLabel.setTextFill(Color.ORANGE);
         if (score >= 150 && score < 200) resultLabel.setTextFill(Color.YELLOW);
-        if (score >= 200 && score < 250) resultLabel.setTextFill(Color.YELLOWGREEN); //TODO Ändern
-        if (score >= 250 && score < 300) resultLabel.setTextFill(Color.GREEN);
+        if (score >= 200 && score < 250) resultLabel.setTextFill(Color.GREEN);
+        if (score >= 250 && score < 300) resultLabel.setTextFill(Color.DARKGREEN);
         if (score >= 300 && score < 350) resultLabel.setTextFill(Color.BLUE);
         if (score >= 350 && score < 375) resultLabel.setTextFill(Color.PURPLE);
         if (score == 375) resultLabel.setTextFill(Color.GOLD);
