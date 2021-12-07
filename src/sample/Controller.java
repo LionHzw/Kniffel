@@ -20,6 +20,7 @@ import javafx.util.Duration;
 //import org.apache.logging.log4j.LogManager;
 //import org.apache.logging.log4j.core.Logger;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.logging.Logger;
@@ -37,6 +38,7 @@ public class Controller {
     @FXML public AnchorPane settingsPane;
     @FXML public AnchorPane guidePane;
     @FXML public AnchorPane resultPane;
+    @FXML public AnchorPane rankingPane;
     @FXML public ImageView dice1IV;
     @FXML public ImageView dice2IV;
     @FXML public ImageView dice3IV;
@@ -87,12 +89,23 @@ public class Controller {
     @FXML public ImageView rankingButton;
     @FXML public ImageView settingsButton;
     @FXML public ImageView menuCreditsButton;
+    @FXML public Label hs1Label;
+    @FXML public Label hs2Label;
+    @FXML public Label hs3Label;
+    @FXML public Label hs4Label;
+    @FXML public Label hs5Label;
+    @FXML public Label hs6Label;
+    @FXML public Label hs7Label;
+    @FXML public Label hs8Label;
+    @FXML public Label hs9Label;
+    @FXML public Label hs10Label;
 
     public int remaining;
     public int remainingTurns;
     public int[] rolls;
     public boolean isMuted = false;
     public boolean inGame = false;
+    public boolean isWatchingHighscore = false;
 
     public boolean hasDecided = false;
     public boolean select1Bool = true;
@@ -231,6 +244,7 @@ public class Controller {
         settingsPane.setVisible(false);
         guidePane.setVisible(false);
         resultPane.setVisible(false);
+        rankingPane.setVisible(false);
         switch (scene) {
             case MENU -> menuPane.setVisible(true);
             case GAME -> gamePane.setVisible(true);
@@ -238,6 +252,7 @@ public class Controller {
             case SETTINGS -> settingsPane.setVisible(true);
             case GUIDE -> guidePane.setVisible(true);
             case RESULT -> resultPane.setVisible(true);
+            case RANKING -> rankingPane.setVisible(true);
         }
     }
 
@@ -375,6 +390,7 @@ public class Controller {
         resetGameAndDices();
         setAllToUnselected();
         setAllSelectsToTrue();
+        checker.setAllValuesToZero();
         for (int i = 0; i < 5; i++) {
             rolls[i] = 0;
         }
@@ -413,6 +429,113 @@ public class Controller {
     @FXML
     public void menuCreditsClicked() {
         //TODO
+    }
+
+    @FXML
+    public void menuRankingClicked() {
+        switchScene(Scene.RANKING);
+        ArrayList<SingleHighscore> arrayList = highscore.getArrayList();
+        if (arrayList.size() > 0) hs1Label.setText(arrayList.get(0).getTotal() + " " + arrayList.get(0).getName());
+        else hs1Label.setText("");
+        if (arrayList.size() > 1) hs2Label.setText(arrayList.get(1).getTotal() + " " + arrayList.get(1).getName());
+        else hs2Label.setText("");
+        if (arrayList.size() > 2) hs3Label.setText(arrayList.get(2).getTotal() + " " + arrayList.get(2).getName());
+        else hs3Label.setText("");
+        if (arrayList.size() > 3) hs4Label.setText(arrayList.get(3).getTotal() + " " + arrayList.get(3).getName());
+        else hs4Label.setText("");
+        if (arrayList.size() > 4) hs5Label.setText(arrayList.get(4).getTotal() + " " + arrayList.get(4).getName());
+        else hs5Label.setText("");
+        if (arrayList.size() > 5) hs6Label.setText(arrayList.get(5).getTotal() + " " + arrayList.get(5).getName());
+        else hs6Label.setText("");
+        if (arrayList.size() > 6) hs7Label.setText(arrayList.get(6).getTotal() + " " + arrayList.get(6).getName());
+        else hs7Label.setText("");
+        if (arrayList.size() > 7) hs8Label.setText(arrayList.get(7).getTotal() + " " + arrayList.get(7).getName());
+        else hs8Label.setText("");
+        if (arrayList.size() > 8) hs9Label.setText(arrayList.get(8).getTotal() + " " + arrayList.get(8).getName());
+        else hs9Label.setText("");
+        if (arrayList.size() > 9) hs10Label.setText(arrayList.get(9).getTotal() + " " + arrayList.get(9).getName());
+        else hs10Label.setText("");
+    }
+
+    @FXML
+    public void scoreClicked(MouseEvent mouseEvent) {
+        ArrayList<SingleHighscore> arrayList = highscore.getArrayList();
+        int[] points;
+        Label label = (Label) mouseEvent.getSource();
+        if (label.equals(hs1Label)) {
+            label = hs1Label;
+            points = arrayList.get(0).getPoints();
+        }
+        else if (label.equals(hs2Label)) {
+            label = hs2Label;
+            points = arrayList.get(1).getPoints();
+        }
+        else if (label.equals(hs3Label)) {
+            label = hs3Label;
+            points = arrayList.get(2).getPoints();
+        }
+        else if (label.equals(hs4Label)) {
+            label = hs4Label;
+            points = arrayList.get(3).getPoints();
+        }
+        else if (label.equals(hs5Label)) {
+            label = hs5Label;
+            points = arrayList.get(4).getPoints();
+        }
+        else if (label.equals(hs6Label)) {
+            label = hs6Label;
+            points = arrayList.get(5).getPoints();
+        }
+        else if (label.equals(hs7Label)) {
+            label = hs7Label;
+            points = arrayList.get(6).getPoints();
+        }
+        else if (label.equals(hs8Label)) {
+            label = hs8Label;
+            points = arrayList.get(7).getPoints();
+        }
+        else if (label.equals(hs9Label)) {
+            label = hs9Label;
+            points = arrayList.get(8).getPoints();
+        }
+        else if (label.equals(hs10Label)) {
+            label = hs10Label;
+            points = arrayList.get(9).getPoints();
+        }
+        else {
+            label = null;
+            points = null;
+        }
+        hideRolledDice();
+        isWatchingHighscore = true;
+        switchScene(Scene.POINTS);
+        pointsButton.setImage(backImage);
+        checker.fillPointsFromArray(points);
+        for (int i = 0; i < 17; i++) {
+            updateLabel(i, checker.returnValueOfLabel(i));
+        }
+
+    }
+
+    public void hideRolledDice() {
+        rolledDice1.setVisible(false);
+        rolledDice2.setVisible(false);
+        rolledDice3.setVisible(false);
+        rolledDice4.setVisible(false);
+        rolledDice5.setVisible(false);
+    }
+
+    public void showRolledDice() {
+        rolledDice1.setVisible(true);
+        rolledDice2.setVisible(true);
+        rolledDice3.setVisible(true);
+        rolledDice4.setVisible(true);
+        rolledDice5.setVisible(true);
+    }
+
+    @FXML
+    public void rankingBackClicked() {
+        switchScene(Scene.MENU);
     }
 
     /**
@@ -597,6 +720,12 @@ public class Controller {
      */
     @FXML
     public void pointsSkipButtonPressed() {
+        if (isWatchingHighscore) {
+            switchScene(Scene.RANKING);
+            isWatchingHighscore = false;
+            return;
+        }
+        showRolledDice();
         if (!checker.getSpecPoints() && remainingTurns == 1) {
             finishGame(checker.numberp16);
             return;
@@ -641,9 +770,12 @@ public class Controller {
     @FXML
     public void onMouseEntered(MouseEvent mouseEvent) {
         if (mouseEvent.getSource() instanceof ImageView src) {
+            if (src.equals(pointsButton)) src.setEffect(new DropShadow());
+            if (isWatchingHighscore) return;
             src.setEffect(new DropShadow());
         }
         if (mouseEvent.getSource() instanceof Label src) {
+            if (isWatchingHighscore) return;
             if (hasDecided) {
                 for (int i = 0; i < 17; i++) {
                     if (src.equals(returnLabel(i))) {
@@ -662,9 +794,12 @@ public class Controller {
     @FXML
     public void onMouseExited(MouseEvent mouseEvent) {
         if (mouseEvent.getSource() instanceof ImageView src) {
+            if (src.equals(pointsButton)) src.setEffect(null);
+            if (isWatchingHighscore) return;
             src.setEffect(null);
         }
         if (mouseEvent.getSource() instanceof Label src) {
+            if (isWatchingHighscore) return;
             src.setEffect(null);
             showScorePreview(src, 0);
         }
@@ -676,9 +811,12 @@ public class Controller {
     @FXML
     public void onMousePressed(MouseEvent mouseEvent) {
         if (mouseEvent.getSource() instanceof ImageView src) {
+            if (src.equals(pointsButton)) src.setEffect(new InnerShadow());
+            if (isWatchingHighscore) return;
             src.setEffect(new InnerShadow());
         }
         if (mouseEvent.getSource() instanceof Label src) {
+            if (isWatchingHighscore) return;
             if (hasDecided) {
                 for (int i = 0; i < 17; i++) {
                     if (src.equals(returnLabel(i))) {
@@ -696,9 +834,12 @@ public class Controller {
     @FXML
     public void onMouseReleased(MouseEvent mouseEvent) {
         if (mouseEvent.getSource() instanceof ImageView src) {
+            if (src.equals(pointsButton)) src.setEffect(null);
+            if (isWatchingHighscore) return;
             src.setEffect(null);
         }
         if (mouseEvent.getSource() instanceof Label src) {
+            if (isWatchingHighscore) return;
             src.setEffect(null);
         }
     }
@@ -1072,6 +1213,7 @@ public class Controller {
      */
     @FXML
     public void acesClicked() {
+        if (isWatchingHighscore) return;
         switchToGuide(Guide.ACES);
     }
 
@@ -1081,6 +1223,7 @@ public class Controller {
      */
     @FXML
     public void twosClicked() {
+        if (isWatchingHighscore) return;
         switchToGuide(Guide.TWOS);
     }
 
@@ -1090,6 +1233,7 @@ public class Controller {
      */
     @FXML
     public void threesClicked() {
+        if (isWatchingHighscore) return;
         switchToGuide(Guide.THREES);
     }
 
@@ -1099,6 +1243,7 @@ public class Controller {
      */
     @FXML
     public void foursClicked() {
+        if (isWatchingHighscore) return;
         switchToGuide(Guide.FOURS);
     }
 
@@ -1108,6 +1253,7 @@ public class Controller {
      */
     @FXML
     public void fivesClicked() {
+        if (isWatchingHighscore) return;
         switchToGuide(Guide.FIVES);
     }
 
@@ -1117,46 +1263,55 @@ public class Controller {
      */
     @FXML
     public void sixesClicked() {
+        if (isWatchingHighscore) return;
         switchToGuide(Guide.SIXES);
     }
 
     @FXML
     public void threeOfAKindClicked() {
+        if (isWatchingHighscore) return;
         switchToGuide(Guide.THREE_OAK);
     }
 
     @FXML
     public void fourOfAKindClicked() {
+        if (isWatchingHighscore) return;
         switchToGuide(Guide.FOUR_OAK);
     }
 
     @FXML
     public void fullHouseClicked() {
+        if (isWatchingHighscore) return;
         switchToGuide(Guide.FULL_HOUSE);
     }
 
     @FXML
     public void smallStraightClicked() {
+        if (isWatchingHighscore) return;
         switchToGuide(Guide.SMALL_STRAIGHT);
     }
 
     @FXML
     public void largeStraightClicked() {
+        if (isWatchingHighscore) return;
         switchToGuide(Guide.LARGE_STRAIGHT);
     }
 
     @FXML
     public void kniffelClicked() {
+        if (isWatchingHighscore) return;
         switchToGuide(Guide.KNIFFEL);
     }
 
     @FXML
     public void chanceClicked() {
+        if (isWatchingHighscore) return;
         switchToGuide(Guide.CHANCE);
     }
 
     @FXML
     public void upperBonusClicked() {
+        if (isWatchingHighscore) return;
         switchToGuide(Guide.UPPER_BONUS);
     }
 
@@ -1192,7 +1347,7 @@ public class Controller {
     public void resultFinishClicked() {
         if (!enterNameField.getText().isEmpty()) {
             String withoutSpacing = enterNameField.getText();
-            withoutSpacing.replaceAll("\\s+","");
+            withoutSpacing = withoutSpacing.replaceAll("\\s+","");
             if (withoutSpacing.length() > 20) {
                 System.out.println("This name is too long!");
             } else {
@@ -1220,6 +1375,7 @@ public class Controller {
                 switchScene(Scene.MENU);
                 checker.setAllValuesToZero();
                 highscore.writeToFile();
+                setAllToBlack();
             }
         } else {
             System.out.println("Please enter your name");
@@ -1350,5 +1506,4 @@ public class Controller {
         }
         translate.play();
     }
-
 }

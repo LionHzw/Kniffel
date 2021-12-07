@@ -540,4 +540,24 @@ public class Check {
         }
         return temp;
     }
+
+    public void fillPointsFromArray(int[] array) {
+        numberp0 = array[0];
+        numberp1 = array[1];
+        numberp2 = array[2];
+        numberp3 = array[3];
+        numberp4 = array[4];
+        numberp5 = array[5];
+        numberp6 = array[6];
+        numberp7 = array[7];
+        numberp8 = array[8];
+        numberp9 = array[9];
+        numberp10 = array[10];
+        numberp11 = array[11];
+        numberp12 = array[12];
+        numberp13 = array[13];
+        numberp14 = array[14];
+        numberp15 = array[15];
+        numberp16 = array[16];
+    }
 }

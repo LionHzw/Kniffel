@@ -9,7 +9,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
-      <AnchorPane fx:id="menuPane" prefHeight="720.0" prefWidth="1280.0">
+      <AnchorPane fx:id="menuPane" prefHeight="720.0" prefWidth="1280.0" visible="false">
          <children>
             <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -31,7 +31,7 @@
                   <Image url="@../resources/Misc/Quit.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="rankingButton" fitHeight="100.0" fitWidth="100.0" layoutX="980.0" layoutY="380.0" onMouseEntered="#menuOnMouseEntered" onMouseExited="#menuOnMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="rankingButton" fitHeight="100.0" fitWidth="100.0" layoutX="980.0" layoutY="380.0" onMouseClicked="#menuRankingClicked" onMouseEntered="#menuOnMouseEntered" onMouseExited="#menuOnMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resources/Misc/Highscore2.png" />
                </image>
@@ -471,6 +471,70 @@
                   <Font name="Bauhaus 93" size="12.0" />
                </font>
             </TextField>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="rankingPane" prefHeight="720.0" prefWidth="1280.0">
+         <children>
+            <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/Backgrounds/Rankings.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="hs1Label" layoutX="118.0" layoutY="235.0" onMouseClicked="#scoreClicked" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" prefHeight="50.0" prefWidth="533.0">
+               <font>
+                  <Font name="Bauhaus 93" size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="hs3Label" layoutX="118.0" layoutY="316.0" onMouseClicked="#scoreClicked" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" prefHeight="50.0" prefWidth="533.0">
+               <font>
+                  <Font name="Bauhaus 93" size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="hs5Label" layoutX="118.0" layoutY="401.0" onMouseClicked="#scoreClicked" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" prefHeight="50.0" prefWidth="533.0">
+               <font>
+                  <Font name="Bauhaus 93" size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="hs7Label" layoutX="118.0" layoutY="482.0" onMouseClicked="#scoreClicked" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" prefHeight="50.0" prefWidth="533.0">
+               <font>
+                  <Font name="Bauhaus 93" size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="hs9Label" layoutX="118.0" layoutY="565.0" onMouseClicked="#scoreClicked" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" prefHeight="50.0" prefWidth="533.0">
+               <font>
+                  <Font name="Bauhaus 93" size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="hs2Label" layoutX="747.0" layoutY="236.0" onMouseClicked="#scoreClicked" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" prefHeight="54.0" prefWidth="500.0">
+               <font>
+                  <Font name="Bauhaus 93" size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="hs4Label" layoutX="747.0" layoutY="317.0" onMouseClicked="#scoreClicked" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" prefHeight="54.0" prefWidth="500.0">
+               <font>
+                  <Font name="Bauhaus 93" size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="hs6Label" layoutX="747.0" layoutY="402.0" onMouseClicked="#scoreClicked" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" prefHeight="54.0" prefWidth="500.0">
+               <font>
+                  <Font name="Bauhaus 93" size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="hs8Label" layoutX="747.0" layoutY="483.0" onMouseClicked="#scoreClicked" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" prefHeight="54.0" prefWidth="500.0">
+               <font>
+                  <Font name="Bauhaus 93" size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="hs10Label" layoutX="747.0" layoutY="566.0" onMouseClicked="#scoreClicked" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" prefHeight="54.0" prefWidth="500.0">
+               <font>
+                  <Font name="Bauhaus 93" size="36.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="150.0" fitWidth="50.0" layoutX="14.0" layoutY="656.0" onMouseClicked="#rankingBackClicked" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/Misc/Quit.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </children>

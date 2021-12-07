@@ -6,5 +6,6 @@ public enum Scene {
     POINTS,
     SETTINGS,
     GUIDE,
-    RESULT
+    RESULT,
+    RANKING
 }

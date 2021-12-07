@@ -19,18 +19,29 @@ public class Highscore {
     public Highscore() {
         arrayList = new ArrayList<SingleHighscore>();
         readFile();
-        arrayList.add(new SingleHighscore(350, "DerDonnn", new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17}));
+        //add10BlankHS();
+        /*arrayList.add(new SingleHighscore(350, "DerDonnn", new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17}));
         arrayList.add(new SingleHighscore(250, "Hannah", new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17}));
         arrayList.add(new SingleHighscore(300, "Jan", new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17}));
         arrayList.add(new SingleHighscore(100, "Simon", new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17}));
         arrayList.add(new SingleHighscore(150, "Floyd", new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17}));
         arrayList.add(new SingleHighscore(50, "Max", new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17}));
-        arrayList.add(new SingleHighscore(200, "Ich", new int[] {500, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17}));
+        arrayList.add(new SingleHighscore(200, "Ich", new int[] {500, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17}));*/
         writeToFile();
     }
 
+    /*public void add10BlankHS() {
+        for (int i = 0; i < 10; i++) {
+            addHighscore(new SingleHighscore(null, "", null));
+        }
+    }*/
+
     public void addHighscore(SingleHighscore newHighscore) {
         arrayList.add(newHighscore);
+    }
+
+    public ArrayList<SingleHighscore> getArrayList() {
+        return arrayList;
     }
 
     public void createFile() {
@@ -77,6 +88,8 @@ public class Highscore {
         } catch (FileNotFoundException e) {
             createFile();
             readFile();
+        } catch (NumberFormatException nfe) {
+            System.out.println("help");
         }
 
     }
@@ -128,5 +141,4 @@ public class Highscore {
             }
         }
     }
-
 }
