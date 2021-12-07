@@ -19,7 +19,7 @@ public class Highscore {
     public Highscore() {
         arrayList = new ArrayList<SingleHighscore>();
         readFile();
-        arrayList.add(new SingleHighscore(350, "Der Donnn", new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17}));
+        arrayList.add(new SingleHighscore(350, "DerDonnn", new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17}));
         arrayList.add(new SingleHighscore(250, "Hannah", new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17}));
         arrayList.add(new SingleHighscore(300, "Jan", new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17}));
         arrayList.add(new SingleHighscore(100, "Simon", new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17}));

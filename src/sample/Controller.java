@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.animation.FadeTransition;
+import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Label;
@@ -14,6 +16,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.transform.Scale;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 //import org.apache.logging.log4j.LogManager;
 //import org.apache.logging.log4j.core.Logger;
 
@@ -74,6 +77,16 @@ public class Controller {
     @FXML public ImageView guideIV;
     @FXML public Label resultLabel;
     @FXML public TextField enterNameField;
+    @FXML public Label playLabel;
+    @FXML public Label settingsLabel;
+    @FXML public Label quitLabel;
+    @FXML public Label rankingLabel;
+    @FXML public Label creditsLabel;
+    @FXML public ImageView playButton;
+    @FXML public ImageView menuQuitButton;
+    @FXML public ImageView rankingButton;
+    @FXML public ImageView settingsButton;
+    @FXML public ImageView menuCreditsButton;
 
     public int remaining;
     public int remainingTurns;
@@ -395,6 +408,11 @@ public class Controller {
     @FXML
     public void menuSettingsClicked() {
         switchScene(Scene.SETTINGS);
+    }
+
+    @FXML
+    public void menuCreditsClicked() {
+        //TODO
     }
 
     /**
@@ -1250,4 +1268,87 @@ public class Controller {
         }
         checker.changeIsCheckingForPossibilities(false);
     }
+
+    @FXML
+    public void menuOnMouseEntered(MouseEvent mouseEvent) {
+        onMouseEntered(mouseEvent);
+        ImageView src = (ImageView) mouseEvent.getSource();
+        double translateValue = 0;
+        Label label;
+        if (src.equals(playButton)) {
+            label = playLabel;
+            translateValue = 30;
+        } else if (src.equals(settingsButton)) {
+            label = settingsLabel;
+            translateValue = -20;
+        } else if (src.equals(rankingButton)) {
+            label = rankingLabel;
+            translateValue = -20;
+        } else if (src.equals(menuQuitButton)) {
+            label = quitLabel;
+            translateValue = 30;
+        } else if (src.equals(menuCreditsButton)) {
+            label = creditsLabel;
+            translateValue = -20;
+        } else {
+            //Default case
+            label = null;
+            translateValue = 0;
+        }
+        label.setVisible(true);
+        //FadeIn
+        FadeTransition fadeIn = new FadeTransition(Duration.seconds(0.2), label);
+        fadeIn.setFromValue(0.0);
+        fadeIn.setToValue(1.0);
+        fadeIn.play();
+        //Translate
+        TranslateTransition translate = new TranslateTransition(Duration.seconds(0.2), label);
+        if (src.equals(menuQuitButton) || src.equals(menuCreditsButton)) {
+            translate.setToX(translateValue);
+        } else {
+            translate.setToY(translateValue);
+        }
+        translate.play();
+    }
+
+    @FXML
+    public void menuOnMouseExited(MouseEvent mouseEvent) {
+        onMouseExited(mouseEvent);
+        ImageView src = (ImageView) mouseEvent.getSource();
+        double translateValue = 0;
+        Label label;
+        if (src.equals(playButton)) {
+            label = playLabel;
+            translateValue = -20;
+        } else if (src.equals(settingsButton)) {
+            label = settingsLabel;
+            translateValue = 30;
+        } else if (src.equals(rankingButton)) {
+            label = rankingLabel;
+            translateValue = 30;
+        } else if (src.equals(menuQuitButton)) {
+            label = quitLabel;
+            translateValue = -20;
+        } else if (src.equals(menuCreditsButton)) {
+            label = creditsLabel;
+            translateValue = 30;
+        } else {
+            //Default case
+            label = null;
+            translateValue = 0;
+        }
+        FadeTransition fadeOut = new FadeTransition(Duration.seconds(0.2), label);
+        fadeOut.setFromValue(1.0);
+        fadeOut.setToValue(0.0);
+        fadeOut.play();
+        //Translate
+        TranslateTransition translate = new TranslateTransition(Duration.seconds(0.2), label);
+        if (src.equals(menuQuitButton) || src.equals(menuCreditsButton)) {
+            translate.setToX(translateValue);
+        } else {
+            translate.setToY(translateValue);
+        }
+        translate.play();
+    }
+
 }
