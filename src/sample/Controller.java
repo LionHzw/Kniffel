@@ -733,6 +733,7 @@ public class Controller {
         }
 
         if (!checker.getSpecPoints() && remainingTurns == 1) {
+            playSound(MiscFilePath.KNIFFEL_FINISH);
             finishGame(checker.numberp16);
             return;
         }
@@ -1130,6 +1131,7 @@ public class Controller {
         hasDecided = true;
         updateLabel(num, score);
         possibilities.setAllValuesToTheirOriginal();
+        playSound(MiscFilePath.ACCEPTED_TURN);
     }
 
     /**

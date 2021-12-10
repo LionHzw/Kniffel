@@ -18,6 +18,7 @@ public enum MiscFilePath {
     BUTTON_PRESSED("/resources/Sounds/buttonPressed.wav"),
     ERROR("/resources/Sounds/error.wav"),
     ACCEPTED_TURN("/resources/Sounds/acceptedTurn.wav"),
+    KNIFFEL_FINISH("/resources/Sounds/kniffelFinish.wav"),
     ACES("/resources/Guides/Aces.png"),
     TWOS("/resources/Guides/Twos.png"),
     THREES("/resources/Guides/Threes.png"),
