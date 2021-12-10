@@ -473,11 +473,10 @@ public class Check {
         if (numberp6 >= 63) {
             controller.update15(35);
             numberp15 = 35;
-            return numberp15;
         } else {
             numberp15 = 0;
-            return numberp15;
         }
+        return numberp15;
     }
 
     /**

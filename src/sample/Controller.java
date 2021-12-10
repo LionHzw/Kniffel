@@ -153,7 +153,7 @@ public class Controller {
     Image skipImage = new Image(MiscFilePath.SKIP.getFilePath());
     Image backImage = new Image(MiscFilePath.BACK.getFilePath());
     Image continueImage = new Image(MiscFilePath.CONTINUE.getFilePath());
-    Image finishImage = new Image(MiscFilePath.FINISH.getFilePath());
+    //Image finishImage = new Image(MiscFilePath.FINISH.getFilePath());
 
     //GUIDES
     Image acesGuide = new Image(MiscFilePath.ACES.getFilePath());
@@ -480,53 +480,20 @@ public class Controller {
     @FXML
     public void scoreClicked(MouseEvent mouseEvent) {
         ArrayList<SingleHighscore> arrayList = highscore.getArrayList();
-        int[] points = null;
+        int[] points;
         Label label = (Label) mouseEvent.getSource();
         try {
-            if (label.equals(hs1Label)) {
-                label = hs1Label;
-                points = arrayList.get(0).getPoints();
-            }
-            else if (label.equals(hs2Label)) {
-                label = hs2Label;
-                points = arrayList.get(1).getPoints();
-            }
-            else if (label.equals(hs3Label)) {
-                label = hs3Label;
-                points = arrayList.get(2).getPoints();
-            }
-            else if (label.equals(hs4Label)) {
-                label = hs4Label;
-                points = arrayList.get(3).getPoints();
-            }
-            else if (label.equals(hs5Label)) {
-                label = hs5Label;
-                points = arrayList.get(4).getPoints();
-            }
-            else if (label.equals(hs6Label)) {
-                label = hs6Label;
-                points = arrayList.get(5).getPoints();
-            }
-            else if (label.equals(hs7Label)) {
-                label = hs7Label;
-                points = arrayList.get(6).getPoints();
-            }
-            else if (label.equals(hs8Label)) {
-                label = hs8Label;
-                points = arrayList.get(7).getPoints();
-            }
-            else if (label.equals(hs9Label)) {
-                label = hs9Label;
-                points = arrayList.get(8).getPoints();
-            }
-            else if (label.equals(hs10Label)) {
-                label = hs10Label;
-                points = arrayList.get(9).getPoints();
-            }
-            else {
-                label = null;
-                points = null;
-            }
+            if (label.equals(hs1Label)) points = arrayList.get(0).getPoints();
+            else if (label.equals(hs2Label)) points = arrayList.get(1).getPoints();
+            else if (label.equals(hs3Label)) points = arrayList.get(2).getPoints();
+            else if (label.equals(hs4Label)) points = arrayList.get(3).getPoints();
+            else if (label.equals(hs5Label)) points = arrayList.get(4).getPoints();
+            else if (label.equals(hs6Label)) points = arrayList.get(5).getPoints();
+            else if (label.equals(hs7Label)) points = arrayList.get(6).getPoints();
+            else if (label.equals(hs8Label)) points = arrayList.get(7).getPoints();
+            else if (label.equals(hs9Label)) points = arrayList.get(8).getPoints();
+            else if (label.equals(hs10Label)) points = arrayList.get(9).getPoints();
+            else points = null;
         } catch (IndexOutOfBoundsException e) {
             System.out.println("MF clicked on a non existing label");
             return;
@@ -535,6 +502,7 @@ public class Controller {
         isWatchingHighscore = true;
         switchScene(Scene.POINTS);
         pointsButton.setImage(backImage);
+        assert points != null;
         checker.fillPointsFromArray(points);
         for (int i = 0; i < 17; i++) {
             updateLabel(i, checker.returnValueOfLabel(i));
@@ -1426,8 +1394,8 @@ public class Controller {
     /**
      * mode 0 = show original score
      * mode 1 = show possible score
-     * @param src
-     * @param mode
+     * @param src source
+     * @param mode mode
      */
     public void showScorePreview(Label src, int mode) {
         checker.changeIsCheckingForPossibilities(true);
@@ -1456,7 +1424,7 @@ public class Controller {
     public void menuOnMouseEntered(MouseEvent mouseEvent) {
         onMouseEntered(mouseEvent);
         ImageView src = (ImageView) mouseEvent.getSource();
-        double translateValue = 0;
+        double translateValue;
         Label label;
         if (src.equals(playButton)) {
             label = playLabel;
@@ -1474,10 +1442,10 @@ public class Controller {
             label = creditsLabel;
             translateValue = -20;
         } else {
-            //Default case
             label = null;
             translateValue = 0;
         }
+        assert label != null;
         label.setVisible(true);
         //FadeIn
         fadeAnimation(label, 0.0, 1.0, 0.2);
@@ -1490,7 +1458,7 @@ public class Controller {
     public void menuOnMouseExited(MouseEvent mouseEvent) {
         onMouseExited(mouseEvent);
         ImageView src = (ImageView) mouseEvent.getSource();
-        double translateValue = 0;
+        double translateValue;
         Label label;
         if (src.equals(playButton)) {
             label = playLabel;
@@ -1555,6 +1523,8 @@ public class Controller {
                 label1 = creditsTwitterLabel1;
                 label2 = creditsTwitterLabel2;
             }
+            assert label1 != null;
+            assert label2 != null;
             label1.setVisible(true);
             label2.setVisible(true);
             fadeAnimation(label1, 0.0, 1.0, 0.2);
