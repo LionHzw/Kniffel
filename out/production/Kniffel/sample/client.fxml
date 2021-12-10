@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -113,6 +114,18 @@
             <Label fx:id="settingsMuteLabel" alignment="CENTER" layoutX="515.0" layoutY="236.0" mouseTransparent="true" prefHeight="67.0" prefWidth="251.0" text="Mute" visible="false">
                <font>
                   <Font name="Bauhaus 93" size="48.0" />
+               </font>
+            </Label>
+            <Slider fx:id="soundSlider" layoutX="529.0" layoutY="510.0" onMouseClicked="#setSoundsVolumeBySlider" prefHeight="30.0" prefWidth="223.0" stylesheets="@../resources/CSS/slider.css" value="50.0" />
+            <Label alignment="CENTER" layoutX="590.0" layoutY="460.0" prefHeight="43.0" prefWidth="100.0" text="Sound">
+               <font>
+                  <Font name="Bauhaus 93" size="36.0" />
+               </font>
+            </Label>
+            <Slider fx:id="musicSlider" layoutX="529.0" layoutY="616.0" onMouseClicked="#setMusicVolumeBySlider" prefHeight="30.0" prefWidth="223.0" stylesheets="@../resources/CSS/slider.css" value="50.0" />
+            <Label alignment="CENTER" layoutX="590.0" layoutY="566.0" prefHeight="43.0" prefWidth="100.0" text="Music">
+               <font>
+                  <Font name="Bauhaus 93" size="36.0" />
                </font>
             </Label>
          </children>

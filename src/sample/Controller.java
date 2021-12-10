@@ -6,6 +6,7 @@ import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.ColorInput;
@@ -130,13 +131,18 @@ public class Controller {
     @FXML public Label settingsBackLabel;
     @FXML public Label settingsFullscreenLabel;
     @FXML public Label settingsMuteLabel;
+    @FXML public Slider soundSlider;
+    @FXML public Slider musicSlider;
 
     public int remaining;
     public int remainingTurns;
     public int[] rolls;
     public boolean inGame = false;
     public boolean isWatchingHighscore = false;
-    boolean isSoundMuted = true;
+    boolean isMuted = true;
+
+    public double globalSoundVolume;
+    public double globalMusicVolume;
 
     public boolean hasDecided = false;
     public boolean select1Bool = true;
@@ -200,6 +206,8 @@ public class Controller {
         switchScene(Scene.MENU);
         setAllToUnselected();
         rolls = new int[5];
+        setSoundsVolume(50.0);
+        settingsSoundClicked();
     }
 
     /**
@@ -717,12 +725,13 @@ public class Controller {
      */
     @FXML
     public void pointsSkipButtonPressed() {
+        showRolledDice();
         if (isWatchingHighscore) {
             switchScene(Scene.RANKING);
             isWatchingHighscore = false;
             return;
         }
-        showRolledDice();
+
         if (!checker.getSpecPoints() && remainingTurns == 1) {
             finishGame(checker.numberp16);
             return;
@@ -770,7 +779,7 @@ public class Controller {
             if (src.equals(pointsButton)) src.setEffect(new DropShadow());
             if (isWatchingHighscore) return;
             src.setEffect(new DropShadow());
-            playButtonHoverSound();
+            playSound(MiscFilePath.BUTTON_HOVER);
         }
         if (mouseEvent.getSource() instanceof Label src) {
             if (isWatchingHighscore) return;
@@ -783,7 +792,7 @@ public class Controller {
             }
             src.setEffect(new DropShadow());
             showScorePreview(src, 1);
-            playButtonHoverSound();
+            playSound(MiscFilePath.BUTTON_HOVER);
         }
     }
 
@@ -809,7 +818,7 @@ public class Controller {
      */
     @FXML
     public void onMousePressed(MouseEvent mouseEvent) {
-        playButtonClickedSound();
+        playSound(MiscFilePath.BUTTON_PRESSED);
         if (mouseEvent.getSource() instanceof ImageView src) {
             if (src.equals(pointsButton)) src.setEffect(new InnerShadow());
             if (isWatchingHighscore) return;
@@ -1146,31 +1155,19 @@ public class Controller {
         checker.setAllValuesToZero();
     }
 
-    public void playButtonHoverSound() {
+    public void playSound(MiscFilePath path) {
         try {
-            Media m = new Media(getClass().getResource(MiscFilePath.BUTTON_HOVER.getFilePath()).toString());
+            Media m = new Media(getClass().getResource(path.getFilePath()).toString());
             MediaPlayer mediaPlayerButtonHover = new MediaPlayer(m);
-            if (isSoundMuted) {
+            if (isMuted) {
                 mediaPlayerButtonHover.setVolume(0);
             } else {
-                mediaPlayerButtonHover.setVolume(1);
+                mediaPlayerButtonHover.setVolume(globalSoundVolume);
             }
             mediaPlayerButtonHover.play();
         } catch (NoClassDefFoundError | IllegalAccessError e) {
             System.out.println(e.getMessage());
         }
-    }
-
-    public void playButtonClickedSound() {
-        Media h =
-                new Media(getClass().getResource(MiscFilePath.BUTTON_PRESSED.getFilePath()).toString());
-        MediaPlayer mediaPlayerButtonClicked = new MediaPlayer(h);
-        if (isSoundMuted) {
-            mediaPlayerButtonClicked.setVolume(0);
-        } else {
-            mediaPlayerButtonClicked.setVolume(1.0);
-        }
-        mediaPlayerButtonClicked.play();
     }
 
     /**
@@ -1638,7 +1635,7 @@ public class Controller {
 
     @FXML
     public void settingsSoundClicked() {
-        if (isSoundMuted) {
+        if (isMuted) {
             TranslateTransition tt = new TranslateTransition(Duration.seconds(0.2), settingsStick2);
             tt.setToX(52);
             tt.setToY(-8);
@@ -1649,7 +1646,7 @@ public class Controller {
             settingsStick1.setEffect(red);
             settingsStick2.setEffect(red);
 
-            isSoundMuted = false;
+            isMuted = false;
         } else {
             TranslateTransition tt = new TranslateTransition(Duration.seconds(0.2), settingsStick2);
             tt.setToX(0);
@@ -1661,7 +1658,7 @@ public class Controller {
             settingsStick1.setEffect(green);
             settingsStick2.setEffect(green);
 
-            isSoundMuted = true;
+            isMuted = true;
         }
     }
 
@@ -1696,5 +1693,49 @@ public class Controller {
         fadeAnimation(label, 1.0, 0.0, 0.2);
         if (src.equals(settingsBackButton)) translateAnimation(label, 0, 0, 0.2);
         else translateAnimation(label, 1, 0, 0.2);
+    }
+
+    @FXML
+    public void setSoundsVolumeBySlider() {
+        soundSlider
+                .valueProperty()
+                .addListener(
+                        (observable, oldValue, newValue) -> globalSoundVolume = soundSlider.getValue() / 100);
+        if (!isMuted) {
+            setSoundsVolume(globalSoundVolume * 100);
+        }
+    }
+
+    /**
+     * Method lets you change the volume of the music by changing the slider.
+     */
+    @FXML
+    public void setMusicVolumeBySlider() {
+        musicSlider
+                .valueProperty()
+                .addListener(
+                        (observable, oldValue, newValue) -> globalMusicVolume = musicSlider.getValue() / 100);
+        if (!isMuted) {
+            setMusicVolume(globalMusicVolume * 100);
+        }
+    }
+
+    /**
+     * Sets the global soundsVolume based on the parameter
+     *
+     * @param volumeValue double
+     */
+    public void setSoundsVolume(double volumeValue) {
+        globalSoundVolume = volumeValue / 100;
+    }
+
+    /**
+     * Sets the global musicVolume based on the parameter
+     *
+     * @param volumeValue double
+     */
+    public void setMusicVolume(double volumeValue) {
+        //TODO
+        // mediaPlayerMusic.setVolume(volumeValue / 100);
     }
 }
