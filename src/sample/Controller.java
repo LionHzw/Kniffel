@@ -76,8 +76,6 @@ public class Controller {
     @FXML public ImageView rolledDice4;
     @FXML public ImageView rolledDice5;
     @FXML public ImageView pointsButton;
-    @FXML public Label specLabel1;
-    @FXML public Label specLabel2;
     @FXML public ImageView guideIV;
     @FXML public Label resultLabel;
     @FXML public TextField enterNameField;
