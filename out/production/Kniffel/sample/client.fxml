@@ -211,7 +211,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="pointsPane" prefHeight="720.0" prefWidth="1280.0">
+      <AnchorPane fx:id="pointsPane" prefHeight="720.0" prefWidth="1280.0" visible="false">
          <children>
             <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -525,6 +525,95 @@
                   <Image url="@../resources/Misc/Quit.png" />
                </image>
             </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="creditsPane" prefHeight="720.0" prefWidth="1280.0">
+         <children>
+            <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/Backgrounds/Credits.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="creditsLionHzwIV" fitHeight="150.0" fitWidth="130.0" layoutX="118.0" layoutY="305.0" onMouseClicked="#creditsLionHzwClicked" onMouseEntered="#creditsOnMouseEntered" onMouseExited="#creditsOnMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/Misc/LionHZW.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="creditsInstagramIV" fitHeight="150.0" fitWidth="130.0" layoutX="423.0" layoutY="295.0" onMouseClicked="#creditsInstagramClicked" onMouseEntered="#creditsOnMouseEntered" onMouseExited="#creditsOnMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/Misc/Instagram.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="creditsGithubIV" fitHeight="150.0" fitWidth="130.0" layoutX="727.0" layoutY="297.0" onMouseClicked="#creditsGitHubClicked" onMouseEntered="#creditsOnMouseEntered" onMouseExited="#creditsOnMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/Misc/GitHub.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="creditsTwitterIV" fitHeight="150.0" fitWidth="130.0" layoutX="1032.0" layoutY="307.0" onMouseClicked="#creditsTwitterClicked" onMouseEntered="#creditsOnMouseEntered" onMouseExited="#creditsOnMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/Misc/Twitter.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="creditsBackIV" fitHeight="100.0" fitWidth="255.0" layoutX="590.0" layoutY="600.0" onMouseClicked="#creditsBackClicked" onMouseEntered="#creditsOnMouseEntered" onMouseExited="#creditsOnMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/Misc/Quit.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="creditsLionHzwLabel1" alignment="CENTER" layoutX="76.0" layoutY="272.0" mouseTransparent="true" prefHeight="50.0" prefWidth="215.0" text="Website" visible="false">
+               <font>
+                  <Font name="Bauhaus 93" size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="creditsInstagramLabel1" alignment="CENTER" layoutX="381.0" layoutY="272.0" mouseTransparent="true" prefHeight="50.0" prefWidth="215.0" text="Instagram" visible="false">
+               <font>
+                  <Font name="Bauhaus 93" size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="creditsGithubLabel1" alignment="CENTER" layoutX="685.0" layoutY="272.0" mouseTransparent="true" prefHeight="50.0" prefWidth="215.0" text="GitHub" visible="false">
+               <font>
+                  <Font name="Bauhaus 93" size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="creditsTwitterLabel1" alignment="CENTER" layoutX="990.0" layoutY="272.0" mouseTransparent="true" prefHeight="50.0" prefWidth="215.0" text="Twitter" visible="false">
+               <font>
+                  <Font name="Bauhaus 93" size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="creditsLionHzwLabel2" alignment="CENTER" layoutX="76.0" layoutY="399.0" mouseTransparent="true" prefHeight="50.0" prefWidth="215.0" text="LionHzw.eu" visible="false">
+               <font>
+                  <Font name="Bauhaus 93" size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="creditsInstagramLabel2" alignment="CENTER" layoutX="381.0" layoutY="400.0" mouseTransparent="true" prefHeight="50.0" prefWidth="215.0" text="Lion.hzw" visible="false">
+               <font>
+                  <Font name="Bauhaus 93" size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="creditsGithubLabel2" alignment="CENTER" layoutX="685.0" layoutY="400.0" mouseTransparent="true" prefHeight="50.0" prefWidth="215.0" text="LionHzw" visible="false">
+               <font>
+                  <Font name="Bauhaus 93" size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="creditsTwitterLabel2" alignment="CENTER" layoutX="990.0" layoutY="399.0" mouseTransparent="true" prefHeight="50.0" prefWidth="215.0" text="Lion_Hoelzl" visible="false">
+               <font>
+                  <Font name="Bauhaus 93" size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="creditsBackLabel1" alignment="CENTER" layoutX="446.0" layoutY="625.0" mouseTransparent="true" prefHeight="50.0" prefWidth="215.0" text="Back" visible="false">
+               <font>
+                  <Font name="Bauhaus 93" size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="creditsBackLabel2" alignment="CENTER" layoutX="533.0" layoutY="600.0" mouseTransparent="true" prefHeight="50.0" prefWidth="215.0" text="To" visible="false">
+               <font>
+                  <Font name="Bauhaus 93" size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="creditsBackLabel3" alignment="CENTER" layoutX="620.0" layoutY="625.0" mouseTransparent="true" prefHeight="50.0" prefWidth="215.0" text="Menu" visible="false">
+               <font>
+                  <Font name="Bauhaus 93" size="36.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>

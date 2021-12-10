@@ -22,6 +22,7 @@ import javafx.util.Duration;
 //import org.apache.logging.log4j.LogManager;
 //import org.apache.logging.log4j.core.Logger;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
@@ -41,6 +42,7 @@ public class Controller {
     @FXML public AnchorPane guidePane;
     @FXML public AnchorPane resultPane;
     @FXML public AnchorPane rankingPane;
+    @FXML public AnchorPane creditsPane;
     @FXML public ImageView dice1IV;
     @FXML public ImageView dice2IV;
     @FXML public ImageView dice3IV;
@@ -99,6 +101,22 @@ public class Controller {
     @FXML public Label hs8Label;
     @FXML public Label hs9Label;
     @FXML public Label hs10Label;
+    @FXML public ImageView creditsLionHzwIV;
+    @FXML public ImageView creditsInstagramIV;
+    @FXML public ImageView creditsGithubIV;
+    @FXML public ImageView creditsTwitterIV;
+    @FXML public ImageView creditsBackIV;
+    @FXML public Label creditsLionHzwLabel1;
+    @FXML public Label creditsLionHzwLabel2;
+    @FXML public Label creditsInstagramLabel1;
+    @FXML public Label creditsInstagramLabel2;
+    @FXML public Label creditsGithubLabel1;
+    @FXML public Label creditsGithubLabel2;
+    @FXML public Label creditsTwitterLabel1;
+    @FXML public Label creditsTwitterLabel2;
+    @FXML public Label creditsBackLabel1;
+    @FXML public Label creditsBackLabel2;
+    @FXML public Label creditsBackLabel3;
 
     public int remaining;
     public int remainingTurns;
@@ -245,6 +263,7 @@ public class Controller {
         guidePane.setVisible(false);
         resultPane.setVisible(false);
         rankingPane.setVisible(false);
+        creditsPane.setVisible(false);
         switch (scene) {
             case MENU -> menuPane.setVisible(true);
             case GAME -> gamePane.setVisible(true);
@@ -253,6 +272,7 @@ public class Controller {
             case GUIDE -> guidePane.setVisible(true);
             case RESULT -> resultPane.setVisible(true);
             case RANKING -> rankingPane.setVisible(true);
+            case CREDITS -> creditsPane.setVisible(true);
         }
     }
 
@@ -428,7 +448,7 @@ public class Controller {
 
     @FXML
     public void menuCreditsClicked() {
-        //TODO
+        switchScene(Scene.CREDITS);
     }
 
     @FXML
@@ -1512,5 +1532,189 @@ public class Controller {
             translate.setToY(translateValue);
         }
         translate.play();
+    }
+
+    @FXML
+    public void creditsOnMouseEntered(MouseEvent mouseEvent) {
+        onMouseEntered(mouseEvent);
+        ImageView src = (ImageView) mouseEvent.getSource();
+        if (src.equals(creditsBackIV)) {
+            Label label1 = creditsBackLabel1;
+            Label label2 = creditsBackLabel2;
+            Label label3 = creditsBackLabel3;
+            label1.setVisible(true);
+            label2.setVisible(true);
+            label3.setVisible(true);
+
+            FadeTransition fadeIn1 = new FadeTransition(Duration.seconds(0.2), label1);
+            fadeIn1.setFromValue(0.0);
+            fadeIn1.setToValue(1.0);
+            fadeIn1.play();
+            FadeTransition fadeIn2 = new FadeTransition(Duration.seconds(0.2), label2);
+            fadeIn2.setFromValue(0.0);
+            fadeIn2.setToValue(1.0);
+            fadeIn2.play();
+            FadeTransition fadeIn3 = new FadeTransition(Duration.seconds(0.2), label3);
+            fadeIn3.setFromValue(0.0);
+            fadeIn3.setToValue(1.0);
+            fadeIn3.play();
+
+            TranslateTransition translate1 = new TranslateTransition(Duration.seconds(0.2), label1);
+            TranslateTransition translate2 = new TranslateTransition(Duration.seconds(0.2), label2);
+            TranslateTransition translate3 = new TranslateTransition(Duration.seconds(0.2), label3);
+            translate1.setToX(-20);
+            translate2.setToY(-40);
+            translate3.setToX(20);
+            translate1.play();
+            translate2.play();
+            translate3.play();
+
+        } else {
+            Label label1 = null;
+            Label label2 = null;
+            //Default case
+            if (src.equals(creditsLionHzwIV)) {
+                label1 = creditsLionHzwLabel1;
+                label2 = creditsLionHzwLabel2;
+            } else if (src.equals(creditsInstagramIV)){
+                label1 = creditsInstagramLabel1;
+                label2 = creditsInstagramLabel2;
+            } else if (src.equals(creditsGithubIV)) {
+                label1 = creditsGithubLabel1;
+                label2 = creditsGithubLabel2;
+            } else if (src.equals(creditsTwitterIV)) {
+                label1 = creditsTwitterLabel1;
+                label2 = creditsTwitterLabel2;
+            }
+            label1.setVisible(true);
+            label2.setVisible(true);
+            FadeTransition fadeIn1 = new FadeTransition(Duration.seconds(0.2), label1);
+            fadeIn1.setFromValue(0.0);
+            fadeIn1.setToValue(1.0);
+            fadeIn1.play();
+            FadeTransition fadeIn2 = new FadeTransition(Duration.seconds(0.2), label2);
+            fadeIn2.setFromValue(0.0);
+            fadeIn2.setToValue(1.0);
+            fadeIn2.play();
+
+            TranslateTransition translate1 = new TranslateTransition(Duration.seconds(0.2), label1);
+            TranslateTransition translate2 = new TranslateTransition(Duration.seconds(0.2), label2);
+            translate1.setToY(-40);
+            translate2.setToY(40);
+            translate1.play();
+            translate2.play();
+        }
+    }
+
+    @FXML
+    public void creditsOnMouseExited(MouseEvent mouseEvent) {
+        onMouseExited(mouseEvent);
+        ImageView src = (ImageView) mouseEvent.getSource();
+        if (src.equals(creditsBackIV)) {
+            Label label1 = creditsBackLabel1;
+            Label label2 = creditsBackLabel2;
+            Label label3 = creditsBackLabel3;
+
+            FadeTransition fadeOut1 = new FadeTransition(Duration.seconds(0.2), label1);
+            fadeOut1.setFromValue(1.0);
+            fadeOut1.setToValue(0.0);
+            fadeOut1.play();
+            FadeTransition fadeOut2 = new FadeTransition(Duration.seconds(0.2), label2);
+            fadeOut2.setFromValue(1.0);
+            fadeOut2.setToValue(0.0);
+            fadeOut2.play();
+            FadeTransition fadeOut3 = new FadeTransition(Duration.seconds(0.2), label3);
+            fadeOut3.setFromValue(1.0);
+            fadeOut3.setToValue(0.0);
+            fadeOut3.play();
+
+            TranslateTransition translate1 = new TranslateTransition(Duration.seconds(0.2), label1);
+            TranslateTransition translate2 = new TranslateTransition(Duration.seconds(0.2), label2);
+            TranslateTransition translate3 = new TranslateTransition(Duration.seconds(0.2), label3);
+            translate1.setToX(0);
+            translate2.setToY(0);
+            translate3.setToX(0);
+            translate1.play();
+            translate2.play();
+            translate3.play();
+
+        } else {
+            Label label1 = null;
+            Label label2 = null;
+            //Default case
+            if (src.equals(creditsLionHzwIV)) {
+                label1 = creditsLionHzwLabel1;
+                label2 = creditsLionHzwLabel2;
+            } else if (src.equals(creditsInstagramIV)){
+                label1 = creditsInstagramLabel1;
+                label2 = creditsInstagramLabel2;
+            } else if (src.equals(creditsGithubIV)) {
+                label1 = creditsGithubLabel1;
+                label2 = creditsGithubLabel2;
+            } else if (src.equals(creditsTwitterIV)) {
+                label1 = creditsTwitterLabel1;
+                label2 = creditsTwitterLabel2;
+            }
+            FadeTransition fadeOut1 = new FadeTransition(Duration.seconds(0.2), label1);
+            fadeOut1.setFromValue(1.0);
+            fadeOut1.setToValue(0.0);
+            fadeOut1.play();
+            FadeTransition fadeOut2 = new FadeTransition(Duration.seconds(0.2), label2);
+            fadeOut2.setFromValue(1.0);
+            fadeOut2.setToValue(0.0);
+            fadeOut2.play();
+
+            TranslateTransition translate1 = new TranslateTransition(Duration.seconds(0.2), label1);
+            TranslateTransition translate2 = new TranslateTransition(Duration.seconds(0.2), label2);
+            translate1.setToY(0);
+            translate2.setToY(0);
+            translate1.play();
+            translate2.play();
+        }
+    }
+
+    @FXML
+    public void creditsBackClicked() {
+        switchScene(Scene.MENU);
+    }
+
+    @FXML
+    public void creditsLionHzwClicked() {
+        try {
+            URI uri = new URI("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+            java.awt.Desktop.getDesktop().browse(uri);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void creditsInstagramClicked() {
+        try {
+            URI uri = new URI("https://www.instagram.com/lion.hzw/");
+            java.awt.Desktop.getDesktop().browse(uri);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void creditsGitHubClicked() {
+        try {
+            URI uri = new URI("https://github.com/LionHzw");
+            java.awt.Desktop.getDesktop().browse(uri);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void creditsTwitterClicked() {
+        try {
+            URI uri = new URI("https://twitter.com/Lion_Hoelzl");
+            java.awt.Desktop.getDesktop().browse(uri);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
