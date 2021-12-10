@@ -13,6 +13,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.transform.Scale;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -460,51 +462,56 @@ public class Controller {
     @FXML
     public void scoreClicked(MouseEvent mouseEvent) {
         ArrayList<SingleHighscore> arrayList = highscore.getArrayList();
-        int[] points;
+        int[] points = null;
         Label label = (Label) mouseEvent.getSource();
-        if (label.equals(hs1Label)) {
-            label = hs1Label;
-            points = arrayList.get(0).getPoints();
-        }
-        else if (label.equals(hs2Label)) {
-            label = hs2Label;
-            points = arrayList.get(1).getPoints();
-        }
-        else if (label.equals(hs3Label)) {
-            label = hs3Label;
-            points = arrayList.get(2).getPoints();
-        }
-        else if (label.equals(hs4Label)) {
-            label = hs4Label;
-            points = arrayList.get(3).getPoints();
-        }
-        else if (label.equals(hs5Label)) {
-            label = hs5Label;
-            points = arrayList.get(4).getPoints();
-        }
-        else if (label.equals(hs6Label)) {
-            label = hs6Label;
-            points = arrayList.get(5).getPoints();
-        }
-        else if (label.equals(hs7Label)) {
-            label = hs7Label;
-            points = arrayList.get(6).getPoints();
-        }
-        else if (label.equals(hs8Label)) {
-            label = hs8Label;
-            points = arrayList.get(7).getPoints();
-        }
-        else if (label.equals(hs9Label)) {
-            label = hs9Label;
-            points = arrayList.get(8).getPoints();
-        }
-        else if (label.equals(hs10Label)) {
-            label = hs10Label;
-            points = arrayList.get(9).getPoints();
-        }
-        else {
-            label = null;
-            points = null;
+        try {
+            if (label.equals(hs1Label)) {
+                label = hs1Label;
+                points = arrayList.get(0).getPoints();
+            }
+            else if (label.equals(hs2Label)) {
+                label = hs2Label;
+                points = arrayList.get(1).getPoints();
+            }
+            else if (label.equals(hs3Label)) {
+                label = hs3Label;
+                points = arrayList.get(2).getPoints();
+            }
+            else if (label.equals(hs4Label)) {
+                label = hs4Label;
+                points = arrayList.get(3).getPoints();
+            }
+            else if (label.equals(hs5Label)) {
+                label = hs5Label;
+                points = arrayList.get(4).getPoints();
+            }
+            else if (label.equals(hs6Label)) {
+                label = hs6Label;
+                points = arrayList.get(5).getPoints();
+            }
+            else if (label.equals(hs7Label)) {
+                label = hs7Label;
+                points = arrayList.get(6).getPoints();
+            }
+            else if (label.equals(hs8Label)) {
+                label = hs8Label;
+                points = arrayList.get(7).getPoints();
+            }
+            else if (label.equals(hs9Label)) {
+                label = hs9Label;
+                points = arrayList.get(8).getPoints();
+            }
+            else if (label.equals(hs10Label)) {
+                label = hs10Label;
+                points = arrayList.get(9).getPoints();
+            }
+            else {
+                label = null;
+                points = null;
+            }
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("MF clicked on a non existing label");
+            return;
         }
         hideRolledDice();
         isWatchingHighscore = true;
@@ -1331,6 +1338,7 @@ public class Controller {
     }
 
     public void finishGame(int score) {
+        enterNameField.setFont(Font.font("Bauhaus 93", FontWeight.NORMAL, 12));
         switchScene(Scene.RESULT);
         resultLabel.setText(Integer.toString(score));
         if (score < 100) resultLabel.setTextFill(Color.RED);
@@ -1341,6 +1349,7 @@ public class Controller {
         if (score >= 300 && score < 350) resultLabel.setTextFill(Color.BLUE);
         if (score >= 350 && score < 375) resultLabel.setTextFill(Color.PURPLE);
         if (score == 375) resultLabel.setTextFill(Color.GOLD);
+
     }
 
     @FXML

@@ -31,7 +31,8 @@ public enum MiscFilePath {
     LARGE_STRAIGHT("/resources/Guides/LargeStraight.png"),
     KNIFFEL("/resources/Guides/Kniffel.png"),
     CHANCE("/resources/Guides/Chance.png"),
-    UPPER_BONUS("/resources/Guides/UpperBonus.png");
+    UPPER_BONUS("/resources/Guides/UpperBonus.png"),
+    FONT("/resources/Font/BAUHAUS93.TTF");
 
 
     String filePath;
