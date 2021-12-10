@@ -1480,18 +1480,10 @@ public class Controller {
         }
         label.setVisible(true);
         //FadeIn
-        FadeTransition fadeIn = new FadeTransition(Duration.seconds(0.2), label);
-        fadeIn.setFromValue(0.0);
-        fadeIn.setToValue(1.0);
-        fadeIn.play();
+        fadeAnimation(label, 0.0, 1.0, 0.2);
         //Translate
-        TranslateTransition translate = new TranslateTransition(Duration.seconds(0.2), label);
-        if (src.equals(menuQuitButton) || src.equals(menuCreditsButton)) {
-            translate.setToX(translateValue);
-        } else {
-            translate.setToY(translateValue);
-        }
-        translate.play();
+        if (src.equals(menuQuitButton) || src.equals(menuCreditsButton)) translateAnimation(label, 0, translateValue, 0.2);
+        else translateAnimation(label, 1, translateValue, 0.2);
     }
 
     @FXML
@@ -1520,18 +1512,10 @@ public class Controller {
             label = null;
             translateValue = 0;
         }
-        FadeTransition fadeOut = new FadeTransition(Duration.seconds(0.2), label);
-        fadeOut.setFromValue(1.0);
-        fadeOut.setToValue(0.0);
-        fadeOut.play();
+        fadeAnimation(label, 1.0, 0.0, 0.2);
         //Translate
-        TranslateTransition translate = new TranslateTransition(Duration.seconds(0.2), label);
-        if (src.equals(menuQuitButton) || src.equals(menuCreditsButton)) {
-            translate.setToX(translateValue);
-        } else {
-            translate.setToY(translateValue);
-        }
-        translate.play();
+        if (src.equals(menuQuitButton) || src.equals(menuCreditsButton)) translateAnimation(label, 0, translateValue, 0.2);
+        else translateAnimation(label, 1, translateValue, 0.2);
     }
 
     @FXML
@@ -1546,28 +1530,13 @@ public class Controller {
             label2.setVisible(true);
             label3.setVisible(true);
 
-            FadeTransition fadeIn1 = new FadeTransition(Duration.seconds(0.2), label1);
-            fadeIn1.setFromValue(0.0);
-            fadeIn1.setToValue(1.0);
-            fadeIn1.play();
-            FadeTransition fadeIn2 = new FadeTransition(Duration.seconds(0.2), label2);
-            fadeIn2.setFromValue(0.0);
-            fadeIn2.setToValue(1.0);
-            fadeIn2.play();
-            FadeTransition fadeIn3 = new FadeTransition(Duration.seconds(0.2), label3);
-            fadeIn3.setFromValue(0.0);
-            fadeIn3.setToValue(1.0);
-            fadeIn3.play();
+            fadeAnimation(label1, 0.0, 1.0, 0.2);
+            fadeAnimation(label2, 0.0, 1.0, 0.2);
+            fadeAnimation(label3, 0.0, 1.0, 0.2);
 
-            TranslateTransition translate1 = new TranslateTransition(Duration.seconds(0.2), label1);
-            TranslateTransition translate2 = new TranslateTransition(Duration.seconds(0.2), label2);
-            TranslateTransition translate3 = new TranslateTransition(Duration.seconds(0.2), label3);
-            translate1.setToX(-20);
-            translate2.setToY(-40);
-            translate3.setToX(20);
-            translate1.play();
-            translate2.play();
-            translate3.play();
+            translateAnimation(label1, 0, -20, 0.2);
+            translateAnimation(label2, 1, -40, 0.2);
+            translateAnimation(label3, 0, 20, 0.2);
 
         } else {
             Label label1 = null;
@@ -1588,21 +1557,11 @@ public class Controller {
             }
             label1.setVisible(true);
             label2.setVisible(true);
-            FadeTransition fadeIn1 = new FadeTransition(Duration.seconds(0.2), label1);
-            fadeIn1.setFromValue(0.0);
-            fadeIn1.setToValue(1.0);
-            fadeIn1.play();
-            FadeTransition fadeIn2 = new FadeTransition(Duration.seconds(0.2), label2);
-            fadeIn2.setFromValue(0.0);
-            fadeIn2.setToValue(1.0);
-            fadeIn2.play();
+            fadeAnimation(label1, 0.0, 1.0, 0.2);
+            fadeAnimation(label2, 0.0, 1.0, 0.2);
 
-            TranslateTransition translate1 = new TranslateTransition(Duration.seconds(0.2), label1);
-            TranslateTransition translate2 = new TranslateTransition(Duration.seconds(0.2), label2);
-            translate1.setToY(-40);
-            translate2.setToY(40);
-            translate1.play();
-            translate2.play();
+            translateAnimation(label1, 1, -40, 0.2);
+            translateAnimation(label2, 1, 40, 0.2);
         }
     }
 
@@ -1615,28 +1574,13 @@ public class Controller {
             Label label2 = creditsBackLabel2;
             Label label3 = creditsBackLabel3;
 
-            FadeTransition fadeOut1 = new FadeTransition(Duration.seconds(0.2), label1);
-            fadeOut1.setFromValue(1.0);
-            fadeOut1.setToValue(0.0);
-            fadeOut1.play();
-            FadeTransition fadeOut2 = new FadeTransition(Duration.seconds(0.2), label2);
-            fadeOut2.setFromValue(1.0);
-            fadeOut2.setToValue(0.0);
-            fadeOut2.play();
-            FadeTransition fadeOut3 = new FadeTransition(Duration.seconds(0.2), label3);
-            fadeOut3.setFromValue(1.0);
-            fadeOut3.setToValue(0.0);
-            fadeOut3.play();
+            fadeAnimation(label1, 1.0, 0.0, 0.2);
+            fadeAnimation(label2, 1.0, 0.0, 0.2);
+            fadeAnimation(label3, 1.0, 0.0, 0.2);
 
-            TranslateTransition translate1 = new TranslateTransition(Duration.seconds(0.2), label1);
-            TranslateTransition translate2 = new TranslateTransition(Duration.seconds(0.2), label2);
-            TranslateTransition translate3 = new TranslateTransition(Duration.seconds(0.2), label3);
-            translate1.setToX(0);
-            translate2.setToY(0);
-            translate3.setToX(0);
-            translate1.play();
-            translate2.play();
-            translate3.play();
+            translateAnimation(label1, 0, 0, 0.2);
+            translateAnimation(label2, 1, 0, 0.2);
+            translateAnimation(label3, 0, 0, 0.2);
 
         } else {
             Label label1 = null;
@@ -1655,22 +1599,29 @@ public class Controller {
                 label1 = creditsTwitterLabel1;
                 label2 = creditsTwitterLabel2;
             }
-            FadeTransition fadeOut1 = new FadeTransition(Duration.seconds(0.2), label1);
-            fadeOut1.setFromValue(1.0);
-            fadeOut1.setToValue(0.0);
-            fadeOut1.play();
-            FadeTransition fadeOut2 = new FadeTransition(Duration.seconds(0.2), label2);
-            fadeOut2.setFromValue(1.0);
-            fadeOut2.setToValue(0.0);
-            fadeOut2.play();
+            fadeAnimation(label1, 1.0, 0.0, 0.2);
+            fadeAnimation(label2, 1.0, 0.0, 0.2);
 
-            TranslateTransition translate1 = new TranslateTransition(Duration.seconds(0.2), label1);
-            TranslateTransition translate2 = new TranslateTransition(Duration.seconds(0.2), label2);
-            translate1.setToY(0);
-            translate2.setToY(0);
-            translate1.play();
-            translate2.play();
+            translateAnimation(label1,1, 0, 0.2);
+            translateAnimation(label2,1, 0, 0.2);
         }
+    }
+
+    public void fadeAnimation(Label label, double fromVal, double toVal, double dur) {
+        FadeTransition ft = new FadeTransition(Duration.seconds(dur), label);
+        ft.setFromValue(fromVal);
+        ft.setToValue(toVal);
+        ft.play();
+    }
+
+    public void translateAnimation(Label label, int xyz, double setToVal, double dur) {
+        TranslateTransition tt = new TranslateTransition(Duration.seconds(dur), label);
+        switch (xyz) {
+            case 0 -> tt.setToX(setToVal);
+            case 1 -> tt.setToY(setToVal);
+            case 2 -> tt.setToZ(setToVal);
+        }
+        tt.play();
     }
 
     @FXML
@@ -1680,38 +1631,27 @@ public class Controller {
 
     @FXML
     public void creditsLionHzwClicked() {
-        try {
-            URI uri = new URI("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
-            java.awt.Desktop.getDesktop().browse(uri);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        openURL("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
     }
 
     @FXML
     public void creditsInstagramClicked() {
-        try {
-            URI uri = new URI("https://www.instagram.com/lion.hzw/");
-            java.awt.Desktop.getDesktop().browse(uri);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        openURL("https://www.instagram.com/lion.hzw/");
     }
 
     @FXML
     public void creditsGitHubClicked() {
-        try {
-            URI uri = new URI("https://github.com/LionHzw");
-            java.awt.Desktop.getDesktop().browse(uri);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        openURL("https://github.com/LionHzw");
     }
 
     @FXML
     public void creditsTwitterClicked() {
+        openURL("https://twitter.com/Lion_Hoelzl");
+    }
+
+    public void openURL(String url) {
         try {
-            URI uri = new URI("https://twitter.com/Lion_Hoelzl");
+            URI uri = new URI(url);
             java.awt.Desktop.getDesktop().browse(uri);
         } catch (Exception e) {
             e.printStackTrace();

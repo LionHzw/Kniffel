@@ -559,42 +559,42 @@
                   <Image url="@../resources/Misc/Quit.png" />
                </image>
             </ImageView>
-            <Label fx:id="creditsLionHzwLabel1" alignment="CENTER" layoutX="76.0" layoutY="272.0" mouseTransparent="true" prefHeight="50.0" prefWidth="215.0" text="Website" visible="false">
+            <Label fx:id="creditsLionHzwLabel1" alignment="CENTER" layoutX="76.0" layoutY="247.0" mouseTransparent="true" prefHeight="50.0" prefWidth="215.0" text="Website" visible="false">
                <font>
                   <Font name="Bauhaus 93" size="36.0" />
                </font>
             </Label>
-            <Label fx:id="creditsInstagramLabel1" alignment="CENTER" layoutX="381.0" layoutY="272.0" mouseTransparent="true" prefHeight="50.0" prefWidth="215.0" text="Instagram" visible="false">
+            <Label fx:id="creditsInstagramLabel1" alignment="CENTER" layoutX="381.0" layoutY="247.0" mouseTransparent="true" prefHeight="50.0" prefWidth="215.0" text="Instagram" visible="false">
                <font>
                   <Font name="Bauhaus 93" size="36.0" />
                </font>
             </Label>
-            <Label fx:id="creditsGithubLabel1" alignment="CENTER" layoutX="685.0" layoutY="272.0" mouseTransparent="true" prefHeight="50.0" prefWidth="215.0" text="GitHub" visible="false">
+            <Label fx:id="creditsGithubLabel1" alignment="CENTER" layoutX="685.0" layoutY="247.0" mouseTransparent="true" prefHeight="50.0" prefWidth="215.0" text="GitHub" visible="false">
                <font>
                   <Font name="Bauhaus 93" size="36.0" />
                </font>
             </Label>
-            <Label fx:id="creditsTwitterLabel1" alignment="CENTER" layoutX="990.0" layoutY="272.0" mouseTransparent="true" prefHeight="50.0" prefWidth="215.0" text="Twitter" visible="false">
+            <Label fx:id="creditsTwitterLabel1" alignment="CENTER" layoutX="990.0" layoutY="247.0" mouseTransparent="true" prefHeight="50.0" prefWidth="215.0" text="Twitter" visible="false">
                <font>
                   <Font name="Bauhaus 93" size="36.0" />
                </font>
             </Label>
-            <Label fx:id="creditsLionHzwLabel2" alignment="CENTER" layoutX="76.0" layoutY="399.0" mouseTransparent="true" prefHeight="50.0" prefWidth="215.0" text="LionHzw.eu" visible="false">
+            <Label fx:id="creditsLionHzwLabel2" alignment="CENTER" layoutX="76.0" layoutY="424.0" mouseTransparent="true" prefHeight="50.0" prefWidth="215.0" text="LionHzw.eu" visible="false">
                <font>
                   <Font name="Bauhaus 93" size="36.0" />
                </font>
             </Label>
-            <Label fx:id="creditsInstagramLabel2" alignment="CENTER" layoutX="381.0" layoutY="400.0" mouseTransparent="true" prefHeight="50.0" prefWidth="215.0" text="Lion.hzw" visible="false">
+            <Label fx:id="creditsInstagramLabel2" alignment="CENTER" layoutX="381.0" layoutY="425.0" mouseTransparent="true" prefHeight="50.0" prefWidth="215.0" text="Lion.hzw" visible="false">
                <font>
                   <Font name="Bauhaus 93" size="36.0" />
                </font>
             </Label>
-            <Label fx:id="creditsGithubLabel2" alignment="CENTER" layoutX="685.0" layoutY="400.0" mouseTransparent="true" prefHeight="50.0" prefWidth="215.0" text="LionHzw" visible="false">
+            <Label fx:id="creditsGithubLabel2" alignment="CENTER" layoutX="685.0" layoutY="425.0" mouseTransparent="true" prefHeight="50.0" prefWidth="215.0" text="LionHzw" visible="false">
                <font>
                   <Font name="Bauhaus 93" size="36.0" />
                </font>
             </Label>
-            <Label fx:id="creditsTwitterLabel2" alignment="CENTER" layoutX="990.0" layoutY="399.0" mouseTransparent="true" prefHeight="50.0" prefWidth="215.0" text="Lion_Hoelzl" visible="false">
+            <Label fx:id="creditsTwitterLabel2" alignment="CENTER" layoutX="990.0" layoutY="424.0" mouseTransparent="true" prefHeight="50.0" prefWidth="215.0" text="Lion_Hoelzl" visible="false">
                <font>
                   <Font name="Bauhaus 93" size="36.0" />
                </font>
@@ -604,7 +604,7 @@
                   <Font name="Bauhaus 93" size="36.0" />
                </font>
             </Label>
-            <Label fx:id="creditsBackLabel2" alignment="CENTER" layoutX="533.0" layoutY="600.0" mouseTransparent="true" prefHeight="50.0" prefWidth="215.0" text="To" visible="false">
+            <Label fx:id="creditsBackLabel2" alignment="CENTER" layoutX="533.0" layoutY="575.0" mouseTransparent="true" prefHeight="50.0" prefWidth="215.0" text="To" visible="false">
                <font>
                   <Font name="Bauhaus 93" size="36.0" />
                </font>
