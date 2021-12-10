@@ -1,7 +1,6 @@
 package sample;
 
 import javafx.animation.FadeTransition;
-import javafx.animation.ScaleTransition;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.geometry.Rectangle2D;
@@ -9,7 +8,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.ColorAdjust;
-import javafx.scene.effect.ColorInput;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.InnerShadow;
 import javafx.scene.image.Image;
@@ -133,6 +131,8 @@ public class Controller {
     @FXML public Label settingsMuteLabel;
     @FXML public Slider soundSlider;
     @FXML public Slider musicSlider;
+    @FXML public Label soundsLabel;
+    @FXML public Label musicLabel;
 
     public int remaining;
     public int remainingTurns;
@@ -143,6 +143,7 @@ public class Controller {
 
     public double globalSoundVolume;
     public double globalMusicVolume;
+    private MediaPlayer mediaPlayerMusic;
 
     public boolean hasDecided = false;
     public boolean select1Bool = true;
@@ -205,9 +206,12 @@ public class Controller {
         remainingTurns = 13;
         switchScene(Scene.MENU);
         setAllToUnselected();
+        setupMusic();
         rolls = new int[5];
-        setSoundsVolume(50.0);
+        globalSoundVolume = 50.0;
+        globalMusicVolume = 50.0;
         settingsSoundClicked();
+        playMusic();
     }
 
     /**
@@ -1164,7 +1168,7 @@ public class Controller {
             if (isMuted) {
                 mediaPlayerButtonHover.setVolume(0);
             } else {
-                mediaPlayerButtonHover.setVolume(globalSoundVolume);
+                mediaPlayerButtonHover.setVolume(globalSoundVolume / 100);
             }
             mediaPlayerButtonHover.play();
         } catch (NoClassDefFoundError | IllegalAccessError e) {
@@ -1648,6 +1652,8 @@ public class Controller {
             settingsStick1.setEffect(red);
             settingsStick2.setEffect(red);
 
+            mediaPlayerMusic.setVolume(globalMusicVolume / 100);
+
             isMuted = false;
         } else {
             TranslateTransition tt = new TranslateTransition(Duration.seconds(0.2), settingsStick2);
@@ -1659,6 +1665,8 @@ public class Controller {
             green.setHue(0.0);
             settingsStick1.setEffect(green);
             settingsStick2.setEffect(green);
+
+            mediaPlayerMusic.setVolume(0);
 
             isMuted = true;
         }
@@ -1697,47 +1705,49 @@ public class Controller {
         else translateAnimation(label, 1, 0, 0.2);
     }
 
+
     @FXML
-    public void setSoundsVolumeBySlider() {
+    public void updateSoundsVolumeLive() {
         soundSlider
                 .valueProperty()
                 .addListener(
                         (observable, oldValue, newValue) -> globalSoundVolume = soundSlider.getValue() / 100);
-        if (!isMuted) {
-            setSoundsVolume(globalSoundVolume * 100);
-        }
+        globalSoundVolume = soundSlider.getValue();
+        soundsLabel.setText(Integer.toString((int) globalSoundVolume));
     }
 
     /**
      * Method lets you change the volume of the music by changing the slider.
      */
+
     @FXML
-    public void setMusicVolumeBySlider() {
+    public void updateMusicVolumeLive() {
         musicSlider
                 .valueProperty()
                 .addListener(
                         (observable, oldValue, newValue) -> globalMusicVolume = musicSlider.getValue() / 100);
-        if (!isMuted) {
-            setMusicVolume(globalMusicVolume * 100);
-        }
+        globalMusicVolume = musicSlider.getValue();
+        mediaPlayerMusic.setVolume(globalMusicVolume / 100);
+        musicLabel.setText(Integer.toString((int) globalMusicVolume));
     }
 
-    /**
-     * Sets the global soundsVolume based on the parameter
-     *
-     * @param volumeValue double
-     */
+    /*
     public void setSoundsVolume(double volumeValue) {
-        globalSoundVolume = volumeValue / 100;
+        globalSoundVolume = volumeValue;
     }
 
-    /**
-     * Sets the global musicVolume based on the parameter
-     *
-     * @param volumeValue double
-     */
     public void setMusicVolume(double volumeValue) {
-        //TODO
-        // mediaPlayerMusic.setVolume(volumeValue / 100);
+        globalMusicVolume = volumeValue;
+        mediaPlayerMusic.setVolume(volumeValue / 100);
+    }
+    */
+    public void setupMusic() {
+        Media h = new Media(getClass().getResource(MiscFilePath.MUSIC.getFilePath()).toString());
+        mediaPlayerMusic = new MediaPlayer(h);
+        mediaPlayerMusic.setOnEndOfMedia(() -> mediaPlayerMusic.seek(Duration.ZERO));
+    }
+
+    public void playMusic() {
+        mediaPlayerMusic.play();
     }
 }

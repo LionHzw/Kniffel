@@ -116,14 +116,23 @@
                   <Font name="Bauhaus 93" size="48.0" />
                </font>
             </Label>
-            <Slider fx:id="soundSlider" layoutX="529.0" layoutY="510.0" onMouseClicked="#setSoundsVolumeBySlider" prefHeight="30.0" prefWidth="223.0" stylesheets="@../resources/CSS/slider.css" value="50.0" />
-            <Label alignment="CENTER" layoutX="590.0" layoutY="460.0" prefHeight="43.0" prefWidth="100.0" text="Sound">
+            <Slider fx:id="soundSlider" layoutX="529.0" layoutY="510.0" onMouseDragged="#updateSoundsVolumeLive" prefHeight="30.0" prefWidth="223.0" stylesheets="@../resources/CSS/slider.css" value="50.0" />
+            <Label alignment="CENTER" layoutX="591.0" layoutY="460.0" prefHeight="43.0" prefWidth="100.0" text="Sound">
                <font>
                   <Font name="Bauhaus 93" size="36.0" />
                </font>
             </Label>
-            <Slider fx:id="musicSlider" layoutX="529.0" layoutY="616.0" onMouseClicked="#setMusicVolumeBySlider" prefHeight="30.0" prefWidth="223.0" stylesheets="@../resources/CSS/slider.css" value="50.0" />
-            <Label alignment="CENTER" layoutX="590.0" layoutY="566.0" prefHeight="43.0" prefWidth="100.0" text="Music">
+            <Slider fx:id="musicSlider" layoutX="529.0" layoutY="616.0" onMouseDragged="#updateMusicVolumeLive" prefHeight="30.0" prefWidth="223.0" stylesheets="@../resources/CSS/slider.css" value="50.0" />
+            <Label alignment="CENTER" layoutX="591.0" layoutY="563.0" prefHeight="43.0" prefWidth="100.0" text="Music">
+               <font>
+                  <Font name="Bauhaus 93" size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="soundsLabel" alignment="CENTER" layoutX="766.0" layoutY="509.0" prefHeight="42.0" prefWidth="62.0" text="50">
+               <font>
+                  <Font name="Bauhaus 93" size="36.0" />
+               </font></Label>
+            <Label fx:id="musicLabel" alignment="CENTER" layoutX="766.0" layoutY="615.0" prefHeight="42.0" prefWidth="62.0" text="50">
                <font>
                   <Font name="Bauhaus 93" size="36.0" />
                </font>
