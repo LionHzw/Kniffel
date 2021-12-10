@@ -1,17 +1,22 @@
 package sample;
 
 import javafx.animation.FadeTransition;
+import javafx.animation.ScaleTransition;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.ColorAdjust;
+import javafx.scene.effect.ColorInput;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.InnerShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -117,13 +122,21 @@ public class Controller {
     @FXML public Label creditsBackLabel1;
     @FXML public Label creditsBackLabel2;
     @FXML public Label creditsBackLabel3;
+    @FXML public ImageView settingsStick1;
+    @FXML public ImageView settingsStick2;
+    @FXML public ImageView settingsBackButton;
+    @FXML public ImageView settingsFullscreenButton;
+    @FXML public ImageView settingsMuteButton;
+    @FXML public Label settingsBackLabel;
+    @FXML public Label settingsFullscreenLabel;
+    @FXML public Label settingsMuteLabel;
 
     public int remaining;
     public int remainingTurns;
     public int[] rolls;
-    public boolean isMuted = false;
     public boolean inGame = false;
     public boolean isWatchingHighscore = false;
+    boolean isSoundMuted = true;
 
     public boolean hasDecided = false;
     public boolean select1Bool = true;
@@ -401,7 +414,6 @@ public class Controller {
     @FXML
     public void menuPlayClicked() {
         inGame = true;
-        playButtonClickedSound();
         switchScene(Scene.GAME);
         remaining = 3;
         remainingTurns = 13;
@@ -560,14 +572,6 @@ public class Controller {
         }
         settingsPane.getScene().getRoot().getTransforms().setAll(scale);
         stage.setFullScreen(!stage.isFullScreen());
-    }
-
-    /**
-     * Mutes the sound which are yet to come
-     */
-    @FXML
-    public void settingsMuteSoundsPressed() {
-        isMuted = !isMuted;
     }
 
     /**
@@ -766,6 +770,7 @@ public class Controller {
             if (src.equals(pointsButton)) src.setEffect(new DropShadow());
             if (isWatchingHighscore) return;
             src.setEffect(new DropShadow());
+            playButtonHoverSound();
         }
         if (mouseEvent.getSource() instanceof Label src) {
             if (isWatchingHighscore) return;
@@ -778,6 +783,7 @@ public class Controller {
             }
             src.setEffect(new DropShadow());
             showScorePreview(src, 1);
+            playButtonHoverSound();
         }
     }
 
@@ -803,6 +809,7 @@ public class Controller {
      */
     @FXML
     public void onMousePressed(MouseEvent mouseEvent) {
+        playButtonClickedSound();
         if (mouseEvent.getSource() instanceof ImageView src) {
             if (src.equals(pointsButton)) src.setEffect(new InnerShadow());
             if (isWatchingHighscore) return;
@@ -1140,30 +1147,30 @@ public class Controller {
     }
 
     public void playButtonHoverSound() {
-        /*try {
+        try {
             Media m = new Media(getClass().getResource(MiscFilePath.BUTTON_HOVER.getFilePath()).toString());
             MediaPlayer mediaPlayerButtonHover = new MediaPlayer(m);
-            if (isMuted) {
+            if (isSoundMuted) {
                 mediaPlayerButtonHover.setVolume(0);
             } else {
                 mediaPlayerButtonHover.setVolume(1);
             }
             mediaPlayerButtonHover.play();
-        } catch (Exception e) {
-            log.error(e.getMessage());
-        }*/
+        } catch (NoClassDefFoundError | IllegalAccessError e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public void playButtonClickedSound() {
-        /*Media h =
+        Media h =
                 new Media(getClass().getResource(MiscFilePath.BUTTON_PRESSED.getFilePath()).toString());
         MediaPlayer mediaPlayerButtonClicked = new MediaPlayer(h);
-        if (isMuted) {
+        if (isSoundMuted) {
             mediaPlayerButtonClicked.setVolume(0);
         } else {
             mediaPlayerButtonClicked.setVolume(1.0);
         }
-        mediaPlayerButtonClicked.play(); */
+        mediaPlayerButtonClicked.play();
     }
 
     /**
@@ -1626,5 +1633,68 @@ public class Controller {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+
+    @FXML
+    public void settingsSoundClicked() {
+        if (isSoundMuted) {
+            TranslateTransition tt = new TranslateTransition(Duration.seconds(0.2), settingsStick2);
+            tt.setToX(52);
+            tt.setToY(-8);
+            tt.play();
+
+            ColorAdjust red = new ColorAdjust();
+            red.setHue(0.5);
+            settingsStick1.setEffect(red);
+            settingsStick2.setEffect(red);
+
+            isSoundMuted = false;
+        } else {
+            TranslateTransition tt = new TranslateTransition(Duration.seconds(0.2), settingsStick2);
+            tt.setToX(0);
+            tt.setToY(0);
+            tt.play();
+
+            ColorAdjust green = new ColorAdjust();
+            green.setHue(0.0);
+            settingsStick1.setEffect(green);
+            settingsStick2.setEffect(green);
+
+            isSoundMuted = true;
+        }
+    }
+
+    @FXML
+    public void settingsOnMouseEntered(MouseEvent mouseEvent) {
+        onMouseEntered(mouseEvent);
+        ImageView src = (ImageView) mouseEvent.getSource();
+        Label label = null;
+        if (src.equals(settingsFullscreenButton)) label = settingsFullscreenLabel;
+        else if (src.equals(settingsMuteButton)) label = settingsMuteLabel;
+        //else if ()//TODO 3rd Settings
+        else if (src.equals(settingsBackButton)) label = settingsBackLabel;
+        assert label != null;
+        label.setVisible(true);
+
+        fadeAnimation(label, 0.0, 1.0, 0.2);
+        if (src.equals(settingsBackButton)) translateAnimation(label, 0, 20, 0.2);
+        else translateAnimation(label, 1, -20, 0.2);
+    }
+
+    @FXML
+    public void settingsOnMouseExited(MouseEvent mouseEvent) {
+        onMouseExited(mouseEvent);
+        ImageView src = (ImageView) mouseEvent.getSource();
+        Label label = null;
+        if (src.equals(settingsFullscreenButton)) label = settingsFullscreenLabel;
+        else if (src.equals(settingsMuteButton)) label = settingsMuteLabel;
+            //else if ()//TODO 3rd Settings
+        else if (src.equals(settingsBackButton)) label = settingsBackLabel;
+        assert label != null;
+
+        fadeAnimation(label, 1.0, 0.0, 0.2);
+        if (src.equals(settingsBackButton)) translateAnimation(label, 0, 0, 0.2);
+        else translateAnimation(label, 1, 0, 0.2);
     }
 }

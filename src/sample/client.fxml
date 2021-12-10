@@ -68,33 +68,53 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="settingsPane" prefHeight="720.0" prefWidth="1280.0" visible="false">
+      <AnchorPane fx:id="settingsPane" prefHeight="720.0" prefWidth="1280.0">
          <children>
             <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resources/Backgrounds/Settings.png" />
                </image>
             </ImageView>
-            <ImageView fitWidth="400.0" layoutX="440.0" layoutY="250.0" onMouseClicked="#settingsFullscreenPressed" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="settingsFullscreenButton" fitWidth="200.0" layoutX="114.0" layoutY="293.0" onMouseClicked="#settingsFullscreenPressed" onMouseEntered="#settingsOnMouseEntered" onMouseExited="#settingsOnMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../resources/Buttons/Fullscreen.png" />
+                  <Image url="@../resources/Misc/Fullscreen.png" />
                </image>
             </ImageView>
-            <ImageView fitWidth="400.0" layoutX="440.0" layoutY="400.0" onMouseClicked="#settingsMuteSoundsPressed" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="settingsBackButton" fitHeight="150.0" fitWidth="100.0" layoutX="14.0" layoutY="606.0" onMouseClicked="#settingsBackPressed" onMouseEntered="#settingsOnMouseEntered" onMouseExited="#settingsOnMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../resources/Buttons/Mute Sounds.png" />
+                  <Image url="@../resources/Misc/Quit.png" />
                </image>
             </ImageView>
-            <ImageView fitWidth="400.0" layoutX="440.0" layoutY="550.0" onMouseClicked="#settingsCreditsPressed" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="settingsStick2" fitHeight="75.0" fitWidth="75.0" layoutX="685.0" layoutY="322.0" pickOnBounds="true" preserveRatio="true" rotate="45.0">
                <image>
-                  <Image url="@../resources/Buttons/Credits.png" />
+                  <Image url="@../resources/Misc/Stick.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="658.0" onMouseClicked="#settingsBackPressed" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="settingsStick1" fitHeight="75.0" fitWidth="75.0" layoutX="685.0" layoutY="322.0" pickOnBounds="true" preserveRatio="true" rotate="-45.0">
                <image>
-                  <Image url="@../resources/Buttons/Back.png" />
+                  <Image url="@../resources/Misc/Stick.png" />
                </image>
             </ImageView>
+            <ImageView fx:id="settingsMuteButton" fitHeight="200.0" fitWidth="200.0" layoutX="560.0" layoutY="260.0" onMouseClicked="#settingsSoundClicked" onMouseEntered="#settingsOnMouseEntered" onMouseExited="#settingsOnMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/Misc/Sound.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="settingsBackLabel" alignment="CENTER" layoutX="50.0" layoutY="623.0" mouseTransparent="true" prefHeight="67.0" prefWidth="251.0" text="Back" visible="false">
+               <font>
+                  <Font name="Bauhaus 93" size="48.0" />
+               </font>
+            </Label>
+            <Label fx:id="settingsFullscreenLabel" alignment="CENTER" layoutX="89.0" layoutY="236.0" mouseTransparent="true" prefHeight="67.0" prefWidth="251.0" text="Fullscreen" visible="false">
+               <font>
+                  <Font name="Bauhaus 93" size="48.0" />
+               </font>
+            </Label>
+            <Label fx:id="settingsMuteLabel" alignment="CENTER" layoutX="515.0" layoutY="236.0" mouseTransparent="true" prefHeight="67.0" prefWidth="251.0" text="Mute" visible="false">
+               <font>
+                  <Font name="Bauhaus 93" size="48.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="gamePane" prefHeight="720.0" prefWidth="1280.0" visible="false">
@@ -527,7 +547,7 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="creditsPane" prefHeight="720.0" prefWidth="1280.0">
+      <AnchorPane fx:id="creditsPane" prefHeight="720.0" prefWidth="1280.0" visible="false">
          <children>
             <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
                <image>
