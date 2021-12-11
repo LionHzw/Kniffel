@@ -25,7 +25,7 @@ public class Main extends Application {
             stage.setScene(scene);
             stage.setResizable(false);
             scene.setCursor(new ImageCursor(new Image("/resources/Cursor.png")));
-            stage.getIcons().add(new Image(MiscFilePath.DICE5.filePath));
+            stage.getIcons().add(new Image(DiceFilePath.DICE5.path()));
             stage.setOnCloseRequest(event -> controller.windowClosed());
             stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
             stage.show();

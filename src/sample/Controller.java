@@ -126,20 +126,37 @@ public class Controller {
     @FXML public ImageView settingsBackButton;
     @FXML public ImageView settingsFullscreenButton;
     @FXML public ImageView settingsMuteButton;
+    @FXML public ImageView changeDiceStyleButton;
     @FXML public Label settingsBackLabel;
     @FXML public Label settingsFullscreenLabel;
     @FXML public Label settingsMuteLabel;
+    @FXML public Label settingsDiceStyleLabel;
     @FXML public Slider soundSlider;
     @FXML public Slider musicSlider;
     @FXML public Label soundsLabel;
     @FXML public Label musicLabel;
+    @FXML public ImageView gameExitButton;
+    @FXML public ImageView gameFinishButton;
+    @FXML public Label gameExitLabel;
+    @FXML public Label gameFinishLabel;
+    @FXML public Label pointsTurnsLeftLabel;
+    @FXML public ImageView pointsGuideDice1IV;
+    @FXML public ImageView pointsGuideDice2IV;
+    @FXML public ImageView pointsGuideDice3IV;
+    @FXML public ImageView pointsGuideDice4IV;
+    @FXML public ImageView pointsGuideDice5IV;
+    @FXML public ImageView pointsGuideDice6IV;
+    @FXML public ImageView style1IV;
+    @FXML public ImageView style2IV;
+    @FXML public ImageView style3IV;
 
     public int remaining;
     public int remainingTurns;
     public int[] rolls;
     public boolean inGame = false;
     public boolean isWatchingHighscore = false;
-    boolean isMuted = true;
+    public boolean isMuted = true;
+    public boolean isDiceStyleUnfolded = false;
 
     public double globalSoundVolume;
     public double globalMusicVolume;
@@ -161,13 +178,13 @@ public class Controller {
      * Images for the dice and the buttons and the guides
      */
     //SURFACE OF DICE
-    Image dice0Image = new Image(MiscFilePath.DICE.getFilePath());
-    Image dice1Image = new Image(MiscFilePath.DICE1.getFilePath());
-    Image dice2Image = new Image(MiscFilePath.DICE2.getFilePath());
-    Image dice3Image = new Image(MiscFilePath.DICE3.getFilePath());
-    Image dice4Image = new Image(MiscFilePath.DICE4.getFilePath());
-    Image dice5Image = new Image(MiscFilePath.DICE5.getFilePath());
-    Image dice6Image = new Image(MiscFilePath.DICE6.getFilePath());
+    Image dice0Image = new Image(DiceFilePath.DICE.path());
+    Image dice1Image = new Image(DiceFilePath.DICE1.path());
+    Image dice2Image = new Image(DiceFilePath.DICE2.path());
+    Image dice3Image = new Image(DiceFilePath.DICE3.path());
+    Image dice4Image = new Image(DiceFilePath.DICE4.path());
+    Image dice5Image = new Image(DiceFilePath.DICE5.path());
+    Image dice6Image = new Image(DiceFilePath.DICE6.path());
 
     //BUTTONS
     Image skipImage = new Image(MiscFilePath.SKIP.getFilePath());
@@ -211,6 +228,7 @@ public class Controller {
         globalSoundVolume = 50.0;
         globalMusicVolume = 50.0;
         settingsSoundClicked();
+        updateDiceStyle();
         playMusic();
     }
 
@@ -441,7 +459,7 @@ public class Controller {
         for (int i = 0; i < 17; i++) {
             updateLabel(i, 0);
         }
-
+        pointsTurnsLeftLabel.setText("Turns Left: " + 13);
     }
 
     public void resetGameAndDices() {
@@ -522,6 +540,7 @@ public class Controller {
             System.out.println("MF clicked on a non existing label");
             return;
         }
+        pointsTurnsLeftLabel.setVisible(false);
         hideRolledDice();
         isWatchingHighscore = true;
         switchScene(Scene.POINTS);
@@ -552,6 +571,7 @@ public class Controller {
 
     @FXML
     public void rankingBackClicked() {
+        pointsTurnsLeftLabel.setVisible(true);
         switchScene(Scene.MENU);
     }
 
@@ -587,18 +607,11 @@ public class Controller {
     }
 
     /**
-     * Switches to the credits pane
-     */
-    @FXML
-    public void settingsCreditsPressed() {
-        //TODO
-    }
-
-    /**
      * Returns from the settings to the menu
      */
     @FXML
     public void settingsBackPressed() {
+        foldDiceStyles();
         if (inGame) {
             switchScene(Scene.GAME);
         } else {
@@ -717,6 +730,27 @@ public class Controller {
         pointsButton.setImage(backImage);
         checker.setSpecPoints(true);
         possibilities.highlightAllRemaining();
+    }
+
+    public void updateDiceStyle() {
+        dice0Image = new Image(DiceFilePath.DICE.path());
+        dice1Image = new Image(DiceFilePath.DICE1.path());
+        dice2Image = new Image(DiceFilePath.DICE2.path());
+        dice3Image = new Image(DiceFilePath.DICE3.path());
+        dice4Image = new Image(DiceFilePath.DICE4.path());
+        dice5Image = new Image(DiceFilePath.DICE5.path());
+        dice6Image = new Image(DiceFilePath.DICE6.path());
+        pointsGuideDice1IV.setImage(dice1Image);
+        pointsGuideDice2IV.setImage(dice2Image);
+        pointsGuideDice3IV.setImage(dice3Image);
+        pointsGuideDice4IV.setImage(dice4Image);
+        pointsGuideDice5IV.setImage(dice5Image);
+        pointsGuideDice6IV.setImage(dice6Image);
+        dice1IV.setImage(eyesReturner(dice1num));
+        dice2IV.setImage(eyesReturner(dice2num));
+        dice3IV.setImage(eyesReturner(dice3num));
+        dice4IV.setImage(eyesReturner(dice4num));
+        dice5IV.setImage(eyesReturner(dice5num));
     }
 
     @FXML
@@ -869,7 +903,7 @@ public class Controller {
     public void p0Pressed() {
         if (hasDecided) return;
         int score = checker.checkp0(rolls);
-        if (score == -1) log.info("Not matching");
+        if (score == -1) playSound(MiscFilePath.ERROR);
         else {
             enclosureTurn(0, score);
         }
@@ -887,7 +921,7 @@ public class Controller {
     public void p1Pressed() {
         if (hasDecided) return;
         int score = checker.checkp1(rolls);
-        if (score == -1) log.info("Not matching");
+        if (score == -1) playSound(MiscFilePath.ERROR);
         else {
             enclosureTurn(1, score);
         }
@@ -904,7 +938,7 @@ public class Controller {
     public void p2Pressed() {
         if (hasDecided) return;
         int score = checker.checkp2(rolls);
-        if (score == -1) log.info("Not matching");
+        if (score == -1) playSound(MiscFilePath.ERROR);
         else {
             enclosureTurn(2, score);
         }
@@ -921,7 +955,7 @@ public class Controller {
     public void p3Pressed() {
         if (hasDecided) return;
         int score = checker.checkp3(rolls);
-        if (score == -1) log.info("Not matching");
+        if (score == -1) playSound(MiscFilePath.ERROR);
         else {
             enclosureTurn(3, score);
         }
@@ -938,7 +972,7 @@ public class Controller {
     public void p4Pressed() {
         if (hasDecided) return;
         int score = checker.checkp4(rolls);
-        if (score == -1) log.info("Not matching");
+        if (score == -1) playSound(MiscFilePath.ERROR);
         else {
             enclosureTurn(4, score);
         }
@@ -955,7 +989,7 @@ public class Controller {
     public void p5Pressed() {
         if (hasDecided) return;
         int score = checker.checkp5(rolls);
-        if (score == -1) log.info("Not matching");
+        if (score == -1) playSound(MiscFilePath.ERROR);
         else {
             enclosureTurn(5, score);
         }
@@ -981,7 +1015,7 @@ public class Controller {
     public void p7Pressed() {
         if (hasDecided) return;
         int score = checker.checkp7(rolls);
-        if (score == -1) log.info("Not matching");
+        if (score == -1) playSound(MiscFilePath.ERROR);
         else {
             enclosureTurn(7, score);
         }
@@ -998,7 +1032,7 @@ public class Controller {
     public void p8Pressed() {
         if (hasDecided) return;
         int score = checker.checkp8(rolls);
-        if (score == -1) log.info("Not matching");
+        if (score == -1) playSound(MiscFilePath.ERROR);
         else {
             enclosureTurn(8, score);
         }
@@ -1015,7 +1049,7 @@ public class Controller {
     public void p9Pressed() {
         if (hasDecided) return;
         int score = checker.checkp9(rolls);
-        if (score == -1) log.info("Not matching");
+        if (score == -1) playSound(MiscFilePath.ERROR);
         else {
             enclosureTurn(9, score);
         }
@@ -1032,7 +1066,7 @@ public class Controller {
     public void p10Pressed() {
         if (hasDecided) return;
         int score = checker.checkp10(rolls);
-        if (score == -1) log.info("Not matching");
+        if (score == -1) playSound(MiscFilePath.ERROR);
         else  {
             enclosureTurn(10, score);
         }
@@ -1049,7 +1083,7 @@ public class Controller {
     public void p11Pressed() {
         if (hasDecided) return;
         int score = checker.checkp11(rolls);
-        if (score == -1) log.info("Not matching");
+        if (score == -1) playSound(MiscFilePath.ERROR);
         else {
             enclosureTurn(11, score);
         }
@@ -1066,7 +1100,7 @@ public class Controller {
     public void p12Pressed() {
         if (hasDecided) return;
         int score = checker.checkp12(rolls);
-        if (score == -1) log.info("Not matching");
+        if (score == -1) playSound(MiscFilePath.ERROR);
         else {
             enclosureTurn(12, score);
         }
@@ -1090,7 +1124,7 @@ public class Controller {
     public void p14Pressed() {
         if (hasDecided) return;
         int score = checker.checkp14(rolls);
-        if (score == -1) log.info("Not matching");
+        if (score == -1) playSound(MiscFilePath.ERROR);
         else {
             enclosureTurn(14, score);
         }
@@ -1135,6 +1169,7 @@ public class Controller {
         hasDecided = true;
         updateLabel(num, score);
         possibilities.setAllValuesToTheirOriginal();
+        pointsTurnsLeftLabel.setText("Turns Left: " + Integer.toString(remainingTurns - 1));
         playSound(MiscFilePath.ACCEPTED_TURN);
     }
 
@@ -1381,6 +1416,8 @@ public class Controller {
                 checker.setAllValuesToZero();
                 highscore.writeToFile();
                 setAllToBlack();
+                remainingTurns = 13;
+                remaining = 3;
             }
         } else {
             System.out.println("Please enter your name");
@@ -1594,8 +1631,25 @@ public class Controller {
         ft.play();
     }
 
+    public void fadeAnimationImageView(ImageView imageView, double fromVal, double toVal, double dur) {
+        FadeTransition ft = new FadeTransition(Duration.seconds(dur), imageView);
+        ft.setFromValue(fromVal);
+        ft.setToValue(toVal);
+        ft.play();
+    }
+
     public void translateAnimation(Label label, int xyz, double setToVal, double dur) {
         TranslateTransition tt = new TranslateTransition(Duration.seconds(dur), label);
+        switch (xyz) {
+            case 0 -> tt.setToX(setToVal);
+            case 1 -> tt.setToY(setToVal);
+            case 2 -> tt.setToZ(setToVal);
+        }
+        tt.play();
+    }
+
+    public void translateAnimationImageView(ImageView imageView, int xyz, double setToVal, double dur) {
+        TranslateTransition tt = new TranslateTransition(Duration.seconds(dur), imageView);
         switch (xyz) {
             case 0 -> tt.setToX(setToVal);
             case 1 -> tt.setToY(setToVal);
@@ -1679,7 +1733,10 @@ public class Controller {
         Label label = null;
         if (src.equals(settingsFullscreenButton)) label = settingsFullscreenLabel;
         else if (src.equals(settingsMuteButton)) label = settingsMuteLabel;
-        //else if ()//TODO 3rd Settings
+        else if (src.equals(changeDiceStyleButton)) {
+            label = settingsDiceStyleLabel;
+            unfoldDiceStyles();
+        }
         else if (src.equals(settingsBackButton)) label = settingsBackLabel;
         assert label != null;
         label.setVisible(true);
@@ -1696,13 +1753,59 @@ public class Controller {
         Label label = null;
         if (src.equals(settingsFullscreenButton)) label = settingsFullscreenLabel;
         else if (src.equals(settingsMuteButton)) label = settingsMuteLabel;
-            //else if ()//TODO 3rd Settings
+        else if (src.equals(changeDiceStyleButton)) label = settingsDiceStyleLabel;
         else if (src.equals(settingsBackButton)) label = settingsBackLabel;
         assert label != null;
 
         fadeAnimation(label, 1.0, 0.0, 0.2);
         if (src.equals(settingsBackButton)) translateAnimation(label, 0, 0, 0.2);
         else translateAnimation(label, 1, 0, 0.2);
+    }
+
+    public void unfoldDiceStyles() {
+        if (isDiceStyleUnfolded) return;
+        else {
+            style1IV.setVisible(true);
+            style2IV.setVisible(true);
+            style3IV.setVisible(true);
+            fadeAnimationImageView(style1IV, 0.0, 1.0, 0.2);
+            fadeAnimationImageView(style2IV, 0.0, 1.0, 0.4);
+            fadeAnimationImageView(style3IV, 0.0, 1.0, 0.6);
+            translateAnimationImageView(style1IV, 1, 30, 0.2);
+            translateAnimationImageView(style2IV, 1, 30, 0.4);
+            translateAnimationImageView(style3IV, 1, 30, 0.6);
+
+            isDiceStyleUnfolded = true;
+        }
+    }
+
+    public void foldDiceStyles() {
+        fadeAnimationImageView(style1IV, 1.0, 0.0, 0.2);
+        fadeAnimationImageView(style2IV, 1.0, 0.0, 0.4);
+        fadeAnimationImageView(style3IV, 1.0, 0.0, 0.6);
+        translateAnimationImageView(style1IV, 1, 0, 0.2);
+        translateAnimationImageView(style2IV, 1, 0, 0.4);
+        translateAnimationImageView(style3IV, 1, 0, 0.6);
+        isDiceStyleUnfolded = false;
+    }
+
+    @FXML
+    public void styleOnMouseClicked(MouseEvent mouseEvent) {
+        ImageView src = (ImageView) mouseEvent.getSource();
+        if (src.equals(style1IV)) {
+            changeDiceStyle(1);
+        } else if (src.equals(style2IV)) {
+            changeDiceStyle(2);
+        } else if (src.equals(style3IV)) {
+            changeDiceStyle(3);
+        }
+        foldDiceStyles();
+    }
+
+    public void changeDiceStyle(int style) {
+        System.out.println(style);
+        DiceFilePath.setVersion(style);
+        updateDiceStyle();
     }
 
 
@@ -1749,5 +1852,37 @@ public class Controller {
 
     public void playMusic() {
         mediaPlayerMusic.play();
+    }
+
+    @FXML
+    public void gameOnMouseEntered(MouseEvent mouseEvent) {
+        onMouseEntered(mouseEvent);
+        ImageView src = (ImageView) mouseEvent.getSource();
+        Label label;
+        if (src.equals(gameFinishButton)) {
+            label = gameFinishLabel;
+            translateAnimation(label, 0, -50, 0.2);
+        }
+        else {
+            label = gameExitLabel;
+            translateAnimation(label, 0, 50, 0.2);
+        }
+        label.setVisible(true);
+        fadeAnimation(label, 0.0, 1.0, 0.2);
+    }
+
+    @FXML
+    public void gameOnMouseExited(MouseEvent mouseEvent) {
+        onMouseExited(mouseEvent);
+        ImageView src = (ImageView) mouseEvent.getSource();
+        Label label;
+        if (src.equals(gameFinishButton)) {
+            label = gameFinishLabel;
+        }
+        else {
+            label = gameExitLabel;
+        }
+        translateAnimation(label, 0, 0, 0.2);
+        fadeAnimation(label, 1.0, 0.0, 0.2);
     }
 }

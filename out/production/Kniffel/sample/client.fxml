@@ -116,13 +116,13 @@
                   <Font name="Bauhaus 93" size="48.0" />
                </font>
             </Label>
-            <Slider fx:id="soundSlider" layoutX="529.0" layoutY="510.0" onMouseDragged="#updateSoundsVolumeLive" prefHeight="30.0" prefWidth="223.0" stylesheets="@../resources/CSS/slider.css" value="50.0" />
+            <Slider fx:id="soundSlider" layoutX="529.0" layoutY="510.0" onMouseClicked="#updateSoundsVolumeLive" onMouseDragged="#updateSoundsVolumeLive" prefHeight="30.0" prefWidth="223.0" stylesheets="@../resources/CSS/slider.css" value="50.0" />
             <Label alignment="CENTER" layoutX="591.0" layoutY="460.0" prefHeight="43.0" prefWidth="100.0" text="Sound">
                <font>
                   <Font name="Bauhaus 93" size="36.0" />
                </font>
             </Label>
-            <Slider fx:id="musicSlider" layoutX="529.0" layoutY="616.0" onMouseDragged="#updateMusicVolumeLive" prefHeight="30.0" prefWidth="223.0" stylesheets="@../resources/CSS/slider.css" value="50.0" />
+            <Slider fx:id="musicSlider" layoutX="529.0" layoutY="616.0" onMouseClicked="#updateMusicVolumeLive" onMouseDragged="#updateMusicVolumeLive" prefHeight="30.0" prefWidth="223.0" stylesheets="@../resources/CSS/slider.css" value="50.0" />
             <Label alignment="CENTER" layoutX="591.0" layoutY="563.0" prefHeight="43.0" prefWidth="100.0" text="Music">
                <font>
                   <Font name="Bauhaus 93" size="36.0" />
@@ -137,6 +137,31 @@
                   <Font name="Bauhaus 93" size="36.0" />
                </font>
             </Label>
+            <ImageView fx:id="changeDiceStyleButton" fitHeight="110.0" fitWidth="117.0" layoutX="994.0" layoutY="293.0" onMouseEntered="#settingsOnMouseEntered" onMouseExited="#settingsOnMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/Misc/ChangeDiceStyle.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="style2IV" fitHeight="150.0" fitWidth="75.0" layoutX="1012.0" layoutY="440.0" onMouseClicked="#styleOnMouseClicked" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../resources/Dice/Style2/Dice6.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="style1IV" fitHeight="150.0" fitWidth="75.0" layoutX="919.0" layoutY="440.0" onMouseClicked="#styleOnMouseClicked" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../resources/Dice/Style1/Dice6.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="style3IV" fitHeight="150.0" fitWidth="75.0" layoutX="1104.0" layoutY="440.0" onMouseClicked="#styleOnMouseClicked" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../resources/Dice/Style3/Dice6.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="settingsDiceStyleLabel" alignment="CENTER" layoutX="924.0" layoutY="236.0" mouseTransparent="true" prefHeight="67.0" prefWidth="251.0" text="Dice Style" visible="false">
+               <font>
+                  <Font name="Bauhaus 93" size="48.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="gamePane" prefHeight="720.0" prefWidth="1280.0" visible="false">
@@ -146,29 +171,39 @@
                   <Image url="@../resources/Backgrounds/GameBG.png" />
                </image>
             </ImageView>
+            <Label fx:id="gameExitLabel" alignment="CENTER" layoutX="207.0" layoutY="617.0" mouseTransparent="true" prefHeight="22.0" prefWidth="86.0" text="Exit" visible="false">
+               <font>
+                  <Font name="Bauhaus 93" size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="gameFinishLabel" alignment="CENTER" layoutX="987.0" layoutY="617.0" mouseTransparent="true" prefHeight="22.0" prefWidth="86.0" text="Finish" visible="false">
+               <font>
+                  <Font name="Bauhaus 93" size="24.0" />
+               </font>
+            </Label>
             <ImageView fx:id="dice1IV" fitHeight="150.0" fitWidth="150.0" layoutX="65.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../resources/Dice/Dice.png" />
+                  <Image url="@../resources/Dice/Style1/Dice.png" />
                </image>
             </ImageView>
             <ImageView fx:id="dice2IV" fitHeight="150.0" fitWidth="150.0" layoutX="315.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../resources/Dice/Dice.png" />
+                  <Image url="@../resources/Dice/Style1/Dice.png" />
                </image>
             </ImageView>
             <ImageView fx:id="dice3IV" fitHeight="150.0" fitWidth="150.0" layoutX="565.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../resources/Dice/Dice.png" />
+                  <Image url="@../resources/Dice/Style1/Dice.png" />
                </image>
             </ImageView>
             <ImageView fx:id="dice4IV" fitHeight="150.0" fitWidth="150.0" layoutX="815.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../resources/Dice/Dice.png" />
+                  <Image url="@../resources/Dice/Style1/Dice.png" />
                </image>
             </ImageView>
             <ImageView fx:id="dice5IV" fitHeight="150.0" fitWidth="150.0" layoutX="1065.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../resources/Dice/Dice.png" />
+                  <Image url="@../resources/Dice/Style1/Dice.png" />
                </image>
             </ImageView>
             <ImageView fitWidth="300.0" layoutX="316.0" layoutY="387.0" onMouseClicked="#rollAll" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" pickOnBounds="true" preserveRatio="true">
@@ -226,7 +261,7 @@
                   <Font name="Bauhaus 93" size="23.0" />
                </font>
             </Label>
-            <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="100.0" layoutY="556.0" onMouseClicked="#exitButtonPressed" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="gameExitButton" fitHeight="150.0" fitWidth="150.0" layoutX="100.0" layoutY="556.0" onMouseClicked="#exitButtonPressed" onMouseEntered="#gameOnMouseEntered" onMouseExited="#gameOnMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resources/Misc/Arrow Left.png" />
                </image>
@@ -236,21 +271,11 @@
                   <Image url="@../resources/Misc/Settings.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="1030.0" layoutY="556.0" onMouseClicked="#finishRolling" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="gameFinishButton" fitHeight="150.0" fitWidth="150.0" layoutX="1030.0" layoutY="556.0" onMouseClicked="#finishRolling" onMouseEntered="#gameOnMouseEntered" onMouseExited="#gameOnMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resources/Misc/Arrow Right.png" />
                </image>
             </ImageView>
-            <Label alignment="CENTER" layoutX="158.0" layoutY="617.0" mouseTransparent="true" prefHeight="22.0" prefWidth="86.0" text="Exit">
-               <font>
-                  <Font name="Bauhaus 93" size="24.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" layoutX="1037.0" layoutY="617.0" mouseTransparent="true" prefHeight="22.0" prefWidth="86.0" text="Finish">
-               <font>
-                  <Font name="Bauhaus 93" size="24.0" />
-               </font>
-            </Label>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="pointsPane" prefHeight="720.0" prefWidth="1280.0" visible="false">
@@ -352,57 +377,57 @@
             </Label>
             <ImageView fx:id="rolledDice1" fitHeight="50.0" fitWidth="50.0" layoutX="70.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../resources/Dice/Dice.png" />
+                  <Image url="@../resources/Dice/Style1/Dice.png" />
                </image>
             </ImageView>
             <ImageView fx:id="rolledDice2" fitHeight="50.0" fitWidth="50.0" layoutX="70.0" layoutY="175.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../resources/Dice/Dice.png" />
+                  <Image url="@../resources/Dice/Style1/Dice.png" />
                </image>
             </ImageView>
             <ImageView fx:id="rolledDice3" fitHeight="50.0" fitWidth="50.0" layoutX="70.0" layoutY="250.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../resources/Dice/Dice.png" />
+                  <Image url="@../resources/Dice/Style1/Dice.png" />
                </image>
             </ImageView>
             <ImageView fx:id="rolledDice4" fitHeight="50.0" fitWidth="50.0" layoutX="70.0" layoutY="325.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../resources/Dice/Dice.png" />
+                  <Image url="@../resources/Dice/Style1/Dice.png" />
                </image>
             </ImageView>
             <ImageView fx:id="rolledDice5" fitHeight="50.0" fitWidth="50.0" layoutX="70.0" layoutY="400.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../resources/Dice/Dice.png" />
+                  <Image url="@../resources/Dice/Style1/Dice.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="295.0" layoutY="43.0" onMouseClicked="#acesClicked" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="pointsGuideDice1IV" fitHeight="50.0" fitWidth="50.0" layoutX="295.0" layoutY="43.0" onMouseClicked="#acesClicked" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../resources/Dice/Dice1.png" />
+                  <Image url="@../resources/Dice/Style1/Dice.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="402.0" layoutY="43.0" onMouseClicked="#twosClicked" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="pointsGuideDice2IV" fitHeight="50.0" fitWidth="50.0" layoutX="402.0" layoutY="43.0" onMouseClicked="#twosClicked" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../resources/Dice/Dice2.png" />
+                  <Image url="@../resources/Dice/Style1/Dice.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="508.0" layoutY="43.0" onMouseClicked="#threesClicked" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="pointsGuideDice3IV" fitHeight="50.0" fitWidth="50.0" layoutX="508.0" layoutY="43.0" onMouseClicked="#threesClicked" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../resources/Dice/Dice3.png" />
+                  <Image url="@../resources/Dice/Style1/Dice.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="615.0" layoutY="43.0" onMouseClicked="#foursClicked" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="pointsGuideDice4IV" fitHeight="50.0" fitWidth="50.0" layoutX="615.0" layoutY="43.0" onMouseClicked="#foursClicked" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../resources/Dice/Dice4.png" />
+                  <Image url="@../resources/Dice/Style1/Dice.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="722.0" layoutY="43.0" onMouseClicked="#fivesClicked" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="pointsGuideDice5IV" fitHeight="50.0" fitWidth="50.0" layoutX="722.0" layoutY="43.0" onMouseClicked="#fivesClicked" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../resources/Dice/Dice5.png" />
+                  <Image url="@../resources/Dice/Style1/Dice.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="828.0" layoutY="43.0" onMouseClicked="#sixesClicked" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="pointsGuideDice6IV" fitHeight="50.0" fitWidth="50.0" layoutX="828.0" layoutY="43.0" onMouseClicked="#sixesClicked" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../resources/Dice/Dice6.png" />
+                  <Image url="@../resources/Dice/Style1/Dice.png" />
                </image>
             </ImageView>
             <Label alignment="CENTER" contentDisplay="CENTER" layoutX="909.0" layoutY="37.0" prefHeight="67.0" prefWidth="100.0" text=" Total Upper" textAlignment="CENTER" wrapText="true">
@@ -458,6 +483,11 @@
             <Label alignment="CENTER" contentDisplay="CENTER" layoutX="697.0" layoutY="437.0" prefHeight="67.0" prefWidth="100.0" text=" Total Score" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font name="Bauhaus 93" size="25.0" />
+               </font>
+            </Label>
+            <Label fx:id="pointsTurnsLeftLabel" alignment="CENTER" layoutX="1039.0" layoutY="31.0" prefHeight="80.0" prefWidth="215.0" text="Turns left: 13">
+               <font>
+                  <Font name="Bauhaus 93" size="24.0" />
                </font>
             </Label>
          </children>

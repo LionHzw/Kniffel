@@ -1,13 +1,6 @@
 package sample;
 
 public enum MiscFilePath {
-    DICE("/resources/Dice/Dice.png"),
-    DICE1("/resources/Dice/Dice1.png"),
-    DICE2("/resources/Dice/Dice2.png"),
-    DICE3("/resources/Dice/Dice3.png"),
-    DICE4("/resources/Dice/Dice4.png"),
-    DICE5("/resources/Dice/Dice5.png"),
-    DICE6("/resources/Dice/Dice6.png"),
     SELECTED("/resources/Buttons/Selected.png"),
     UNSELECTED("/resources/Buttons/Unselected.png"),
     SKIP("/resources/Buttons/Skip.png"),
