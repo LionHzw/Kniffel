@@ -149,6 +149,12 @@ public class Controller {
     @FXML public ImageView style1IV;
     @FXML public ImageView style2IV;
     @FXML public ImageView style3IV;
+    @FXML public ImageView style4IV;
+    @FXML public ImageView style5IV;
+    @FXML public ImageView style6IV;
+    @FXML public ImageView style7IV;
+    @FXML public ImageView style8IV;
+    @FXML public ImageView style9IV;
 
     public int remaining;
     public int remainingTurns;
@@ -227,6 +233,7 @@ public class Controller {
         rolls = new int[5];
         globalSoundVolume = 50.0;
         globalMusicVolume = 50.0;
+        foldDiceStyles();
         settingsSoundClicked();
         updateDiceStyle();
         playMusic();
@@ -1768,24 +1775,54 @@ public class Controller {
             style1IV.setVisible(true);
             style2IV.setVisible(true);
             style3IV.setVisible(true);
-            fadeAnimationImageView(style1IV, 0.0, 1.0, 0.2);
-            fadeAnimationImageView(style2IV, 0.0, 1.0, 0.4);
-            fadeAnimationImageView(style3IV, 0.0, 1.0, 0.6);
-            translateAnimationImageView(style1IV, 1, 30, 0.2);
-            translateAnimationImageView(style2IV, 1, 30, 0.4);
-            translateAnimationImageView(style3IV, 1, 30, 0.6);
+            style4IV.setVisible(true);
+            style5IV.setVisible(true);
+            style6IV.setVisible(true);
+            style7IV.setVisible(true);
+            style8IV.setVisible(true);
+            style9IV.setVisible(true);
+            fadeAnimationImageView(style1IV, 0.0, 1.0, 1.3);
+            fadeAnimationImageView(style2IV, 0.0, 1.0, 1.2);
+            fadeAnimationImageView(style3IV, 0.0, 1.0, 1.1);
+            fadeAnimationImageView(style4IV, 0.0, 1.0, 1.0);
+            fadeAnimationImageView(style5IV, 0.0, 1.0, 0.9);
+            fadeAnimationImageView(style6IV, 0.0, 1.0, 0.8);
+            fadeAnimationImageView(style7IV, 0.0, 1.0, 0.7);
+            fadeAnimationImageView(style8IV, 0.0, 1.0, 0.6);
+            fadeAnimationImageView(style9IV, 0.0, 1.0, 0.5);
+            translateAnimationImageView(style1IV, 1, 0, 1.3);
+            translateAnimationImageView(style2IV, 1, 0, 1.2);
+            translateAnimationImageView(style3IV, 1, 0, 1.1);
+            translateAnimationImageView(style4IV, 1, 0, 1.0);
+            translateAnimationImageView(style5IV, 1, 0, 0.9);
+            translateAnimationImageView(style6IV, 1, 0, 0.8);
+            translateAnimationImageView(style7IV, 1, 0, 0.7);
+            translateAnimationImageView(style8IV, 1, 0, 0.6);
+            translateAnimationImageView(style9IV, 1, 0, 0.5);
 
             isDiceStyleUnfolded = true;
         }
     }
 
     public void foldDiceStyles() {
-        fadeAnimationImageView(style1IV, 1.0, 0.0, 0.2);
-        fadeAnimationImageView(style2IV, 1.0, 0.0, 0.4);
-        fadeAnimationImageView(style3IV, 1.0, 0.0, 0.6);
-        translateAnimationImageView(style1IV, 1, 0, 0.2);
-        translateAnimationImageView(style2IV, 1, 0, 0.4);
-        translateAnimationImageView(style3IV, 1, 0, 0.6);
+        fadeAnimationImageView(style1IV, 1.0, 0.0, 0.5);
+        fadeAnimationImageView(style2IV, 1.0, 0.0, 0.6);
+        fadeAnimationImageView(style3IV, 1.0, 0.0, 0.7);
+        fadeAnimationImageView(style4IV, 1.0, 0.0, 0.8);
+        fadeAnimationImageView(style5IV, 1.0, 0.0, 0.9);
+        fadeAnimationImageView(style6IV, 1.0, 0.0, 1.0);
+        fadeAnimationImageView(style7IV, 1.0, 0.0, 1.1);
+        fadeAnimationImageView(style8IV, 1.0, 0.0, 1.2);
+        fadeAnimationImageView(style9IV, 1.0, 0.0, 1.3);
+        translateAnimationImageView(style1IV, 1, -30, 0.5);
+        translateAnimationImageView(style2IV, 1, -30, 0.6);
+        translateAnimationImageView(style3IV, 1, -30, 0.7);
+        translateAnimationImageView(style4IV, 1, -30, 0.8);
+        translateAnimationImageView(style5IV, 1, -30, 0.9);
+        translateAnimationImageView(style6IV, 1, -30, 1.0);
+        translateAnimationImageView(style7IV, 1, -30, 1.1);
+        translateAnimationImageView(style8IV, 1, -30, 1.2);
+        translateAnimationImageView(style9IV, 1, -30, 1.3);
         isDiceStyleUnfolded = false;
     }
 
@@ -1798,6 +1835,18 @@ public class Controller {
             changeDiceStyle(2);
         } else if (src.equals(style3IV)) {
             changeDiceStyle(3);
+        } else if (src.equals(style4IV)) {
+            changeDiceStyle(4);
+        } else if (src.equals(style5IV)) {
+            changeDiceStyle(5);
+        } else if (src.equals(style6IV)) {
+            changeDiceStyle(6);
+        } else if (src.equals(style7IV)) {
+            changeDiceStyle(7);
+        } else if (src.equals(style8IV)) {
+            changeDiceStyle(8);
+        } else if (src.equals(style9IV)) {
+            changeDiceStyle(9);
         }
         foldDiceStyles();
     }

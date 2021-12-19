@@ -137,6 +137,11 @@
                   <Font name="Bauhaus 93" size="36.0" />
                </font>
             </Label>
+            <Label fx:id="settingsDiceStyleLabel" alignment="CENTER" layoutX="924.0" layoutY="236.0" mouseTransparent="true" prefHeight="67.0" prefWidth="251.0" text="Dice Style" visible="false">
+               <font>
+                  <Font name="Bauhaus 93" size="48.0" />
+               </font>
+            </Label>
             <ImageView fx:id="changeDiceStyleButton" fitHeight="110.0" fitWidth="117.0" layoutX="994.0" layoutY="293.0" onMouseEntered="#settingsOnMouseEntered" onMouseExited="#settingsOnMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resources/Misc/ChangeDiceStyle.png" />
@@ -157,11 +162,36 @@
                   <Image url="@../resources/Dice/Style3/Dice6.png" />
                </image>
             </ImageView>
-            <Label fx:id="settingsDiceStyleLabel" alignment="CENTER" layoutX="924.0" layoutY="236.0" mouseTransparent="true" prefHeight="67.0" prefWidth="251.0" text="Dice Style" visible="false">
-               <font>
-                  <Font name="Bauhaus 93" size="48.0" />
-               </font>
-            </Label>
+            <ImageView fx:id="style4IV" fitHeight="150.0" fitWidth="75.0" layoutX="919.0" layoutY="540.0" onMouseClicked="#styleOnMouseClicked" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../resources/Dice/Style4/Dice6.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="style5IV" fitHeight="150.0" fitWidth="75.0" layoutX="1012.0" layoutY="540.0" onMouseClicked="#styleOnMouseClicked" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../resources/Dice/Style5/Dice6.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="style6IV" fitHeight="150.0" fitWidth="75.0" layoutX="1104.0" layoutY="540.0" onMouseClicked="#styleOnMouseClicked" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../resources/Dice/Style6/Dice6.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="style7IV" fitHeight="150.0" fitWidth="75.0" layoutX="919.0" layoutY="640.0" onMouseClicked="#styleOnMouseClicked" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../resources/Dice/Style7/Dice6.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="style8IV" fitHeight="150.0" fitWidth="75.0" layoutX="1012.0" layoutY="640.0" onMouseClicked="#styleOnMouseClicked" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../resources/Dice/Style8/Dice6.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="style9IV" fitHeight="150.0" fitWidth="75.0" layoutX="1104.0" layoutY="640.0" onMouseClicked="#styleOnMouseClicked" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../resources/Dice/Style9/Dice6.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="gamePane" prefHeight="720.0" prefWidth="1280.0" visible="false">
