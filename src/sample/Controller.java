@@ -1734,7 +1734,7 @@ public class Controller {
     }
 
     @FXML
-    public void settingsOnMouseEntered(MouseEvent mouseEvent) {
+    public void settingsOnMouseEntered(MouseEvent mouseEvent) throws InterruptedException {
         onMouseEntered(mouseEvent);
         ImageView src = (ImageView) mouseEvent.getSource();
         Label label = null;
@@ -1742,7 +1742,10 @@ public class Controller {
         else if (src.equals(settingsMuteButton)) label = settingsMuteLabel;
         else if (src.equals(changeDiceStyleButton)) {
             label = settingsDiceStyleLabel;
-            unfoldDiceStyles();
+            if (!isDiceStyleUnfolded) {
+                unfoldDiceStyles();
+            }
+            System.out.println(isDiceStyleUnfolded);
         }
         else if (src.equals(settingsBackButton)) label = settingsBackLabel;
         assert label != null;
@@ -1769,9 +1772,10 @@ public class Controller {
         else translateAnimation(label, 1, 0, 0.2);
     }
 
-    public void unfoldDiceStyles() {
+    public void unfoldDiceStyles() throws InterruptedException {
         if (isDiceStyleUnfolded) return;
         else {
+            isDiceStyleUnfolded = true;
             style1IV.setVisible(true);
             style2IV.setVisible(true);
             style3IV.setVisible(true);
@@ -1799,8 +1803,6 @@ public class Controller {
             translateAnimationImageView(style7IV, 1, 0, 0.7);
             translateAnimationImageView(style8IV, 1, 0, 0.6);
             translateAnimationImageView(style9IV, 1, 0, 0.5);
-
-            isDiceStyleUnfolded = true;
         }
     }
 
@@ -1823,7 +1825,6 @@ public class Controller {
         translateAnimationImageView(style7IV, 1, -30, 1.1);
         translateAnimationImageView(style8IV, 1, -30, 1.2);
         translateAnimationImageView(style9IV, 1, -30, 1.3);
-        isDiceStyleUnfolded = false;
     }
 
     @FXML
@@ -1849,6 +1850,7 @@ public class Controller {
             changeDiceStyle(9);
         }
         foldDiceStyles();
+        isDiceStyleUnfolded = false;
     }
 
     public void changeDiceStyle(int style) {
