@@ -5,6 +5,7 @@ import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.ColorAdjust;
@@ -155,6 +156,13 @@ public class Controller {
     @FXML public ImageView style7IV;
     @FXML public ImageView style8IV;
     @FXML public ImageView style9IV;
+    @FXML public ImageView songPrevIV;
+    @FXML public ImageView songPauseIV;
+    @FXML public ImageView songNextIV;
+    @FXML public ImageView songRestartIV;
+    @FXML public ProgressBar songPGBar;
+    @FXML public Label songNameLabel;
+    @FXML public Label rankingBackLabel;
 
     public int remaining;
     public int remainingTurns;
@@ -469,6 +477,10 @@ public class Controller {
         pointsTurnsLeftLabel.setText("Turns Left: " + 13);
     }
 
+    /**
+     * A placeholder image gets displayed on the dice ImageView.
+     * Plus the dice numbers are getting set to 0.
+     */
     public void resetGameAndDices() {
         rolledDice1.setImage(dice0Image);
         rolledDice2.setImage(dice0Image);
@@ -495,11 +507,17 @@ public class Controller {
         switchScene(Scene.SETTINGS);
     }
 
+    /**
+     * Switches from the menu to the credits
+     */
     @FXML
     public void menuCreditsClicked() {
         switchScene(Scene.CREDITS);
     }
 
+    /**
+     * Switches from the menu to the ranking
+     */
     @FXML
     public void menuRankingClicked() {
         switchScene(Scene.RANKING);
@@ -526,6 +544,11 @@ public class Controller {
         else hs10Label.setText("");
     }
 
+    /**
+     * This method gets called when a player clicks on a highscore in the highscore list.
+     * The specific highscore the player clicked on, gets loaded and shown as a points-sheet
+     * @param mouseEvent
+     */
     @FXML
     public void scoreClicked(MouseEvent mouseEvent) {
         ArrayList<SingleHighscore> arrayList = highscore.getArrayList();
@@ -544,7 +567,7 @@ public class Controller {
             else if (label.equals(hs10Label)) points = arrayList.get(9).getPoints();
             else points = null;
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("MF clicked on a non existing label");
+            System.out.println("MF clicked on an empty label");
             return;
         }
         pointsTurnsLeftLabel.setVisible(false);
@@ -557,9 +580,11 @@ public class Controller {
         for (int i = 0; i < 17; i++) {
             updateLabel(i, checker.returnValueOfLabel(i));
         }
-
     }
 
+    /**
+     * Hides the rolled dice on the points-Sheet
+     */
     public void hideRolledDice() {
         rolledDice1.setVisible(false);
         rolledDice2.setVisible(false);
@@ -568,6 +593,9 @@ public class Controller {
         rolledDice5.setVisible(false);
     }
 
+    /**
+     * Shows the rolled dice on the points-Sheet
+     */
     public void showRolledDice() {
         rolledDice1.setVisible(true);
         rolledDice2.setVisible(true);
@@ -618,7 +646,8 @@ public class Controller {
      */
     @FXML
     public void settingsBackPressed() {
-        foldDiceStyles();
+        foldDiceStylesInstant();
+        isDiceStyleUnfolded = false;
         if (inGame) {
             switchScene(Scene.GAME);
         } else {
@@ -703,7 +732,6 @@ public class Controller {
             System.out.println("Please roll first!");
             return;
         }
-
         rolls[0] = dice1num;
         rolls[1] = dice2num;
         rolls[2] = dice3num;
@@ -823,11 +851,12 @@ public class Controller {
     public void onMouseEntered(MouseEvent mouseEvent) {
         if (mouseEvent.getSource() instanceof ImageView src) {
             if (src.equals(pointsButton)) src.setEffect(new DropShadow());
-            if (isWatchingHighscore) return;
+            if (isWatchingHighscore && src != pointsButton) return;
             src.setEffect(new DropShadow());
             playSound(MiscFilePath.BUTTON_HOVER);
         }
         if (mouseEvent.getSource() instanceof Label src) {
+            if (src.getText().isEmpty()) return;
             if (isWatchingHighscore) return;
             if (hasDecided) {
                 for (int i = 0; i < 17; i++) {
@@ -838,6 +867,7 @@ public class Controller {
             }
             src.setEffect(new DropShadow());
             showScorePreview(src, 1);
+            System.out.println("Played HoverSound (Label)");
             playSound(MiscFilePath.BUTTON_HOVER);
         }
     }
@@ -1203,6 +1233,10 @@ public class Controller {
         checker.setAllValuesToZero();
     }
 
+    /**
+     * Prepares a mediaplayer to play a sound, and plays it
+     * @param path: Path to the sound File
+     */
     public void playSound(MiscFilePath path) {
         try {
             Media m = new Media(getClass().getResource(path.getFilePath()).toString());
@@ -1312,54 +1346,91 @@ public class Controller {
         switchToGuide(Guide.SIXES);
     }
 
+    /**
+     * Gets called when the player selects the Three of a kind lettering on the Points-sheet
+     * Calls the switchToGuide method with the specific case
+     */
     @FXML
     public void threeOfAKindClicked() {
         if (isWatchingHighscore) return;
         switchToGuide(Guide.THREE_OAK);
     }
 
+    /**
+     * Gets called when the player selects the Four of a kind lettering on the Points-sheet
+     * Calls the switchToGuide method with the specific case
+     */
     @FXML
     public void fourOfAKindClicked() {
         if (isWatchingHighscore) return;
         switchToGuide(Guide.FOUR_OAK);
     }
 
+    /**
+     * Gets called when the player selects the FullHouse lettering on the Points-sheet
+     * Calls the switchToGuide method with the specific case
+     */
     @FXML
     public void fullHouseClicked() {
         if (isWatchingHighscore) return;
         switchToGuide(Guide.FULL_HOUSE);
     }
 
+    /**
+     * Gets called when the player selects the Small Straight lettering on the Points-sheet
+     * Calls the switchToGuide method with the specific case
+     */
     @FXML
     public void smallStraightClicked() {
         if (isWatchingHighscore) return;
         switchToGuide(Guide.SMALL_STRAIGHT);
     }
 
+    /**
+     * Gets called when the player selects the Large Straight lettering on the Points-sheet
+     * Calls the switchToGuide method with the specific case
+     */
     @FXML
     public void largeStraightClicked() {
         if (isWatchingHighscore) return;
         switchToGuide(Guide.LARGE_STRAIGHT);
     }
 
+    /**
+     * Gets called when the player selects the Kniffel lettering on the Points-sheet
+     * Calls the switchToGuide method with the specific case
+     */
     @FXML
     public void kniffelClicked() {
         if (isWatchingHighscore) return;
         switchToGuide(Guide.KNIFFEL);
     }
 
+    /**
+     * Gets called when the player selects the Chance lettering on the Points-sheet
+     * Calls the switchToGuide method with the specific case
+     */
     @FXML
     public void chanceClicked() {
         if (isWatchingHighscore) return;
         switchToGuide(Guide.CHANCE);
     }
 
+    /**
+     * Gets called when the player selects the Upper-Bonus lettering on the Points-sheet
+     * Calls the switchToGuide method with the specific case
+     */
     @FXML
     public void upperBonusClicked() {
         if (isWatchingHighscore) return;
         switchToGuide(Guide.UPPER_BONUS);
     }
 
+    /**
+     * Changes a label to a color
+     * @param label: Label to be changed
+     * @param color: Color which the label should appear in.
+     */
     public void changeColor(int label, Color color) {
         for (int i = 0; i < 17; i++) {
             if (i == label) returnLabel(i).setTextFill(color);
@@ -1375,7 +1446,12 @@ public class Controller {
         }
     }
 
+    /**
+     * Displayes your score in a color, based on your points
+     * @param score: your score
+     */
     public void finishGame(int score) {
+        inGame = false;
         enterNameField.setFont(Font.font("Bauhaus 93", FontWeight.NORMAL, 12));
         switchScene(Scene.RESULT);
         resultLabel.setText(Integer.toString(score));
@@ -1387,9 +1463,14 @@ public class Controller {
         if (score >= 300 && score < 350) resultLabel.setTextFill(Color.BLUE);
         if (score >= 350 && score < 375) resultLabel.setTextFill(Color.PURPLE);
         if (score == 375) resultLabel.setTextFill(Color.GOLD);
-
     }
 
+    /**
+     * After finishing a game, your name has to fulfill certain properties i.e. the length.
+     * When everything's correct, your points with your name are getting saved in the highscore .txt file,
+     * provided that you made it to the Top10.
+     * After this, the game prepares all settings for a further game.
+     */
     @FXML
     public void resultFinishClicked() {
         if (!enterNameField.getText().isEmpty()) {
@@ -1431,6 +1512,9 @@ public class Controller {
         }
     }
 
+    /**
+     * After finishing a game, you can press the "Show Details" button to show the points sheet of your just finished game
+     */
     @FXML
     public void resultShowDetails() {
         pointsButton.setImage(backImage);
@@ -1446,6 +1530,8 @@ public class Controller {
     }
 
     /**
+     * If you finished your move and are on the points sheet, you are given the chance
+     * to display the possible score you would get for this turn
      * mode 0 = show original score
      * mode 1 = show possible score
      * @param src source
@@ -1474,6 +1560,10 @@ public class Controller {
         checker.changeIsCheckingForPossibilities(false);
     }
 
+    /**
+     * OnMouseEntered method for the menu-AnchorPane
+     * @param mouseEvent
+     */
     @FXML
     public void menuOnMouseEntered(MouseEvent mouseEvent) {
         onMouseEntered(mouseEvent);
@@ -1508,6 +1598,10 @@ public class Controller {
         else translateAnimation(label, 1, translateValue, 0.2);
     }
 
+    /**
+     * OnMouseExited method for the menu-AnchorPane
+     * @param mouseEvent
+     */
     @FXML
     public void menuOnMouseExited(MouseEvent mouseEvent) {
         onMouseExited(mouseEvent);
@@ -1540,6 +1634,10 @@ public class Controller {
         else translateAnimation(label, 1, translateValue, 0.2);
     }
 
+    /**
+     * OnMouseEntered method for the credits-AnchorPane
+     * @param mouseEvent
+     */
     @FXML
     public void creditsOnMouseEntered(MouseEvent mouseEvent) {
         onMouseEntered(mouseEvent);
@@ -1589,6 +1687,10 @@ public class Controller {
         }
     }
 
+    /**
+     * OnMouseExited method for the Credits-AnchorPane
+     * @param mouseEvent
+     */
     @FXML
     public void creditsOnMouseExited(MouseEvent mouseEvent) {
         onMouseExited(mouseEvent);
@@ -1631,6 +1733,13 @@ public class Controller {
         }
     }
 
+    /**
+     * This method is a quick and easy way to apply a fade-animation on a label
+     * @param label: Label which should get the fade animation
+     * @param fromVal: From which Fade-Level the animation starts
+     * @param toVal: At which Fade-Level the animations stops
+     * @param dur: Duration (in seconds) how long the animation takes
+     */
     public void fadeAnimation(Label label, double fromVal, double toVal, double dur) {
         FadeTransition ft = new FadeTransition(Duration.seconds(dur), label);
         ft.setFromValue(fromVal);
@@ -1638,6 +1747,9 @@ public class Controller {
         ft.play();
     }
 
+    /**
+     * Same method as above, just for ImageViews instead of Labels
+     */
     public void fadeAnimationImageView(ImageView imageView, double fromVal, double toVal, double dur) {
         FadeTransition ft = new FadeTransition(Duration.seconds(dur), imageView);
         ft.setFromValue(fromVal);
@@ -1645,6 +1757,14 @@ public class Controller {
         ft.play();
     }
 
+    /**
+     * This method is a quick and easy way to give labels a nice translate-animation
+     * @param label: Label to be moved
+     * @param xyz: xyz is an integer which is indicating in which dimension the label should move.
+     *           0: x, 1: y, 2: z,
+     * @param setToVal: DoubleValue where the label should move to.
+     * @param dur: Duration (in seconds) for the animation to last.
+     */
     public void translateAnimation(Label label, int xyz, double setToVal, double dur) {
         TranslateTransition tt = new TranslateTransition(Duration.seconds(dur), label);
         switch (xyz) {
@@ -1655,6 +1775,9 @@ public class Controller {
         tt.play();
     }
 
+    /**
+     * Same method as above, just for ImageViews instead of labels.
+     */
     public void translateAnimationImageView(ImageView imageView, int xyz, double setToVal, double dur) {
         TranslateTransition tt = new TranslateTransition(Duration.seconds(dur), imageView);
         switch (xyz) {
@@ -1665,11 +1788,17 @@ public class Controller {
         tt.play();
     }
 
+    /**
+     * Takes you from the Credits back to the Menu
+     */
     @FXML
     public void creditsBackClicked() {
         switchScene(Scene.MENU);
     }
 
+    /**
+     * Following four methods are getting called when the player selects a specific icon in the credits-AnchorPane
+     */
     @FXML
     public void creditsLionHzwClicked() {
         openURL("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
@@ -1690,6 +1819,10 @@ public class Controller {
         openURL("https://twitter.com/Lion_Hoelzl");
     }
 
+    /**
+     * Opens up a specific URL in your default browser. Mostly used by the credits-icons
+     * @param url: URL to be led to
+     */
     public void openURL(String url) {
         try {
             URI uri = new URI(url);
@@ -1700,6 +1833,10 @@ public class Controller {
     }
 
 
+    /**
+     * When a player clicks on the big speaker button on the settings menu,
+     * there will be an animation right next to it, signaling the player whether the sounds are muted ot not
+     */
     @FXML
     public void settingsSoundClicked() {
         if (isMuted) {
@@ -1733,6 +1870,11 @@ public class Controller {
         }
     }
 
+    /**
+     * MouseEnteredEvent for the settings-AnchorPane
+     * @param mouseEvent
+     * @throws InterruptedException
+     */
     @FXML
     public void settingsOnMouseEntered(MouseEvent mouseEvent) throws InterruptedException {
         onMouseEntered(mouseEvent);
@@ -1756,6 +1898,10 @@ public class Controller {
         else translateAnimation(label, 1, -20, 0.2);
     }
 
+    /**
+     * MouseExitedEvent for the Settings-AnchorPane
+     * @param mouseEvent
+     */
     @FXML
     public void settingsOnMouseExited(MouseEvent mouseEvent) {
         onMouseExited(mouseEvent);
@@ -1772,6 +1918,12 @@ public class Controller {
         else translateAnimation(label, 1, 0, 0.2);
     }
 
+    /**
+     * Unfolds images of possible dice-styles from which the player can choose from.
+     * Every image has an animation which will be shown when the player hovers over the big dice in the
+     * settings menu
+     * @throws InterruptedException
+     */
     public void unfoldDiceStyles() throws InterruptedException {
         if (isDiceStyleUnfolded) return;
         else {
@@ -1806,6 +1958,9 @@ public class Controller {
         }
     }
 
+    /**
+     * It lets all the possible dice style disappear again in a stylish way.
+     */
     public void foldDiceStyles() {
         fadeAnimationImageView(style1IV, 1.0, 0.0, 0.5);
         fadeAnimationImageView(style2IV, 1.0, 0.0, 0.6);
@@ -1827,6 +1982,36 @@ public class Controller {
         translateAnimationImageView(style9IV, 1, -30, 1.3);
     }
 
+    /**
+     * Basically the same method as above, just that it only takes 0.1 seconds for the animations to happen'.
+     * This is needed, so the options for the dice style are not visible, after reentering the settings menu
+     * quickly after leaving it.
+     */
+    public void foldDiceStylesInstant() {
+        fadeAnimationImageView(style1IV, 1.0, 0.0, 0.1);
+        fadeAnimationImageView(style2IV, 1.0, 0.0, 0.1);
+        fadeAnimationImageView(style3IV, 1.0, 0.0, 0.1);
+        fadeAnimationImageView(style4IV, 1.0, 0.0, 0.1);
+        fadeAnimationImageView(style5IV, 1.0, 0.0, 0.1);
+        fadeAnimationImageView(style6IV, 1.0, 0.0, 0.1);
+        fadeAnimationImageView(style7IV, 1.0, 0.0, 0.1);
+        fadeAnimationImageView(style8IV, 1.0, 0.0, 0.1);
+        fadeAnimationImageView(style9IV, 1.0, 0.0, 0.1);
+        translateAnimationImageView(style1IV, 1, -30, 0.1);
+        translateAnimationImageView(style2IV, 1, -30, 0.1);
+        translateAnimationImageView(style3IV, 1, -30, 0.1);
+        translateAnimationImageView(style4IV, 1, -30, 0.1);
+        translateAnimationImageView(style5IV, 1, -30, 0.1);
+        translateAnimationImageView(style6IV, 1, -30, 0.1);
+        translateAnimationImageView(style7IV, 1, -30, 0.1);
+        translateAnimationImageView(style8IV, 1, -30, 0.1);
+        translateAnimationImageView(style9IV, 1, -30, 0.1);
+    }
+
+    /**
+     * Locates which image of a specific dice style just got pressed and decides to which dice-style the game should change
+     * @param mouseEvent MouseEvent to take on further actions of the source
+     */
     @FXML
     public void styleOnMouseClicked(MouseEvent mouseEvent) {
         ImageView src = (ImageView) mouseEvent.getSource();
@@ -1853,13 +2038,21 @@ public class Controller {
         isDiceStyleUnfolded = false;
     }
 
+    /**
+     * This method gets called whenever the dice style has changed
+     * @param style 1-3 Dice with eyes
+     *              4-6 Dice with numbers
+     *              7-9 Dice with letters (ugly af, needs rework)
+     */
     public void changeDiceStyle(int style) {
         System.out.println(style);
         DiceFilePath.setVersion(style);
         updateDiceStyle();
     }
 
-
+    /**
+     * Method lets you change the volume of the sound by changing the slider.
+     */
     @FXML
     public void updateSoundsVolumeLive() {
         soundSlider
@@ -1873,7 +2066,6 @@ public class Controller {
     /**
      * Method lets you change the volume of the music by changing the slider.
      */
-
     @FXML
     public void updateMusicVolumeLive() {
         musicSlider
@@ -1895,16 +2087,28 @@ public class Controller {
         mediaPlayerMusic.setVolume(volumeValue / 100);
     }
     */
+
+    /**
+     * This method sets up the media player for the music.
+     * The Mediaplayer gets a String with the Music-File URL
+     */
     public void setupMusic() {
         Media h = new Media(getClass().getResource(MiscFilePath.MUSIC.getFilePath()).toString());
         mediaPlayerMusic = new MediaPlayer(h);
         mediaPlayerMusic.setOnEndOfMedia(() -> mediaPlayerMusic.seek(Duration.ZERO));
     }
 
+    /**
+     * Starts the musicplayer
+     */
     public void playMusic() {
         mediaPlayerMusic.play();
     }
 
+    /**
+     * Lets a label with either "finish" or "back" appear, based on with arrow you hover over
+     * @param mouseEvent MouseEvent to take on further actions on the source
+     */
     @FXML
     public void gameOnMouseEntered(MouseEvent mouseEvent) {
         onMouseEntered(mouseEvent);
@@ -1922,6 +2126,10 @@ public class Controller {
         fadeAnimation(label, 0.0, 1.0, 0.2);
     }
 
+    /**
+     * Lets the corresponding label disappear again.
+     * @param mouseEvent MouseEvent to take on further actions on the source
+     */
     @FXML
     public void gameOnMouseExited(MouseEvent mouseEvent) {
         onMouseExited(mouseEvent);
@@ -1935,5 +2143,31 @@ public class Controller {
         }
         translateAnimation(label, 0, 0, 0.2);
         fadeAnimation(label, 1.0, 0.0, 0.2);
+    }
+
+
+    /**
+     * Lets a label appear with some fancy animations.
+     * Plus calls the usual onMouseEntered method
+     * @param mouseEvent MouseEvent to take actions on the source
+     */
+    @FXML
+    public void rankingOnMouseEntered(MouseEvent mouseEvent) {
+        onMouseEntered(mouseEvent);
+        rankingBackLabel.setVisible(true);
+        translateAnimation(rankingBackLabel, 0, 25, 0.2);
+        fadeAnimation(rankingBackLabel, 0.0, 1.0, 0.2);
+    }
+
+    /**
+     * Lets the "Back"-label fade out with some fancy animations.
+     * Plus calls the usual onMouseExited method
+     * @param mouseEvent MouseEvent to take actions on the source
+     */
+    @FXML
+    public void rankingOnMouseExited(MouseEvent mouseEvent) {
+        onMouseExited(mouseEvent);
+        translateAnimation(rankingBackLabel, 0, 0, 0.2);
+        fadeAnimation(rankingBackLabel, 1.0, 0.0, 0.2);
     }
 }

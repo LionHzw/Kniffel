@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -72,7 +73,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="settingsPane" prefHeight="720.0" prefWidth="1280.0">
+      <AnchorPane fx:id="settingsPane" prefHeight="720.0" prefWidth="1280.0" visible="false">
          <children>
             <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -206,29 +207,30 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="songPrevIV" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../resources/Misc/Prev.png" />
                      </image></ImageView>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+                  <ImageView fx:id="songPauseIV" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
                      <image>
                         <Image url="@../resources/Misc/Pause.png" />
                      </image></ImageView>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+                  <ImageView fx:id="songNextIV" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
                      <image>
                         <Image url="@../resources/Misc/Next.png" />
                      </image></ImageView>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3">
+                  <ImageView fx:id="songRestartIV" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3">
                      <image>
                         <Image url="@../resources/Misc/RestartSong.png" />
                      </image></ImageView>
                </children>
             </GridPane>
-            <Label alignment="CENTER" layoutX="980.0" layoutY="38.0" prefHeight="30.0" prefWidth="200.0" text="Song name">
+            <Label fx:id="songNameLabel" alignment="CENTER" layoutX="980.0" layoutY="38.0" prefHeight="30.0" prefWidth="200.0" text="Song name">
                <font>
                   <Font name="Bauhaus 93" size="18.0" />
                </font>
             </Label>
+            <ProgressBar fx:id="songPGBar" layoutX="980.0" layoutY="144.0" prefHeight="15.0" prefWidth="200.0" progress="0.68" stylesheets="@../resources/CSS/songPGBar.css" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="gamePane" prefHeight="720.0" prefWidth="1280.0" visible="false">
@@ -602,7 +604,7 @@
             </TextField>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="rankingPane" prefHeight="720.0" prefWidth="1280.0" visible="false">
+      <AnchorPane fx:id="rankingPane" prefHeight="720.0" prefWidth="1280.0">
          <children>
             <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -659,11 +661,16 @@
                   <Font name="Bauhaus 93" size="36.0" />
                </font>
             </Label>
-            <ImageView fitHeight="150.0" fitWidth="50.0" layoutX="14.0" layoutY="656.0" onMouseClicked="#rankingBackClicked" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="150.0" fitWidth="50.0" layoutX="14.0" layoutY="656.0" onMouseClicked="#rankingBackClicked" onMouseEntered="#rankingOnMouseEntered" onMouseExited="#rankingOnMouseExited" onMousePressed="#onMousePressed" onMouseReleased="#onMouseReleased" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resources/Misc/Quit.png" />
                </image>
             </ImageView>
+            <Label fx:id="rankingBackLabel" alignment="CENTER" layoutX="39.0" layoutY="661.0" prefHeight="40.0" prefWidth="75.0" text="Back" visible="false">
+               <font>
+                  <Font name="Bauhaus 93" size="24.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="creditsPane" prefHeight="720.0" prefWidth="1280.0" visible="false">
