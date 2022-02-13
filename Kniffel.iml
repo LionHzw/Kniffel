@@ -12,7 +12,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="javafx17" level="project" />
     <orderEntry type="library" exported="" name="apache-log4j-2.14" level="project" />
+    <orderEntry type="library" exported="" name="javafx17" level="project" />
   </component>
 </module>

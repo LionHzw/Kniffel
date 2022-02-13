@@ -345,6 +345,36 @@
                   <Image url="@../resources/Misc/Arrow Right.png" />
                </image>
             </ImageView>
+            <Label fx:id="songLabel" alignment="CENTER" layoutX="907.0" layoutY="16.0" prefHeight="40.0" prefWidth="300.0" text="SongName">
+               <font>
+                  <Font name="Bauhaus 93" size="24.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="50.0" fitWidth="75.0" layoutX="989.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../KniffelRSC/Pause.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="89.0" fitWidth="50.0" layoutX="1216.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/Misc/Note.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="50.0" fitWidth="75.0" layoutX="1061.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../KniffelRSC/Next.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="50.0" fitWidth="75.0" layoutX="914.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../KniffelRSC/Prev.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="50.0" fitWidth="75.0" layoutX="1129.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../KniffelRSC/RestartSong.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="pointsPane" prefHeight="720.0" prefWidth="1280.0" visible="false">
