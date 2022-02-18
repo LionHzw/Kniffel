@@ -2,6 +2,7 @@ package sample;
 
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Label;
@@ -27,10 +28,13 @@ import javafx.util.Duration;
 //import org.apache.logging.log4j.LogManager;
 //import org.apache.logging.log4j.core.Logger;
 
+import java.io.File;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.logging.Logger;
 
 public class Controller {
@@ -71,8 +75,16 @@ public class Controller {
     @FXML public ImageView songNextIV;
     @FXML public ImageView songRestartIV;
     @FXML public ProgressBar songPGBar;
-    @FXML public Label songNameLabel;
+    @FXML public Label songNameLabel, songLabel;
     @FXML public Label rankingBackLabel;
+
+    private File directory;
+    private File[] files;
+    private ArrayList<File> songs;
+    private int songNumber;
+    private Timer timer;
+    private TimerTask task;
+    private boolean running;
 
     public int remaining;
     public int remainingTurns;
@@ -85,6 +97,7 @@ public class Controller {
     public double globalSoundVolume;
     public double globalMusicVolume;
     private MediaPlayer mediaPlayerMusic;
+    private Media mediaMusic;
 
     public boolean hasDecided = false;
     public boolean select1Bool = true;
@@ -132,6 +145,9 @@ public class Controller {
     Image chanceGuide = new Image(MiscFilePath.CHANCE.getFilePath());
     Image upperBonusGuide = new Image(MiscFilePath.UPPER_BONUS.getFilePath());
 
+    //MUSIC
+    Image playMusicImage = new Image(MiscFilePath.PLAY.getFilePath());
+    Image pauseMusicImage = new Image(MiscFilePath.PAUSE.getFilePath());
 
     public Controller() {
 
@@ -155,6 +171,7 @@ public class Controller {
         settingsSoundClicked();
         updateDiceStyle();
         playMusic();
+        running = true;
     }
 
     /**
@@ -777,7 +794,6 @@ public class Controller {
             }
             src.setEffect(new DropShadow());
             showScorePreview(src, 1);
-            System.out.println("Played HoverSound (Label)");
             playSound(MiscFilePath.BUTTON_HOVER);
         }
     }
@@ -2002,15 +2018,28 @@ public class Controller {
      * The Mediaplayer gets a String with the Music-File URL
      */
     public void setupMusic() {
-        Media h = new Media(getClass().getResource(MiscFilePath.MUSIC.getFilePath()).toString());
-        mediaPlayerMusic = new MediaPlayer(h);
-        mediaPlayerMusic.setOnEndOfMedia(() -> mediaPlayerMusic.seek(Duration.ZERO));
+        songs = new ArrayList<File>();
+        //directory = new File(MiscFilePath.MUSIC_FOLDER.getFilePath());
+        //directory = new File("/resources/Music");
+        directory = new File("C:\\Users\\Lionh\\Desktop\\Development\\IntelliJ\\Kniffel\\src\\resources\\Music");
+        files = directory.listFiles();
+        if (files != null) {
+            for(File file : files) {
+                songs.add(file);
+            }
+        }
+        mediaMusic = new Media(songs.get(songNumber).toURI().toString());
+        mediaPlayerMusic = new MediaPlayer(mediaMusic);
+        changeSongLabels(songs.get(songNumber).getName());
     }
 
     /**
      * Starts the musicplayer
      */
     public void playMusic() {
+        beginTimer();
+        songPauseIV.setImage(pauseMusicImage);
+        mediaPlayerMusic.setVolume(musicSlider.getValue() * 0.01);
         mediaPlayerMusic.play();
     }
 
@@ -2078,5 +2107,84 @@ public class Controller {
         onMouseExited(mouseEvent);
         translateAnimation(rankingBackLabel, 0, 0, 0.2);
         fadeAnimation(rankingBackLabel, 1.0, 0.0, 0.2);
+    }
+
+    //Next up: Song Player
+
+    public void changeSongLabels(String title) {
+        String titleWithoutSuffix = title.substring(0,title.lastIndexOf("."));
+        try {
+            Platform.runLater(() -> {
+                songNameLabel.setText(titleWithoutSuffix);
+                songLabel.setText(titleWithoutSuffix);
+            });
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @FXML
+    public void songPrev() {
+        if (songNumber > 0) songNumber--;
+        else songNumber = songs.size() - 1;
+        mediaPlayerMusic.stop();
+        if (running) cancelTimer();
+        mediaMusic = new Media(songs.get(songNumber).toURI().toString());
+        mediaPlayerMusic = new MediaPlayer(mediaMusic);
+        changeSongLabels(songs.get(songNumber).getName());
+        playMusic();
+    }
+
+    @FXML
+    public void songPause() {
+        if (running) {
+            cancelTimer();
+            mediaPlayerMusic.pause();
+            songPauseIV.setImage(playMusicImage);
+        } else {
+            playMusic();
+        }
+    }
+
+    @FXML
+    public void songNext() {
+        if (songNumber < songs.size() - 1) songNumber++;
+        else songNumber = 0;
+        mediaPlayerMusic.stop();
+        if (running) cancelTimer();
+        mediaMusic = new Media(songs.get(songNumber).toURI().toString());
+        mediaPlayerMusic = new MediaPlayer(mediaMusic);
+        changeSongLabels(songs.get(songNumber).getName());
+        playMusic();
+    }
+
+    @FXML
+    public void songRestart() {
+        songPGBar.setProgress(0.0);
+        mediaPlayerMusic.seek(Duration.seconds(0.0));
+    }
+
+    public void beginTimer() {
+        timer = new Timer();
+        task = new TimerTask() {
+            @Override
+            public void run() {
+                running = true;
+                double current = mediaPlayerMusic.getCurrentTime().toSeconds();
+                double end = mediaMusic.getDuration().toSeconds();
+                songPGBar.setProgress(current/end);
+
+                if (current / end == 1) {
+                    cancelTimer();
+                    songNext();
+                }
+            }
+        };
+        timer.scheduleAtFixedRate(task, 0, 10);
+    }
+
+    public void cancelTimer() {
+        running = false;
+        timer.cancel();
     }
 }

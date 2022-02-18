@@ -14,7 +14,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        try {
+        //try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("client.fxml"));
             Parent root = loader.load();
             Controller controller = loader.getController();
@@ -29,9 +29,9 @@ public class Main extends Application {
             stage.setOnCloseRequest(event -> controller.windowClosed());
             stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
             stage.show();
-        } catch (Exception e) {
-            System.out.println("Exception while creating GUI: " + e.getMessage() + " " +  e.getMessage());
-        }
+        //} catch (Exception e) {
+            //System.out.println("Exception while creating GUI: " + e.getMessage() + " " +  e.getMessage());
+        //}
     }
 
     public static void main(String[] args) {

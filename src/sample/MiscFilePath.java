@@ -27,7 +27,11 @@ public enum MiscFilePath {
     CHANCE("/resources/Guides/Chance.png"),
     UPPER_BONUS("/resources/Guides/UpperBonus.png"),
     FONT("/resources/Font/BAUHAUS93.TTF"),
-    MUSIC("/resources/Music/peroxide.wav");
+    MUSIC("/resources/Music/peroxide.wav"),
+    MUSIC_FOLDER("/resources/Music"),
+    PAUSE("/resources/Misc/pauseMusic.png"),
+    PLAY("/resources/Misc/playMusic.png");
+
 
 
     String filePath;
