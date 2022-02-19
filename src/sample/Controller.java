@@ -30,6 +30,7 @@ import javafx.util.Duration;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -2031,7 +2032,7 @@ public class Controller {
      * The Mediaplayer gets a String with the Music-File URL
      */
     public void setupMusic() {
-        ArrayList<File> songs = addAllSongs();
+        songs = addAllSongs();
         Random rdm = new Random();
         songNumber = rdm.nextInt(9);
         mediaMusic = new Media(songs.get(songNumber).toURI().toString());
@@ -2039,22 +2040,32 @@ public class Controller {
         changeSongLabels(songs.get(songNumber).getName());
     }
 
+    /**
+     * Adding all songs to an ArrayList
+     * @return ArrayList with Files (Songs)
+     */
     public ArrayList<File> addAllSongs() {
         ArrayList<File> temp = new ArrayList<>();
-        temp.add(new File(SongFilePath.SONG1.getFilePath()));
-        temp.add(new File(SongFilePath.SONG2.getFilePath()));
-        temp.add(new File(SongFilePath.SONG3.getFilePath()));
-        temp.add(new File(SongFilePath.SONG4.getFilePath()));
-        temp.add(new File(SongFilePath.SONG5.getFilePath()));
-        temp.add(new File(SongFilePath.SONG6.getFilePath()));
-        temp.add(new File(SongFilePath.SONG7.getFilePath()));
-        temp.add(new File(SongFilePath.SONG8.getFilePath()));
-        temp.add(new File(SongFilePath.SONG9.getFilePath()));
-        temp.add(new File(SongFilePath.SONG10.getFilePath()));
-
-        System.out.println("AHHHHHHHHHHH " + temp.get(0));
-
+        for (SongFilePath song : SongFilePath.values()) {
+            temp.add(prepareFile(song.getFilePath()));
+        }
         return temp;
+    }
+
+    /**
+     * This method is a workaround to add songs to the game
+     * The song path gets saved as an Image so the URL to the song is correct
+     * Next, the URL to the image gets changed to have the correct syntax ("%20" -> " ") & remove "\file" at the beginning of the URL
+     * Lastly, the URL String is being used to create a file which contains the music
+     * @param songPath Path to a song
+     * @return File with the song in it
+     */
+    public File prepareFile(String songPath) {
+        Image tempImage = new Image(songPath);
+        String tempString = tempImage.getUrl();
+        tempString = tempString.replaceAll("%20", " ");
+        tempString = tempString.substring(5);
+        return new File(tempString);
     }
 
     /**
