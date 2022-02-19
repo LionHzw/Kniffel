@@ -1,11 +1,9 @@
 package sample;
 
-import java.util.logging.*;
 
 public class Check {
 
     Controller controller;
-    Logger log = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     public int numberp0;
     public int numberp1;
@@ -488,7 +486,6 @@ public class Check {
         checkp15();
         numberp16 = numberp6 + numberp13 + numberp14 + numberp15;
         controller.update16(numberp16);
-        log.info("Total is: " + numberp16);
         return numberp16;
     }
 

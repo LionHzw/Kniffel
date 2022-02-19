@@ -29,17 +29,7 @@ import javafx.util.Duration;
 //import org.apache.logging.log4j.core.Logger;
 
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.file.DirectoryIteratorException;
-import java.nio.file.DirectoryStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
@@ -275,8 +265,20 @@ public class Controller {
      */
     @FXML
     public void rollAll() {
-        if (remainingTurns == 0) return;
+        if (remainingTurns == 0) {
+            createDialogue(
+                    "Warning",
+                    "You have no remaining turns left",
+                    "Okay"
+            );
+            return;
+        }
         if (remaining == 0) {
+            createDialogue(
+                    "Warning",
+                    "You have no remaining rolls left",
+                    "Okay"
+            );
             return;
         }
         remaining--;
@@ -306,8 +308,20 @@ public class Controller {
      */
     @FXML
     public void rollSelected() {
-        if (remainingTurns == 0) return;
+        if (remainingTurns == 0) {
+            createDialogue(
+                    "Warning",
+                    "You have no remaining turns left",
+                    "Okay"
+            );
+            return;
+        }
         if (remaining == 0) {
+            createDialogue(
+                    "Warning",
+                    "You have no remaining rolls left",
+                    "Okay"
+            );
             return;
         } else if (remaining == 3) {
             createDialogue("Instruction", "You have to roll all dice first!", "Got it!");
@@ -316,6 +330,16 @@ public class Controller {
         remaining--;
         remainingLabel.setText("Remaining: " + remaining);
         Random rdm = new Random();
+
+
+        if (select1Bool && select2Bool && select3Bool && select4Bool && select5Bool) {
+            createDialogue(
+                    "Warning",
+                    "There's no dice selected! " +
+                            "\n Please select one or more dice first",
+                    "I'll retry!"
+            );
+        }
 
         if (!select1Bool) {
             int dice1 = rdm.nextInt(6) + 1;
@@ -342,6 +366,7 @@ public class Controller {
             dice5num = dice5;
             diceDecider(5, dice5);
         }
+
     }
 
     /**
@@ -664,9 +689,20 @@ public class Controller {
      */
     @FXML
     public void finishRolling() {
-        if (remainingTurns == 0) return;
+        if (remainingTurns == 0) {
+            createDialogue(
+                    "Warning",
+                    "You have no remaining turns left",
+                    "Okay"
+            );
+            return;
+        }
         if (remaining == 3) {
-            createDialogue("Instruction", "You have never rolled the dice. Roll the dice by clicking the 'Roll all' button", "Got it!");
+            createDialogue(
+                    "Instruction",
+                    "You have never rolled the dice. Roll the dice by clicking the 'Roll all' button",
+                    "Got it!"
+            );
             return;
         }
         rolls[0] = dice1num;
@@ -1420,25 +1456,10 @@ public class Controller {
             if (withoutSpacing.length() > 20) {
                 createDialogue("Warning", "Your name is too long! \n Please make sure it has less than 20 characters", "Okay");
             } else {
-                int[] finalPoints = {
-                        checker.returnValueOfLabel(0),
-                        checker.returnValueOfLabel(1),
-                        checker.returnValueOfLabel(2),
-                        checker.returnValueOfLabel(3),
-                        checker.returnValueOfLabel(4),
-                        checker.returnValueOfLabel(5),
-                        checker.returnValueOfLabel(6),
-                        checker.returnValueOfLabel(7),
-                        checker.returnValueOfLabel(8),
-                        checker.returnValueOfLabel(9),
-                        checker.returnValueOfLabel(10),
-                        checker.returnValueOfLabel(11),
-                        checker.returnValueOfLabel(12),
-                        checker.returnValueOfLabel(13),
-                        checker.returnValueOfLabel(14),
-                        checker.returnValueOfLabel(15),
-                        checker.returnValueOfLabel(16),
-                };
+                int[] finalPoints = new int[17];
+                for (int i = 0; i < 17; i++) {
+                    finalPoints[i] = checker.returnValueOfLabel(i);
+                }
                 SingleHighscore singleHighscore = new SingleHighscore(checker.numberp16, withoutSpacing, finalPoints);
                 highscore.addHighscore(singleHighscore);
                 switchScene(Scene.MENU);
@@ -2209,11 +2230,7 @@ public class Controller {
                 running = true;
                 double current = mediaPlayerMusic.getCurrentTime().toSeconds();
                 double end = mediaMusic.getDuration().toSeconds();
-                if (current/end < 0.02) {
-                    songPGBar.setProgress(0.02);
-                } else {
-                    songPGBar.setProgress(current/end);
-                }
+                songPGBar.setProgress(Math.max(current / end, 0.02));
 
                 if (current / end == 1) {
                     cancelTimer();

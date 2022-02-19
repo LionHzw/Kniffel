@@ -50,8 +50,4 @@ public enum DiceFilePath {
             dfp.version = Integer.toString(v);
         }
     }
-
-    public void setNonStaticVersion(int v) {
-        this.version = Integer.toString(v);
-    }
 }
