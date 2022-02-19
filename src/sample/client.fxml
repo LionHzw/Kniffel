@@ -73,7 +73,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="settingsPane" prefHeight="720.0" prefWidth="1280.0">
+      <AnchorPane fx:id="settingsPane" prefHeight="720.0" prefWidth="1280.0" visible="false">
          <children>
             <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -683,7 +683,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="creditsPane" prefHeight="720.0" prefWidth="1280.0" visible="false">
+      <AnchorPane fx:id="creditsPane" prefHeight="720.0" prefWidth="1280.0">
          <children>
             <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -735,7 +735,7 @@
                   <Font name="Bauhaus 93" size="36.0" />
                </font>
             </Label>
-            <Label fx:id="creditsLionHzwLabel2" alignment="CENTER" layoutX="76.0" layoutY="424.0" mouseTransparent="true" prefHeight="50.0" prefWidth="215.0" text="LionHzw.eu" visible="false">
+            <Label fx:id="creditsLionHzwLabel2" alignment="CENTER" layoutX="76.0" layoutY="424.0" mouseTransparent="true" prefHeight="50.0" prefWidth="215.0" text="Coming soon" visible="false">
                <font>
                   <Font name="Bauhaus 93" size="36.0" />
                </font>
