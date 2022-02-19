@@ -105,7 +105,7 @@ public class Controller {
     private MediaPlayer mediaPlayerMusic;
     private Media mediaMusic;
 
-    public boolean hasDecided = false;
+    public boolean hasDecided = true;
     public boolean select1Bool = true;
     public boolean select2Bool = true;
     public boolean select3Bool = true;
@@ -128,8 +128,6 @@ public class Controller {
     Image dice4Image = new Image(DiceFilePath.DICE4.path());
     Image dice5Image = new Image(DiceFilePath.DICE5.path());
     Image dice6Image = new Image(DiceFilePath.DICE6.path());
-
-    Object testSong = (Object) new String(MiscFilePath.MUSIC.getFilePath());
 
     //BUTTONS
     Image skipImage = new Image(MiscFilePath.SKIP.getFilePath());
@@ -504,7 +502,9 @@ public class Controller {
             else if (label.equals(hs10Label)) points = arrayList.get(9).getPoints();
             else points = null;
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("MF clicked on an empty label");
+            createDialogue("Notice", "There's not highscore here yet " +
+                    "\n Why don't you try and make one?",
+                    "I'm on it!");
             return;
         }
         pointsTurnsLeftLabel.setVisible(false);
@@ -684,7 +684,6 @@ public class Controller {
         pointsButton.setImage(skipImage);
         hasDecided = false;
         possibilities.checkForPossibilities(rolls);
-        System.out.println(Arrays.toString(rolls));
     }
 
     /**
@@ -694,11 +693,13 @@ public class Controller {
     @FXML
     public void showPoints() {
         switchScene(Scene.POINTS);
-        rolledDice1.setImage(eyesReturner(dice1num));
-        rolledDice2.setImage(eyesReturner(dice2num));
-        rolledDice3.setImage(eyesReturner(dice3num));
-        rolledDice4.setImage(eyesReturner(dice4num));
-        rolledDice5.setImage(eyesReturner(dice5num));
+        int[] tempSortedArray = {dice1num, dice2num, dice3num, dice4num, dice5num};
+        Arrays.sort(tempSortedArray);
+        rolledDice1.setImage(eyesReturner(tempSortedArray[0]));
+        rolledDice2.setImage(eyesReturner(tempSortedArray[1]));
+        rolledDice3.setImage(eyesReturner(tempSortedArray[2]));
+        rolledDice4.setImage(eyesReturner(tempSortedArray[3]));
+        rolledDice5.setImage(eyesReturner(tempSortedArray[4]));
         pointsButton.setImage(backImage);
         checker.setSpecPoints(true);
         possibilities.highlightAllRemaining();
@@ -793,8 +794,12 @@ public class Controller {
             playSound(MiscFilePath.BUTTON_HOVER);
         }
         if (mouseEvent.getSource() instanceof Label src) {
-            if (src.getText().isEmpty()) return;
-            if (isWatchingHighscore) return;
+            if (src.getText().isEmpty()) {
+                return;
+            }
+            if (isWatchingHighscore) {
+                return;
+            }
             if (hasDecided) {
                 for (int i = 0; i < 17; i++) {
                     if (src.equals(returnLabel(i))) {
@@ -1982,7 +1987,6 @@ public class Controller {
      *              7-9 Dice with letters (ugly af, needs rework)
      */
     public void changeDiceStyle(int style) {
-        System.out.println(style);
         DiceFilePath.setVersion(style);
         updateDiceStyle();
     }

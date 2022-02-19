@@ -41,22 +41,22 @@
                   <Image url="@../resources/Misc/Highscore2.png" />
                </image>
             </ImageView>
-            <Label fx:id="playLabel" alignment="CENTER" layoutX="565.0" layoutY="589.0" prefHeight="67.0" prefWidth="150.0" text="Play" visible="false">
+            <Label fx:id="playLabel" alignment="CENTER" layoutX="565.0" layoutY="589.0" mouseTransparent="true" prefHeight="67.0" prefWidth="150.0" text="Play" visible="false">
                <font>
                   <Font name="Bauhaus 93" size="48.0" />
                </font>
             </Label>
-            <Label fx:id="settingsLabel" alignment="CENTER" layoutX="155.0" layoutY="313.0" prefHeight="67.0" prefWidth="191.0" text="Settings" visible="false">
+            <Label fx:id="settingsLabel" alignment="CENTER" layoutX="155.0" layoutY="313.0" mouseTransparent="true" prefHeight="67.0" prefWidth="191.0" text="Settings" visible="false">
                <font>
                   <Font name="Bauhaus 93" size="48.0" />
                </font>
             </Label>
-            <Label fx:id="rankingLabel" alignment="CENTER" layoutX="935.0" layoutY="313.0" prefHeight="67.0" prefWidth="191.0" text="Ranking" visible="false">
+            <Label fx:id="rankingLabel" alignment="CENTER" layoutX="935.0" layoutY="313.0" mouseTransparent="true" prefHeight="67.0" prefWidth="191.0" text="Ranking" visible="false">
                <font>
                   <Font name="Bauhaus 93" size="48.0" />
                </font>
             </Label>
-            <Label fx:id="quitLabel" alignment="CENTER" layoutX="124.0" layoutY="623.0" prefHeight="67.0" prefWidth="108.0" text="Quit" visible="false">
+            <Label fx:id="quitLabel" alignment="CENTER" layoutX="124.0" layoutY="623.0" mouseTransparent="true" prefHeight="67.0" prefWidth="108.0" text="Quit" visible="false">
                <font>
                   <Font name="Bauhaus 93" size="48.0" />
                </font>
@@ -66,7 +66,7 @@
                   <Image url="@../resources/Misc/Logo.png" />
                </image>
             </ImageView>
-            <Label fx:id="creditsLabel" alignment="CENTER" layoutX="985.0" layoutY="624.0" prefHeight="67.0" prefWidth="168.0" text="Credits" visible="false">
+            <Label fx:id="creditsLabel" alignment="CENTER" layoutX="985.0" layoutY="624.0" mouseTransparent="true" prefHeight="67.0" prefWidth="168.0" text="Credits" visible="false">
                <font>
                   <Font name="Bauhaus 93" size="48.0" />
                </font>
@@ -121,13 +121,13 @@
                </font>
             </Label>
             <Slider fx:id="soundSlider" layoutX="529.0" layoutY="510.0" onMouseClicked="#updateSoundsVolumeLive" onMouseDragged="#updateSoundsVolumeLive" prefHeight="30.0" prefWidth="223.0" stylesheets="@../resources/CSS/slider.css" value="50.0" />
-            <Label alignment="CENTER" layoutX="591.0" layoutY="460.0" prefHeight="43.0" prefWidth="100.0" text="Sound">
+            <Label alignment="CENTER" layoutX="591.0" layoutY="460.0" mouseTransparent="true" prefHeight="43.0" prefWidth="100.0" text="Sound">
                <font>
                   <Font name="Bauhaus 93" size="36.0" />
                </font>
             </Label>
             <Slider fx:id="musicSlider" layoutX="529.0" layoutY="616.0" onMouseClicked="#updateMusicVolumeLive" onMouseDragged="#updateMusicVolumeLive" prefHeight="30.0" prefWidth="223.0" stylesheets="@../resources/CSS/slider.css" value="50.0" />
-            <Label alignment="CENTER" layoutX="591.0" layoutY="563.0" prefHeight="43.0" prefWidth="100.0" text="Music">
+            <Label alignment="CENTER" layoutX="591.0" layoutY="563.0" mouseTransparent="true" prefHeight="43.0" prefWidth="100.0" text="Music">
                <font>
                   <Font name="Bauhaus 93" size="36.0" />
                </font>
@@ -614,7 +614,7 @@
             </TextField>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="rankingPane" prefHeight="720.0" prefWidth="1280.0">
+      <AnchorPane fx:id="rankingPane" prefHeight="720.0" prefWidth="1280.0" visible="false">
          <children>
             <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
                <image>
