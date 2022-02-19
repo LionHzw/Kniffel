@@ -29,7 +29,16 @@ import javafx.util.Duration;
 //import org.apache.logging.log4j.core.Logger;
 
 import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.DirectoryIteratorException;
+import java.nio.file.DirectoryStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
@@ -70,16 +79,11 @@ public class Controller {
     @FXML public Label pointsTurnsLeftLabel;
     @FXML public ImageView pointsGuideDice1IV, pointsGuideDice2IV, pointsGuideDice3IV, pointsGuideDice4IV, pointsGuideDice5IV, pointsGuideDice6IV;
     @FXML public ImageView style1IV, style2IV, style3IV, style4IV, style5IV, style6IV, style7IV, style8IV, style9IV;
-    @FXML public ImageView songPrevIV;
-    @FXML public ImageView songPauseIV;
-    @FXML public ImageView songNextIV;
-    @FXML public ImageView songRestartIV;
+    @FXML public ImageView songPrevIV, songPauseIV, songNextIV, songRestartIV;
     @FXML public ProgressBar songPGBar;
     @FXML public Label songNameLabel, songLabel;
     @FXML public Label rankingBackLabel;
 
-    private File directory;
-    private File[] files;
     private ArrayList<File> songs;
     private int songNumber;
     private Timer timer;
@@ -123,6 +127,8 @@ public class Controller {
     Image dice5Image = new Image(DiceFilePath.DICE5.path());
     Image dice6Image = new Image(DiceFilePath.DICE6.path());
 
+    Object testSong = (Object) new String(MiscFilePath.MUSIC.getFilePath());
+
     //BUTTONS
     Image skipImage = new Image(MiscFilePath.SKIP.getFilePath());
     Image backImage = new Image(MiscFilePath.BACK.getFilePath());
@@ -161,6 +167,12 @@ public class Controller {
         possibilities = new Possibilities(this, this.checker);
         highscore = new Highscore();
         remainingTurns = 13;
+
+        System.out.println(MiscFilePath.ACES.getFilePath());
+        System.out.println(MiscFilePath.MUSIC.getFilePath());
+        System.out.println(dice0Image.getUrl());
+        System.out.println(testSong.toString());
+
         switchScene(Scene.MENU);
         setAllToUnselected();
         setupMusic();
@@ -172,6 +184,7 @@ public class Controller {
         updateDiceStyle();
         playMusic();
         running = true;
+
     }
 
     /**
@@ -2018,19 +2031,30 @@ public class Controller {
      * The Mediaplayer gets a String with the Music-File URL
      */
     public void setupMusic() {
-        songs = new ArrayList<File>();
-        //directory = new File(MiscFilePath.MUSIC_FOLDER.getFilePath());
-        //directory = new File("/resources/Music");
-        directory = new File("C:\\Users\\Lionh\\Desktop\\Development\\IntelliJ\\Kniffel\\src\\resources\\Music");
-        files = directory.listFiles();
-        if (files != null) {
-            for(File file : files) {
-                songs.add(file);
-            }
-        }
+        ArrayList<File> songs = addAllSongs();
+        Random rdm = new Random();
+        songNumber = rdm.nextInt(9);
         mediaMusic = new Media(songs.get(songNumber).toURI().toString());
         mediaPlayerMusic = new MediaPlayer(mediaMusic);
         changeSongLabels(songs.get(songNumber).getName());
+    }
+
+    public ArrayList<File> addAllSongs() {
+        ArrayList<File> temp = new ArrayList<>();
+        temp.add(new File(SongFilePath.SONG1.getFilePath()));
+        temp.add(new File(SongFilePath.SONG2.getFilePath()));
+        temp.add(new File(SongFilePath.SONG3.getFilePath()));
+        temp.add(new File(SongFilePath.SONG4.getFilePath()));
+        temp.add(new File(SongFilePath.SONG5.getFilePath()));
+        temp.add(new File(SongFilePath.SONG6.getFilePath()));
+        temp.add(new File(SongFilePath.SONG7.getFilePath()));
+        temp.add(new File(SongFilePath.SONG8.getFilePath()));
+        temp.add(new File(SongFilePath.SONG9.getFilePath()));
+        temp.add(new File(SongFilePath.SONG10.getFilePath()));
+
+        System.out.println("AHHHHHHHHHHH " + temp.get(0));
+
+        return temp;
     }
 
     /**

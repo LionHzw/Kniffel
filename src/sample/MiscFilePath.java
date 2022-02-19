@@ -27,8 +27,8 @@ public enum MiscFilePath {
     CHANCE("/resources/Guides/Chance.png"),
     UPPER_BONUS("/resources/Guides/UpperBonus.png"),
     FONT("/resources/Font/BAUHAUS93.TTF"),
-    MUSIC("/resources/Music/peroxide.wav"),
-    MUSIC_FOLDER("/resources/Music"),
+    MUSIC("/resources/Songs/Agdal-Soyb.mp3"),
+    MUSIC_FOLDER("/resources/Songs"),
     PAUSE("/resources/Misc/pauseMusic.png"),
     PLAY("/resources/Misc/playMusic.png");
 
