@@ -54,7 +54,7 @@ public class Controller {
     Highscore highscore;
     Logger log = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
-    @FXML public AnchorPane menuPane, gamePane, pointsPane, settingsPane, guidePane, resultPane, rankingPane, creditsPane;
+    @FXML public AnchorPane menuPane, gamePane, pointsPane, settingsPane, guidePane, resultPane, rankingPane, creditsPane, dialoguePane;
     @FXML public ImageView dice1IV, dice2IV, dice3IV, dice4IV, dice5IV;
     @FXML public ImageView selectDice1, selectDice2, selectDice3, selectDice4, selectDice5;
     @FXML public Label remainingLabel, remainingTurnsLabel;
@@ -84,6 +84,7 @@ public class Controller {
     @FXML public ProgressBar songPGBar;
     @FXML public Label songNameLabel, songLabel;
     @FXML public Label rankingBackLabel;
+    @FXML public Label dialogueHeader, dialogueText, dialogueButtonText;
 
     private ArrayList<File> songs;
     private int songNumber;
@@ -168,12 +169,6 @@ public class Controller {
         possibilities = new Possibilities(this, this.checker);
         highscore = new Highscore();
         remainingTurns = 13;
-
-        System.out.println(MiscFilePath.ACES.getFilePath());
-        System.out.println(MiscFilePath.MUSIC.getFilePath());
-        System.out.println(dice0Image.getUrl());
-        System.out.println(testSong.toString());
-
         switchScene(Scene.MENU);
         setAllToUnselected();
         setupMusic();
@@ -263,6 +258,7 @@ public class Controller {
         resultPane.setVisible(false);
         rankingPane.setVisible(false);
         creditsPane.setVisible(false);
+        dialoguePane.setVisible(false);
         switch (scene) {
             case MENU -> menuPane.setVisible(true);
             case GAME -> gamePane.setVisible(true);
@@ -316,7 +312,7 @@ public class Controller {
         if (remaining == 0) {
             return;
         } else if (remaining == 3) {
-            System.out.println("Gotta roll first");
+            createDialogue("Instruction", "You have to roll all dice first!", "Got it!");
             return;
         }
         remaining--;
@@ -670,7 +666,7 @@ public class Controller {
     public void finishRolling() {
         if (remainingTurns == 0) return;
         if (remaining == 3) {
-            System.out.println("Please roll first!");
+            createDialogue("Instruction", "You have never rolled the dice. Roll the dice by clicking the 'Roll all' button", "Got it!");
             return;
         }
         rolls[0] = dice1num;
@@ -1417,7 +1413,7 @@ public class Controller {
             String withoutSpacing = enterNameField.getText();
             withoutSpacing = withoutSpacing.replaceAll("\\s+","");
             if (withoutSpacing.length() > 20) {
-                System.out.println("This name is too long!");
+                createDialogue("Warning", "Your name is too long! \n Please make sure it has less than 20 characters", "Okay");
             } else {
                 int[] finalPoints = {
                         checker.returnValueOfLabel(0),
@@ -1448,7 +1444,9 @@ public class Controller {
                 remaining = 3;
             }
         } else {
-            System.out.println("Please enter your name");
+            createDialogue("Warning", "The field is empty. " +
+                    "\n You have to enter a name into the name field. " +
+                    "\n Please do so and try again.", "I retry!");
         }
     }
 
@@ -2225,5 +2223,17 @@ public class Controller {
     public void cancelTimer() {
         running = false;
         timer.cancel();
+    }
+
+    public void createDialogue(String header, String text, String button) {
+        dialoguePane.setVisible(true);
+        dialogueHeader.setText(header);
+        dialogueText.setText(text);
+        dialogueButtonText.setText(button);
+    }
+
+    @FXML
+    public void closeDialogue() {
+        dialoguePane.setVisible(false);
     }
 }
