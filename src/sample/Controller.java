@@ -32,17 +32,16 @@ import java.io.File;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.logging.Logger;
 
 public class Controller {
 
     Check checker;
     Possibilities possibilities;
     Highscore highscore;
-    Logger log = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     @FXML public AnchorPane menuPane, gamePane, pointsPane, settingsPane, guidePane, resultPane, rankingPane, creditsPane, dialoguePane;
     @FXML public ImageView dice1IV, dice2IV, dice3IV, dice4IV, dice5IV;
@@ -79,7 +78,6 @@ public class Controller {
     private ArrayList<File> songs;
     private int songNumber;
     private Timer timer;
-    private TimerTask task;
     private boolean running;
 
     public int remaining;
@@ -213,14 +211,6 @@ public class Controller {
         select4Bool = true;
         select5Bool = true;
     }
-
-    /*public void setAllSelectsToFalse() {
-        select1Bool = true;
-        select2Bool = true;
-        select3Bool = true;
-        select4Bool = true;
-        select5Bool = true;
-    }*/
 
     /**
      * Resets the select boxes for the dices and puts empty box pictures under the dices
@@ -592,6 +582,7 @@ public class Controller {
         for (Screen screen : Screen.getScreensForRectangle(stage.getX() + stage.getWidth() / 2, stage.getY() + stage.getHeight() / 2, 1, 1)) {
             thisScreen = screen;
         }
+        assert thisScreen != null;
         Rectangle2D screenRec = thisScreen.getBounds();
         Scale scale;
         if (stage.isFullScreen()) {
@@ -1183,7 +1174,7 @@ public class Controller {
         hasDecided = true;
         updateLabel(num, score);
         possibilities.setAllValuesToTheirOriginal();
-        pointsTurnsLeftLabel.setText("Turns Left: " + Integer.toString(remainingTurns - 1));
+        pointsTurnsLeftLabel.setText("Turns Left: " + (remainingTurns - 1));
         playSound(MiscFilePath.ACCEPTED_TURN);
     }
 
@@ -1216,7 +1207,7 @@ public class Controller {
      */
     public void playSound(MiscFilePath path) {
         try {
-            Media m = new Media(getClass().getResource(path.getFilePath()).toString());
+            Media m = new Media(Objects.requireNonNull(getClass().getResource(path.getFilePath())).toString());
             MediaPlayer mediaPlayerButtonHover = new MediaPlayer(m);
             if (isMuted) {
                 mediaPlayerButtonHover.setVolume(0);
@@ -1470,9 +1461,10 @@ public class Controller {
                 remaining = 3;
             }
         } else {
-            createDialogue("Warning", "The field is empty. " +
-                    "\n You have to enter a name into the name field. " +
-                    "\n Please do so and try again.", "I retry!");
+            createDialogue("Warning", """
+                    The field is empty.\s
+                     You have to enter a name into the name field.\s
+                     Please do so and try again.""", "I retry!");
         }
     }
 
@@ -1837,10 +1829,9 @@ public class Controller {
     /**
      * MouseEnteredEvent for the settings-AnchorPane
      * @param mouseEvent
-     * @throws InterruptedException
      */
     @FXML
-    public void settingsOnMouseEntered(MouseEvent mouseEvent) throws InterruptedException {
+    public void settingsOnMouseEntered(MouseEvent mouseEvent) {
         onMouseEntered(mouseEvent);
         ImageView src = (ImageView) mouseEvent.getSource();
         Label label = null;
@@ -1885,9 +1876,8 @@ public class Controller {
      * Unfolds images of possible dice-styles from which the player can choose from.
      * Every image has an animation which will be shown when the player hovers over the big dice in the
      * settings menu
-     * @throws InterruptedException
      */
-    public void unfoldDiceStyles() throws InterruptedException {
+    public void unfoldDiceStyles() {
         if (isDiceStyleUnfolded) return;
         else {
             isDiceStyleUnfolded = true;
@@ -2224,7 +2214,7 @@ public class Controller {
 
     public void beginTimer() {
         timer = new Timer();
-        task = new TimerTask() {
+        TimerTask task = new TimerTask() {
             @Override
             public void run() {
                 running = true;
