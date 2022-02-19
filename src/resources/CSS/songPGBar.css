@@ -1,7 +1,14 @@
 .progress-bar .bar {
-    -fx-background-color:
-        -fx-box-border,
-        linear-gradient(to bottom, lightblue, #9bd7e1); /* this line is the background color of the bar */
-    -fx-background-insets: 0, 1, 2;
-    -fx-padding: 0.416667em; /* 5 */
+    -fx-background-color: #d0c6f5; /* this line is the background color of the bar */
+    -fx-background-radius: 100;
+    -fx-border-color: black;
+    -fx-border-radius:50;
+    -fx-border-width: 3;
+    -fx-pref-height: 30;
+}
+
+.progress-bar .track {
+      -fx-background-color: linear-gradient(to top, #eabcab, #9bd7e1);
+	-fx-background-insets:  0, 1;
+	-fx-background-radius: 100;
 }

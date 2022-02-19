@@ -2195,7 +2195,7 @@ public class Controller {
 
     @FXML
     public void songRestart() {
-        songPGBar.setProgress(0.0);
+        songPGBar.setProgress(0.02);
         mediaPlayerMusic.seek(Duration.seconds(0.0));
     }
 
@@ -2207,7 +2207,11 @@ public class Controller {
                 running = true;
                 double current = mediaPlayerMusic.getCurrentTime().toSeconds();
                 double end = mediaMusic.getDuration().toSeconds();
-                songPGBar.setProgress(current/end);
+                if (current/end < 0.02) {
+                    songPGBar.setProgress(0.02);
+                } else {
+                    songPGBar.setProgress(current/end);
+                }
 
                 if (current / end == 1) {
                     cancelTimer();
