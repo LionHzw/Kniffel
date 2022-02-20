@@ -46,6 +46,12 @@ public class Highscore {
 
     public void writeToFile() {
         sortScores();
+
+        /*for (SingleHighscore singleHighscore : arrayList) {
+            System.out.println(singleHighscore.getTotal() + " " + singleHighscore.getName() + "\n");
+        }
+        System.out.println("done sorting");*/
+
         try {
             FileWriter myWriter = new FileWriter("src/resources/highscores.txt");
             for (SingleHighscore singleHighscores : arrayList)
@@ -70,6 +76,10 @@ public class Highscore {
                 int[] points = createArrayFromString(currentLineArray);
                 arrayList.add(new SingleHighscore(total, name, points));
             }
+            for (SingleHighscore singleHighscore : arrayList) {
+                System.out.println(singleHighscore.getTotal() + " " + singleHighscore.getName() + "\n");
+            }
+            System.out.println("done reading");
             myReader.close();
         } catch (FileNotFoundException e) {
             createFile();
@@ -107,7 +117,7 @@ public class Highscore {
      */
     public void sortScores() {
         HashMap<Integer, SingleHighscore> hashMap = new HashMap<>();
-        for (int i = 0; i < arrayList.size(); i++) {
+        /*for (int i = 0; i < arrayList.size(); i++) {
             //Collision detection
             if (!hashMap.containsKey(arrayList.get(i).getTotal())) {
                 hashMap.put(arrayList.get(i).getTotal(), arrayList.get(i));
@@ -118,12 +128,34 @@ public class Highscore {
                 }
                 hashMap.put(arrayList.get(i).getTotal() + j, arrayList.get(i));
             }
+        }*/
+
+        for (int i = 0; i < arrayList.size(); i++) {
+            //Collision detection
+            if (!hashMap.containsKey(arrayList.get(i).getTotal())) {
+                hashMap.put(arrayList.get(i).getTotal(), arrayList.get(i));
+            } else {
+                int j = arrayList.get(i).getTotal();
+                while (hashMap.containsKey(j)) {
+                    j--;
+                }
+                hashMap.put(j, arrayList.get(i));
+            }
+        }
+        /*for (SingleHighscore singleHighscore : hashMap.values()) {
+            System.out.println(singleHighscore.getTotal() + " " + singleHighscore.getName());
+        }*/
+        for (int i = 375; i > 0; i--) {
+            if (hashMap.containsKey(i)) {
+                System.out.println("Key: " + i + ", HighscoreTotal: " + hashMap.get(i).getTotal() + ", HighscoreName: " + hashMap.get(i).getName());
+            }
         }
         arrayList.clear();
         for (int i = 375; i >= 0; i--) {
             if (arrayList.size() == 10) return;
             if (hashMap.containsKey(i)) {
                 arrayList.add(hashMap.get(i));
+                //System.out.println(hashMap.get(i).getName());
             }
         }
     }

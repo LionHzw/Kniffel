@@ -404,8 +404,8 @@ public class Check {
                 && a[4] == 6)) {
             p11sum = 40;
             if (isCheckingForPossibilities) return p11sum;
-            checkTotal();
             numberp11 = p11sum;
+            checkTotal();
             return p11sum;
         } else {
             return -1;
