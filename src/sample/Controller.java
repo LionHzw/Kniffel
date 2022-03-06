@@ -25,8 +25,6 @@ import javafx.scene.transform.Scale;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-//import org.apache.logging.log4j.LogManager;
-//import org.apache.logging.log4j.core.Logger;
 
 import java.io.File;
 import java.net.URI;

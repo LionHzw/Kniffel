@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="temurin-17.0">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/libs/temurin-17.0.1" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

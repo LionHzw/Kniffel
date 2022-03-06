@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Kniffel:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Kniffel_jar</output-path>
+    <root id="archive" name="Kniffel.jar">
+      <element id="module-output" name="Kniffel" />
+      <element id="library" level="application" name="javafx" />
+      <element id="library" level="application" name="temurin-17.0" />
+    </root>
+  </artifact>
+</component>
